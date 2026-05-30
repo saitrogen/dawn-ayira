@@ -1,0 +1,272 @@
+/*
+ * Ayira Design System — foundation layer for Dawn
+ * ------------------------------------------------
+ * Ports the Ayira prototype's design tokens (app/globals.css) and reusable
+ * component utilities (ay-* classes) into the Dawn theme.
+ *
+ * Token names mirror the prototype 1:1 so section styles can be ported with
+ * minimal changes. These names are intentionally distinct from Dawn's own
+ * role variables (--color-background / --color-foreground / --color-button …),
+ * which store comma-separated RGB triplets for use inside rgba(); the Ayira
+ * tokens below hold ready-to-use color values.
+ *
+ * Loaded globally after base.css (see layout/theme.liquid), so its :root
+ * overrides win where they overlap with Dawn's generated variables.
+ */
+
+:root {
+  /* Typography ----------------------------------------------------------- */
+  --font-hanken: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+  /* Forest (primary) ----------------------------------------------------- */
+  --color-forest-900: #062e29;
+  --color-forest-800: #093e37;
+  --color-forest-700: #0d4f47;
+  --color-forest-600: #1b6259;
+  --color-forest-500: #2e7c72;
+  --color-forest-100: #d7e4e1;
+  --color-forest-50: #ebf1ef;
+
+  /* Mustard (accent) ----------------------------------------------------- */
+  --color-mustard-700: #a87f1b;
+  --color-mustard-600: #bc9226;
+  --color-mustard-500: #d4a737;
+  --color-mustard-300: #e8c97c;
+  --color-mustard-100: #f7ebc4;
+  --color-mustard-50: #fbf5e2;
+
+  /* Cream (surfaces) ----------------------------------------------------- */
+  --color-cream-50: #fbfbf6;
+  --color-cream-100: #f6f6ee;
+  --color-cream-200: #ececdf;
+  --color-cream-300: #dcdcc8;
+
+  /* Ink (neutrals) ------------------------------------------------------- */
+  --color-ink-900: #101828;
+  --color-ink-700: #344054;
+  --color-ink-500: #667085;
+  --color-ink-400: #98a2b3;
+  --color-ink-300: #d0d5dd;
+  --color-ink-200: #e4e7ec;
+  --color-ink-100: #f2f4f7;
+
+  /* Semantic ------------------------------------------------------------- */
+  --color-success: #2e7c72;
+  --color-warning: #d4a737;
+  --color-danger: #b42318;
+  --color-info: #175cd3;
+
+  /* Aliases -------------------------------------------------------------- */
+  --color-primary: var(--color-forest-700);
+  --color-primary-hover: var(--color-forest-800);
+  --color-primary-deep: var(--color-forest-900);
+  --color-primary-soft: var(--color-forest-50);
+  --color-primary-soft-2: var(--color-forest-100);
+  --color-on-primary: var(--color-cream-50);
+
+  --color-accent: var(--color-mustard-500);
+  --color-accent-hover: var(--color-mustard-600);
+  --color-accent-soft: var(--color-mustard-50);
+  --color-on-accent: var(--color-forest-900);
+
+  --color-bg-app: var(--color-cream-100);
+
+  /* Shadows (forest-tinted, from the prototype) -------------------------- */
+  --ay-shadow-xs: 0 1px 2px rgba(13, 79, 71, 0.04);
+  --ay-shadow-sm: 0 1px 3px rgba(13, 79, 71, 0.06), 0 1px 2px rgba(13, 79, 71, 0.04);
+  --ay-shadow-md: 0 6px 16px -4px rgba(13, 79, 71, 0.08), 0 2px 4px rgba(13, 79, 71, 0.04);
+  --ay-shadow-lg: 0 16px 32px -12px rgba(13, 79, 71, 0.14), 0 4px 8px rgba(13, 79, 71, 0.04);
+  --ay-shadow-xl: 0 28px 56px -16px rgba(13, 79, 71, 0.18), 0 8px 16px rgba(13, 79, 71, 0.05);
+
+  /* Motion --------------------------------------------------------------- */
+  --ay-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Radii (mirror the prototype's Tailwind scale) ------------------------ */
+  --ay-radius-sm: 10px;
+  --ay-radius: 12px; /* rounded-xl */
+  --ay-radius-lg: 16px; /* rounded-2xl */
+  --ay-radius-xl: 18px;
+
+  /* Override Dawn's font families with Hanken Grotesk -------------------- */
+  --font-body-family: var(--font-hanken);
+  --font-heading-family: var(--font-hanken);
+  --font-heading-weight: 700;
+}
+
+/* Base ------------------------------------------------------------------- */
+body {
+  font-family: var(--font-hanken);
+}
+
+/* Custom scrollbar to mimic the prototype */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-200);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =======================================================================
+ * Buttons (.ay-btn)
+ * ===================================================================== */
+.ay-btn {
+  font-family: var(--font-hanken);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: var(--ay-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+}
+.ay-btn:active {
+  transform: scale(0.95);
+}
+
+.ay-btn-primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.ay-btn-primary:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-on-primary);
+}
+
+.ay-btn-secondary {
+  background: var(--color-cream-50);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary-soft-2);
+}
+.ay-btn-secondary:hover {
+  background: var(--color-cream-200);
+}
+
+.ay-btn-accent {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.ay-btn-accent:hover {
+  background: var(--color-accent-hover);
+  color: var(--color-on-primary);
+}
+
+.ay-btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  padding: 10px 14px;
+}
+.ay-btn-ghost:hover {
+  background: var(--color-primary-soft);
+}
+
+.ay-btn-lg {
+  padding: 16px 28px;
+  font-size: 16px;
+}
+.ay-btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: var(--ay-radius-sm);
+}
+
+/* =======================================================================
+ * Product card (.ay-prod)
+ * ===================================================================== */
+.ay-prod {
+  background: #fff;
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--ay-radius-lg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--ay-shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+.ay-prod:hover {
+  box-shadow: var(--ay-shadow-md);
+  transform: translateY(-2px);
+}
+.ay-prod:hover .ay-prod-img img {
+  transform: scale(1.05);
+}
+
+.ay-prod-img {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--ay-radius);
+  overflow: hidden;
+  position: relative;
+  background: var(--color-cream-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ay-prod-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12%;
+  transition: transform 0.3s var(--ay-ease-out);
+}
+.ay-prod-img.unavail img {
+  opacity: 0.45;
+  filter: saturate(0.5);
+}
+
+/* =======================================================================
+ * Badges (.ay-badge)
+ * ===================================================================== */
+.ay-badge {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}
+.ay-badge.sale {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.ay-badge.new {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.ay-badge.sold-out {
+  background: var(--color-ink-100);
+  color: var(--color-ink-500);
+  border: 1px solid var(--color-ink-200);
+}
+
+/* =======================================================================
+ * Page transition
+ * ===================================================================== */
+.ay-page-fade {
+  animation: ay-page-in 0.28s var(--ay-ease-out);
+}
+@keyframes ay-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
