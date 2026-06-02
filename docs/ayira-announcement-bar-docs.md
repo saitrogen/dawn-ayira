@@ -17,7 +17,7 @@ The **Ayira Announcement Bar** is a highly optimized, premium Shopify section co
 1. **Three Layout Modes:**
    - **Single Message:** Renders the first configured block statically in the center.
    - **Carousel:** Cycles through configured blocks using custom transitions and inline Vanilla JS, avoiding heavy dependencies like Dawn's default slideshow scripts.
-   - **Scrolling Marquee:** Creates an infinite, gapless scrolling loop with customizable speed and gold star (`★`) dividers.
+   - **Scrolling Marquee:** Creates an infinite, gapless scrolling loop with customizable speed and clean, symmetrical item separation.
 2. **Flexible Links & CTA Modifiers:**
    - If a block has a link and a **Link Label**, it renders an underlined gold CTA link with an arrow (`→`) next to the text.
    - If a block has a link but **Link Label is empty**, the entire block container is wrapped with a absolute-positioned link overlay, making the entire message area clickable.
@@ -62,9 +62,7 @@ To avoid visual jumps or clipping, the marquee duplicates blocks within a flat l
 ```html
 <div class="ayira-announcement-bar__marquee-group">
   <span class="ayira-announcement-bar__marquee-text">Message 1 <a href="...">CTA →</a></span>
-  <span class="ayira-announcement-bar__divider">★</span>
   <span class="ayira-announcement-bar__marquee-text">Message 2</span>
-  <span class="ayira-announcement-bar__divider">★</span>
 </div>
 ```
 - Spacing is controlled symmetrically via `gap: 5rem` on the group container and `padding-right: 5rem` on the end of the group to ensure the transition from the end of copy #1 to the start of copy #2 is mathematically identical.
@@ -84,4 +82,4 @@ document.addEventListener('shopify:section:load', function(event) {
 
 ## 💡 Maintenance Tips
 - If you need to change the marquee scroll direction to Left-to-Right, edit `assets/section-announcement-bar.css` under the `@keyframes ayiraMarquee` selector to translate from `-50%` to `0%` (or inverse values).
-- The divider icon is hardcoded to the star character (`★`) to maintain the Ayira visual design standard. If another symbol is requested, update `★` inside `sections/announcement-bar.liquid`.
+- **Optional Divider Symbols:** Sibling separator elements (such as `★`, `•`, or `|`) can be easily added between items inside the `{% for block in section.blocks %}` loop in `sections/announcement-bar.liquid` by assigning the `.ayira-announcement-bar__divider` CSS class.
