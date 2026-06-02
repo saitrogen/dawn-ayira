@@ -1,0 +1,315 @@
+/* ==========================================================
+   component-ayira-card.css
+   Ayira Product Cards — Custom card layout & styles
+   Supports: Minimal, Full-Width Button, and Compact Plus Button
+   ========================================================== */
+
+:root {
+  /* Ayira design tokens mapped from Dawn styles or fallback values */
+  --ay-card-bg: #FFFFFF;
+  --ay-card-border: rgba(var(--color-foreground), 0.08);
+  --ay-card-radius: 16px;
+  --ay-card-img-radius: 12px;
+  --ay-card-img-bg: #FFFFFF;
+  
+  --ay-text-primary: rgb(var(--color-foreground));
+  --ay-text-secondary: rgba(var(--color-foreground), 0.7);
+  --ay-brand-forest: #0D4F47;
+  --ay-brand-mustard: #D4A737;
+  
+  --ay-shadow-sm: 0 2px 8px rgba(13, 79, 71, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --ay-shadow-md: 0 8px 24px rgba(13, 79, 71, 0.1), 0 3px 8px rgba(0, 0, 0, 0.04);
+  
+  --ay-transition-ease: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Card Container ──────────────────────────────────────── */
+.ayira-card-wrapper {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+}
+
+.ay-prod {
+  background-color: var(--ay-card-bg);
+  border: 1px solid var(--ay-card-border);
+  border-radius: var(--ay-card-radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--ay-shadow-sm);
+  transition: var(--ay-transition-ease);
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.ay-prod:hover {
+  box-shadow: var(--ay-shadow-md);
+  transform: translateY(-3px);
+}
+
+/* ── Image Area ──────────────────────────────────────────── */
+.ay-prod-img {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--ay-card-img-radius);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--ay-card-img-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ay-prod-img img,
+.ay-prod-img svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10%;
+  mix-blend-mode: multiply;
+  transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Secondary Hover Image Swap */
+.ay-prod-img img {
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ay-prod-img img.hover-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.ay-prod:hover .ay-prod-img img.hover-image {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* If there is a hover image, fade out the first image on card hover */
+.ay-prod:hover .ay-prod-img img:first-child:not(:only-child) {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+/* If it is a single image, scale it up on card hover */
+.ay-prod:hover .ay-prod-img img:only-child {
+  transform: scale(1.04);
+}
+
+/* Sold-out styling (excludes resting hover-image to prevent double-exposure blend) */
+.ay-prod-img.unavail img:not(.hover-image) {
+  opacity: 0.45;
+  filter: saturate(0.4);
+}
+
+.ay-prod-img.unavail:hover img.hover-image {
+  opacity: 0.45;
+  filter: saturate(0.4);
+}
+
+/* ── Badges ──────────────────────────────────────────────── */
+.ay-prod-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.ay-badge {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}
+
+.ay-badge.sale {
+  background-color: var(--ay-brand-mustard);
+  color: #FFFFFF;
+}
+
+.ay-badge.new {
+  background-color: var(--ay-brand-forest);
+  color: #FFFFFF;
+}
+
+.ay-badge.sold-out {
+  background-color: rgba(var(--color-foreground), 0.08);
+  color: rgba(var(--color-foreground), 0.6);
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+}
+
+/* ── Details & Title ─────────────────────────────────────── */
+.ay-prod-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ay-prod-meta {
+  font-size: 11px;
+  color: var(--ay-text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.ay-prod-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ay-text-primary);
+  line-height: 1.35;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7em; /* force 2 lines alignment */
+}
+
+.ay-prod-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Card Footer / Price / Action row ───────────────────────── */
+.ay-prod-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  min-height: 36px;
+}
+
+.ay-prod-foot.text-left {
+  justify-content: flex-start;
+}
+
+.ay-prod-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ay-brand-forest);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+}
+
+.ay-prod-price .old {
+  font-size: 12.5px;
+  color: rgba(var(--color-foreground), 0.4);
+  text-decoration: line-through;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+/* ── Plus button (Compact layout) ────────────────────────── */
+.ay-prod-add-container {
+  position: relative;
+}
+
+.ay-prod-add {
+  background-color: var(--ay-brand-forest);
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  transition: var(--ay-transition-ease);
+}
+
+.ay-prod-add:hover {
+  background-color: var(--ay-brand-mustard);
+  transform: scale(1.05);
+}
+
+.ay-prod-add.disabled,
+.ay-prod-add[disabled] {
+  background-color: rgba(var(--color-foreground), 0.08);
+  color: rgba(var(--color-foreground), 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ay-prod-add svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2.2px;
+}
+
+/* Loading spinner override in Compact add */
+.ay-prod-add .loading__spinner {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Full-Width Button row (Bar layout) ───────────────────── */
+.ay-prod-bar-action {
+  margin-top: auto;
+  width: 100%;
+}
+
+.ay-prod-quickadd {
+  background-color: var(--ay-brand-forest) !important;
+  color: #FFFFFF !important;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  min-height: 38px;
+  transition: var(--ay-transition-ease);
+  box-shadow: none !important;
+}
+
+.ay-prod-quickadd:hover {
+  background-color: var(--ay-brand-mustard) !important;
+}
+
+.ay-prod-quickadd.disabled,
+.ay-prod-quickadd[disabled] {
+  background-color: rgba(var(--color-foreground), 0.06) !important;
+  color: rgba(var(--color-foreground), 0.4) !important;
+  border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+  cursor: not-allowed;
+}
+
+/* Hide standard styling arrows/effects within Quick-add form wrapper */
+.ay-prod-bar-action form,
+.ay-prod-add-container form {
+  margin: 0;
+  display: flex;
+}
+
+/* Modal quick-add adjustments */
+.quick-add-modal {
+  z-index: 1001;
+}

@@ -175,7 +175,8 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    ayira_card_style: section.settings.ayira_card_style
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -323,6 +324,30 @@
       "default": false,
       "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
       "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "select",
+      "id": "ayira_card_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "Dawn default card"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "bar",
+          "label": "Full-Width Button"
+        },
+        {
+          "value": "compact",
+          "label": "Compact Plus Button"
+        }
+      ],
+      "default": "compact",
+      "label": "Ayira Card Style"
     },
     {
       "type": "select",

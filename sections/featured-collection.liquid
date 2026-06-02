@@ -127,7 +127,8 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add
+                  quick_add: section.settings.quick_add,
+                  ayira_card_style: section.settings.ayira_card_style
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -157,7 +158,8 @@
                 media_aspect_ratio: section.settings.image_ratio,
                 image_shape: section.settings.image_shape,
                 lazy_load: false,
-                placeholder_image: placeholder_image
+                placeholder_image: placeholder_image,
+                ayira_card_style: section.settings.ayira_card_style
               %}
             </li>
           {%- endfor -%}
@@ -447,6 +449,30 @@
       "default": false,
       "label": "t:sections.featured-collection.settings.show_rating.label",
       "info": "t:sections.featured-collection.settings.show_rating.info"
+    },
+    {
+      "type": "select",
+      "id": "ayira_card_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "Dawn default card"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "bar",
+          "label": "Full-Width Button"
+        },
+        {
+          "value": "compact",
+          "label": "Compact Plus Button"
+        }
+      ],
+      "default": "compact",
+      "label": "Ayira Card Style"
     },
     {
       "type": "select",

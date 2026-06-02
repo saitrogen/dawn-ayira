@@ -149,7 +149,9 @@
         "note": "Volume pricing available",
         "minimum": "{{ quantity }}+",
         "price_at_each_html": "at {{ price }}/ea",
-        "price_range": "{{ minimum }} - {{ maximum }}"
+        "price_range": "{{ minimum }} - {{ maximum }}",
+        "minimum_of": "Minimum of {{ quantity }}",
+        "price_at_each": "Each at {{ price }}"
       },
       "pickup_availability": {
         "view_store_info": "View store information",

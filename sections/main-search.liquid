@@ -271,7 +271,6 @@
                   >
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                        {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
                         {% render 'card-product',
                           card_product: item,
                           media_aspect_ratio: section.settings.image_ratio,
@@ -280,7 +279,9 @@
                           show_vendor: section.settings.show_vendor,
                           show_rating: section.settings.show_rating,
                           lazy_load: lazy_load,
-                          skip_styles: skip_card_product_styles
+                          skip_styles: skip_card_product_styles,
+                          section_id: section.id,
+                          ayira_card_style: section.settings.ayira_card_style
                         %}
                         {%- assign skip_card_product_styles = true -%}
                       {%- when 'article' -%}
@@ -446,6 +447,30 @@
       "default": false,
       "label": "t:sections.main-search.settings.show_rating.label",
       "info": "t:sections.main-search.settings.show_rating.info"
+    },
+    {
+      "type": "select",
+      "id": "ayira_card_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "Dawn default card"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "bar",
+          "label": "Full-Width Button"
+        },
+        {
+          "value": "compact",
+          "label": "Compact Plus Button"
+        }
+      ],
+      "default": "compact",
+      "label": "Ayira Card Style"
     },
     {
       "type": "header",
