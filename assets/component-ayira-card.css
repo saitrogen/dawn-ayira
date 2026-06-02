@@ -313,3 +313,65 @@
 .quick-add-modal {
   z-index: 1001;
 }
+
+/* ── Horizontal Layout Variant ──────────────────────────────── */
+.ayira-card--horizontal .ay-prod {
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 12px;
+  min-height: 90px;
+}
+
+.ayira-card--horizontal .ay-prod:hover {
+  transform: translateY(-2px);
+}
+
+.ayira-card--horizontal .ay-prod-img {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.ayira-card--horizontal .ay-prod-details {
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+.ayira-card--horizontal .ay-prod-title {
+  min-height: auto;
+  font-size: 13.5px;
+  -webkit-line-clamp: 2;
+  margin-bottom: 2px;
+}
+
+.ayira-card--horizontal .ay-prod-foot {
+  margin-top: 0;
+  min-height: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ayira-card--horizontal.ayira-card--bar .ay-prod {
+  flex-wrap: wrap;
+}
+
+.ayira-card--horizontal.ayira-card--bar .ay-prod-details {
+  flex: 1;
+}
+
+.ayira-card--horizontal.ayira-card--bar .ay-prod-bar-action {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.ayira-card--horizontal.ayira-card--bar .ay-prod-quickadd {
+  min-height: 28px;
+  font-size: 11px;
+  border-radius: 6px;
+}
+

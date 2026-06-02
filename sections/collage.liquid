@@ -99,7 +99,8 @@
                 show_secondary_image: block.settings.second_image,
                 extend_height: true,
                 placeholder_image: placeholder_image,
-                skip_styles: skip_card_product_styles
+                skip_styles: skip_card_product_styles,
+                ayira_card_style: section.settings.ayira_card_style
               %}
               {% assign skip_card_product_styles = true %}
             {%- when 'collection' -%}
@@ -317,6 +318,30 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "ayira_card_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "Dawn default card"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "bar",
+          "label": "Full-Width Button"
+        },
+        {
+          "value": "compact",
+          "label": "Compact Plus Button"
+        }
+      ],
+      "default": "compact",
+      "label": "Ayira Card Style"
     },
     {
       "type": "header",

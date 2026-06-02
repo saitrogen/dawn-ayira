@@ -9,34 +9,37 @@ The **Ayira Product Card** is a premium, fully customisable product display tile
 | File | Role |
 | :--- | :--- |
 | `snippets/card-product.liquid` | Formats product information, badges, pricing, forms, and renders the layout based on `ayira_card_style` |
-| `assets/component-ayira-card.css` | Scoped stylesheet containing container layout, image zooming, price scaling, and button styles |
+| `assets/component-ayira-card.css` | Scoped stylesheet containing container layout, image zooming, price scaling, button styles, and horizontal layout variations |
 | `locales/en.default.json` | Updated translation schema to support volume pricing strings |
 | `sections/featured-collection.liquid` | Added card style customizer setting, passes option down to cards |
 | `sections/main-collection-product-grid.liquid` | Added card style customizer setting, passes option down to cards |
 | `sections/related-products.liquid` | Added card style customizer setting, passes option down to cards |
 | `sections/main-search.liquid` | Added card style customizer setting, passes option down to cards |
+| `sections/collage.liquid` | Added card style customizer setting, passes option down to Collage products |
+| `sections/main-product.liquid` | Added card style customizer setting to Complementary Products block |
 
 ---
 
 ## ⚡ Key Features
 
-1. **Three Customizable Styles** — Selectable on a per-section basis:
+1. **Three Customizable Styles** — Selectable on a per-section or per-block basis:
    - **Minimal**: Cleans the card layout to focus entirely on product images, titles, and prices. Action buttons and quick-add systems are hidden.
    - **Full-Width Button**: Sits a prominent solid action button ("Add to Cart" or "Choose Options") below the card body spanning 100% width.
    - **Compact Plus Button**: The default Ayira signature style. Places price and a green compact `+` floating action button side-by-side in the footer.
 2. **Integrated Quick-Add Mechanics** — Bypasses nothing. Integrates directly with Dawn's standard product form submission (`product-form.js`) and variant selection modal drawer (`quick-add.js`) so customer options and volume pricing function seamlessly out-of-the-box.
-3. **Interactive Visual Feedback** — A smooth hover transition lifts the card container (`translateY(-3px)`), deepens the drop-shadow (`var(--ay-shadow-md)`), and scales the featured product image (`scale(1.04)`) using custom cubic-bezier timing.
-4. **Clean Badge Layout** — Badges overlay the top-left of the image container with rounded pills and specific colors:
+3. **Horizontal Layout Support** — Supports a responsive horizontal list layout (`ayira-card--horizontal`) when rendered in horizontal list containers such as the **Complementary Products** block on the product page.
+4. **Interactive Visual Feedback** — A smooth hover transition lifts the card container (`translateY(-3px)`), deepens the drop-shadow (`var(--ay-shadow-md)`), and scales the featured product image (`scale(1.04)`) using custom cubic-bezier timing.
+5. **Clean Badge Layout** — Badges overlay the top-left of the image container with rounded pills and specific colors:
    - **Sale**: Gold/mustard background (`#D4A737`) displaying the calculated percent discount (e.g. `Save 20%`).
    - **New**: Forest green background (`#0D4F47`) for products tagged with `new` or `New`.
    - **Sold Out**: Semi-transparent gray background with a soft border.
-5. **Fallback to Original Dawn Cards** — If the `ayira_card_style` setting is not passed (or set to `none`), the snippet gracefully defaults to Dawn's original card markup.
+6. **Fallback to Original Dawn Cards** — If the `ayira_card_style` setting is not passed (or set to `none`), the snippet gracefully defaults to Dawn's original card markup.
 
 ---
 
 ## 🛠️ Schema Configuration & Settings
 
-To select the card style, open the Shopify Theme Customizer for any product grid section (e.g., **Featured collection**, **Product grid**) and locate the following setting:
+To select the card style, open the Shopify Theme Customizer for any product grid section (e.g., **Featured collection**, **Product grid**, **Collage**, or the **Complementary products** block inside the **Product information** section) and locate the following setting:
 
 | ID | Type | Label | Default | Options |
 | :--- | :--- | :--- | :--- | :--- |

@@ -53,7 +53,7 @@
   {%- endif -%}
 
   {%- if card_product and card_product != empty -%}
-    <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }} underline-links-hover">
+    <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }}{% if horizontal_class %} ayira-card--horizontal{% endif %} underline-links-hover">
       <div class="ay-prod" onclick="window.location.href='{{ card_product.url }}'">
         
         {%- comment -%} Card Image Area {%- endcomment -%}
@@ -257,7 +257,7 @@
     </div>
   {%- else -%}
     {%- comment -%} Onboarding / Placeholder Card {%- endcomment -%}
-    <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }} underline-links-hover">
+    <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }}{% if horizontal_class %} ayira-card--horizontal{% endif %} underline-links-hover">
       <div class="ay-prod">
         <div class="ay-prod-img">
           {{ placeholder_image | default: 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}

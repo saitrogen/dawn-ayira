@@ -582,12 +582,14 @@
                                 {% endif %}
                               >
                                 <ul class="list-unstyled" role="list">
+                                  {% comment %}theme-check-disable UndefinedObject{% endcomment %}
                                   {%- for product in recommendations.products
                                     limit: block.settings.products_per_page
                                     offset: continue
                                   -%}
+                                  {% comment %}theme-check-enable UndefinedObject{% endcomment %}
                                     <li>
-                                      {%- if block.settings.enable_quick_add -%}
+                    {%- if block.settings.enable_quick_add -%}
                                         {% assign quick_add = 'standard' %}
                                       {%- else -%}
                                         {% assign quick_add = 'none' %}
@@ -601,7 +603,8 @@
                                         quick_add: quick_add,
                                         section_id: section.id,
                                         horizontal_class: true,
-                                        horizontal_quick_add: true
+                                        horizontal_quick_add: true,
+                                        ayira_card_style: block.settings.ayira_card_style
                                       %}
                                     </li>
                                     {%- assign skip_card_product_styles = true -%}
@@ -724,6 +727,7 @@
       <script src="{{ 'product-model.js' | asset_url }}" defer></script>
     {%- endif -%}
 
+    {% comment %}theme-check-disable UnusedAssign{% endcomment %}
     {%- liquid
       if product.selected_or_first_available_variant.featured_media
         assign seo_media = product.selected_or_first_available_variant.featured_media
@@ -731,6 +735,7 @@
         assign seo_media = product.featured_media
       endif
     -%}
+    {% comment %}theme-check-enable UnusedAssign{% endcomment %}
 
     <script type="application/ld+json">
       {{ product | structured_data }}
@@ -1461,6 +1466,30 @@
           "id": "enable_quick_add",
           "label": "t:sections.main-product.blocks.complementary_products.settings.enable_quick_add.label",
           "default": false
+        },
+        {
+          "type": "select",
+          "id": "ayira_card_style",
+          "options": [
+            {
+              "value": "none",
+              "label": "Dawn default card"
+            },
+            {
+              "value": "minimal",
+              "label": "Minimal"
+            },
+            {
+              "value": "bar",
+              "label": "Full-Width Button"
+            },
+            {
+              "value": "compact",
+              "label": "Compact Plus Button"
+            }
+          ],
+          "default": "compact",
+          "label": "Ayira Card Style"
         }
       ]
     },

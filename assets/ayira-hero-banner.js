@@ -47,6 +47,8 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       this.track = this.querySelector('.ayira-hero-banner__track');
       this.slides = Array.from(this.querySelectorAll('.ayira-hero-banner__slide'));
       this.dots = Array.from(this.querySelectorAll('.ayira-hero-banner__dot'));
+      this.prevButton = this.querySelector('[data-nav-prev]');
+      this.nextButton = this.querySelector('[data-nav-next]');
     }
 
     /* ── Set initial CSS custom property ─────────────── */
@@ -73,6 +75,18 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
           }
         });
       });
+
+      /* Prev/Next button clicks */
+      if (this.prevButton) {
+        this.prevButton.addEventListener('click', () => {
+          this.prev();
+        });
+      }
+      if (this.nextButton) {
+        this.nextButton.addEventListener('click', () => {
+          this.next();
+        });
+      }
 
       /* Pause on hover */
       this.addEventListener('mouseenter', () => {

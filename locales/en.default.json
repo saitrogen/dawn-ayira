@@ -336,6 +336,15 @@
       "items": "items",
       "items_placeholder": "10 items"
     },
+    "ayira_hero_banner": {
+      "carousel_label": "Hero banner",
+      "slide_of": "of",
+      "pagination_label": "Slide navigation",
+      "go_to_slide": "Go to slide {number}",
+      "add_slides": "Add slides using the theme editor.",
+      "previous_slide": "Previous slide",
+      "next_slide": "Next slide"
+    },
     "collection_template": {
       "empty": "No products found",
       "title": "Collection",
