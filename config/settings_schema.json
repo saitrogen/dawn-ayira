@@ -44,42 +44,66 @@
             "type": "color",
             "id": "background",
             "label": "t:settings_schema.colors.settings.background.label",
-            "default": "#FFFFFF"
+            "info": "Main background for pages and sections",
+            "default": "#F6F6EE"
           },
-          {
+          { // Todo: clearly port the labels to the localization files 
             "type": "color_background",
             "id": "background_gradient",
             "label": "t:settings_schema.colors.settings.background_gradient.label",
-            "info": "t:settings_schema.colors.settings.background_gradient.info"
+            // "info": "t:settings_schema.colors.settings.background_gradient.info",
+            "info": "Optional smooth color blend over background color."
           },
-          {
+          { // Todo: clearly port the labels to the localization files 
             "type": "color",
             "id": "text",
-            "label": "t:settings_schema.colors.settings.text.label",
-            "default": "#121212"
+            // "label": "t:settings_schema.colors.settings.text.label",
+            "label": "Primary Text / Headings",
+            "default": "#0D4F47"
           },
-          {
+          { // NEW 
+          "type": "color",
+          "id": "text_secondary",
+          "label": "Body Text / Secondary",
+          "info": "Color for regular paragraphs and secondary descriptions.",
+          "default": "#667085"
+          },
+          { // NEW
+          "type": "color",
+          "id": "accent",
+          "label": "Accent / Badges",
+          "info": "Color for sales tags, badges, and alerts.",
+          "default": "#D4A737"
+          },
+          { // TODO: clearly port the labels to the localization files 
             "type": "color",
             "id": "button",
-            "label": "t:settings_schema.colors.settings.button_background.label",
-            "default": "#121212"
+            // "label": "t:settings_schema.colors.settings.button_background.label",
+            "label": "Solid Button Background",
+            "info": "Fill color for main call-to-action buttons.",
+            "default": "#0D4F47"
           },
-          {
+          { // TODO: clearly port the labels to the localization files 
             "type": "color",
             "id": "button_label",
-            "label": "t:settings_schema.colors.settings.button_label.label",
+            // "label": "t:settings_schema.colors.settings.button_label.label",
+            "label": "Solid Button Label",
+            "info": "Text color inside main solid buttons.",
             "default": "#FFFFFF"
           },
-          {
+          { // TODO: clearly port the labels to the localization files 
             "type": "color",
             "id": "secondary_button_label",
-            "label": "t:settings_schema.colors.settings.secondary_button_label.label",
+            // "label": "t:settings_schema.colors.settings.secondary_button_label.label",
+            "label": "Outline Button / Links",
+            "info": "Text and border color for secondary buttons.",
             "default": "#121212"
           },
-          {
+          { // TODO: clearly port the labels to the localization files 
             "type": "color",
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
+            "info": "Color for drop shadows under product cards and dropdowns.",
             "default": "#121212"
           }
         ],

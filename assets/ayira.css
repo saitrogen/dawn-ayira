@@ -1,0 +1,25 @@
+/* =========================================================
+   Ayira Structural Overrides
+   ========================================================= */
+
+/* Overriding structural borders cleanly by targeting Dawn's specific components */
+.card, 
+.card-wrapper .card--card,
+.header-wrapper, 
+.footer, 
+.quantity__input,
+.cart-drawer {
+  border-color: rgb(var(--color-border-subtle));
+}
+
+/* Map Dawn's layout rules to our custom forest-tinted shadows */
+.card,
+.predictive-search,
+.cart-drawer {
+  box-shadow: var(--shadow-md);
+}
+
+.modal__toggle,
+.button--secondary {
+  box-shadow: var(--shadow-sm);
+}
