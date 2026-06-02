@@ -1,0 +1,65 @@
+{% comment %}
+  Renders the predictive search form for Ayira Header.
+  Accepts:
+  - input_id: {String} Unique ID for the search input element (required)
+{% endcomment %}
+
+{%- if settings.predictive_search_enabled -%}
+  <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+{%- endif -%}
+
+<form action="{{ routes.search_url }}" method="get" role="search" class="ayira-header__search-form">
+  <span class="ayira-header__search-icon">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19 19L13.5 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  
+  <input 
+    type="search" 
+    name="q" 
+    id="{{ input_id }}"
+    value="{{ search.terms | escape }}"
+    placeholder="Search the store..." 
+    class="ayira-header__search-input"
+    aria-label="Search"
+    {%- if settings.predictive_search_enabled -%}
+      role="combobox"
+      aria-expanded="false"
+      aria-owns="predictive-search-results-{{ input_id }}"
+      aria-controls="predictive-search-results-{{ input_id }}"
+      aria-haspopup="listbox"
+      aria-autocomplete="list"
+      autocorrect="off"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+    {%- endif -%}
+  >
+  
+  <input type="hidden" name="options[prefix]" value="last">
+  <button type="reset" class="reset__button field__button hidden" style="display: none !important;" aria-label="Reset"></button>
+  
+  {%- if input_id contains 'Mobile' -%}
+    <button id="AyiraSearchClose" type="button" class="ayira-header__mobile-search-close" aria-label="Close search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  {%- else -%}
+    <button type="submit" class="ayira-header__search-button" aria-label="Submit"></button>
+  {%- endif -%}
+
+  {%- if settings.predictive_search_enabled -%}
+    <div id="predictive-search-results-{{ input_id }}" class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+      {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+    </div>
+    <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+  {%- endif -%}
+</form>
+
+{%- if settings.predictive_search_enabled -%}
+  </predictive-search>
+{%- endif -%}

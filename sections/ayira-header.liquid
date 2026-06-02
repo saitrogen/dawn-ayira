@@ -1,592 +1,28 @@
-<!-- ayira-header.liquid -->
+<!-- sections/ayira-header.liquid -->
+{{ 'section-ayira-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ayira-header.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign menu = section.settings.menu
+  assign color_scheme = section.settings.color_scheme
+  assign sticky_type = section.settings.sticky_header_type
+-%}
+
 <style>
-  /* Header Container and Outer Layout */
-  ayira-sticky-header,
-  .ayira-header-wrapper {
-    display: block !important;
-    background-color: #F7F7F3 !important;
-    border-bottom: 1px solid #E5E5E0;
-    width: 100% !important;
-    position: relative;
-    z-index: 100;
-    font-family: inherit;
-  }
-
-  .ayira-header-wrapper.menu-open {
-    z-index: 100000 !important;
-  }
-
-  .ayira-header {
-    display: flex;
-    flex-direction: column;
-    padding: 0 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  /* Desktop View Layouts */
-  .ayira-header__row-1 {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(229, 229, 224, 0.5);
-  }
-
-  .ayira-header__row-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.2rem 0;
-  }
-
-  .ayira-header__search-container {
-    justify-self: start;
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .ayira-header__search-form {
-    position: relative;
-    width: 100%;
-    margin: 0;
-  }
-
-  .ayira-header__search-input {
-    width: 100%;
-    height: 44px;
-    padding: 0 1.5rem 0 3.2rem;
-    background-color: #FFFFFF;
-    border: 1px solid #E5E5E0;
-    border-radius: 22px;
-    font-size: 1.4rem;
-    color: #2D2D2D;
-    outline: none;
-    transition: all 0.25s ease;
-  }
-
-  .ayira-header__search-input::placeholder {
-    color: #9A9A95;
-    font-size: 1.4rem;
-  }
-
-  .ayira-header__search-input:focus {
-    border-color: #1B493E;
-    box-shadow: 0 0 0 1px #1B493E;
-  }
-
-  .ayira-header__search-icon {
-    position: absolute;
-    left: 1.4rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #7A7A75;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .ayira-header__search-button {
-    display: none; /* Submitting by enter is standard; search form has action */
-  }
-
-  /* Column 2: Logo center */
-  .ayira-header__logo-container {
-    justify-self: center;
-    text-align: center;
-  }
-
-  .ayira-header__logo-link {
-    text-decoration: none;
-    color: #1B493E;
-    display: inline-block;
-  }
-
-  .ayira-header__logo-text {
-    font-size: 2.4rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    font-family: inherit;
-  }
-
-  .ayira-header__logo-image {
-    display: block;
-    max-height: {{ section.settings.logo_height }}px;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* Column 3: Icons right */
-  .ayira-header__icons-container {
-    justify-self: end;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .ayira-header__icon-btn {
-    background: none;
-    border: none;
-    padding: 0.8rem;
-    color: #2D2D2D;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    position: relative;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .ayira-header__icon-btn:hover {
-    background-color: rgba(27, 73, 62, 0.05);
-    color: #1B493E;
-  }
-
-  /* Cart Badge */
-  .ayira-header__cart-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background-color: #E5A93B;
-    color: #000000;
-    font-size: 1.1rem;
-    font-weight: 700;
-    min-width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Navigation Layout (Row 2) */
-  .ayira-header__nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 3.2rem;
-  }
-
-  .ayira-header__nav-item {
-    position: relative;
-  }
-
-  .ayira-header__nav-link {
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #2D2D2D;
-    padding: 0.8rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    transition: color 0.25s ease;
-  }
-
-  .ayira-header__nav-link:hover {
-    color: #1B493E;
-  }
-
-  /* Underline Micro-animation for Active/Hover state */
-  .ayira-header__nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #1B493E;
-    transform: scaleX(0);
-    transform-origin: bottom center;
-    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .ayira-header__nav-link:hover::after,
-  .ayira-header__nav-item--active .ayira-header__nav-link::after {
-    transform: scaleX(1);
-  }
-
-  /* Dropdown Menu styling */
-  .ayira-header__dropdown {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px);
-    background-color: #FFFFFF;
-    border: 1px solid rgba(229, 229, 224, 0.8);
-    border-radius: 12px;
-    padding: 1.5rem;
-    min-width: 220px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-    z-index: 110;
-  }
-
-  .ayira-header__nav-item:hover .ayira-header__dropdown {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .ayira-header__dropdown-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .ayira-header__dropdown-link {
-    text-decoration: none;
-    font-size: 1.4rem;
-    color: #4A4A45;
-    padding: 0.6rem 1rem;
-    display: block;
-    border-radius: 6px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .ayira-header__dropdown-link:hover {
-    background-color: rgba(27, 73, 62, 0.05);
-    color: #1B493E;
-  }
-
-  /* Icon Caret */
-  .ayira-header__caret {
-    transition: transform 0.25s ease;
-    color: #7A7A75;
-  }
-
-  .ayira-header__nav-item:hover .ayira-header__caret {
-    transform: rotate(180deg);
-    color: #1B493E;
-  }
-
-  /* Mobile Layout - Hidden on Desktop */
-  .ayira-header__mobile {
-    display: none;
-  }
-
-  /* Mobile Menu Drawer - Hidden on Desktop */
-  .ayira-header__drawer {
-    display: none;
-  }
-
-  /* Responsive Rules */
-  @media screen and (max-width: 989px) {
-    .ayira-header__row-1,
-    .ayira-header__row-2 {
-      display: none;
-    }
-
-    .ayira-header {
-      padding: 0 2rem;
-    }
-
-    .ayira-header__mobile {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: relative;
-    }
-
-    .ayira-header__mobile-left {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      justify-content: flex-start;
-    }
-
-    .ayira-header__mobile-right {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .ayira-header__logo-image {
-      max-height: {{ section.settings.logo_height_mobile }}px;
-    }
-
-    /* Mobile Search Toggle Panel (Fixed Overlay) */
-    .ayira-header__mobile-search-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #F7F7F3;
-      display: flex;
-      align-items: center;
-      padding: 0 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      z-index: 95; /* Sits on top of header elements smoothly */
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-100%);
-      transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease, visibility 0.25s ease;
-    }
-
-    .ayira-header__mobile-search-overlay.is-active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .ayira-header__mobile-search-form {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      position: relative;
-    }
-
-    .ayira-header__mobile-search-input {
-      width: 100%;
-      height: 40px;
-      padding: 0 4rem 0 3.8rem;
-      background-color: #FFFFFF;
-      border: 1px solid #E5E5E0;
-      border-radius: 20px;
-      font-size: 1.4rem;
-      color: #2D2D2D;
-      outline: none;
-    }
-
-    .ayira-header__mobile-search-input:focus {
-      border-color: #1B493E;
-    }
-
-    .ayira-header__mobile-search-icon {
-      position: absolute;
-      left: 1.4rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #7A7A75;
-      display: flex;
-      align-items: center;
-    }
-
-    .ayira-header__mobile-search-close {
-      position: absolute;
-      right: 1.2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #2D2D2D;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 0.5rem;
-    }
-
-    /* Mobile Menu Drawer */
-    .ayira-header__drawer {
-      display: block; /* Override display: none on mobile */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 100000; /* Set very high to overlay everything, including announcement bar */
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .ayira-header__drawer.is-active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .ayira-header__drawer-content {
-      width: 80%;
-      max-width: 320px;
-      height: 100%;
-      background-color: #F7F7F3;
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      transform: translateX(-100%);
-      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-      overflow-y: auto;
-    }
-
-    .ayira-header__drawer.is-active .ayira-header__drawer-content {
-      transform: translateX(0);
-    }
-
-    .ayira-header__drawer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #E5E5E0;
-      padding-bottom: 1.5rem;
-    }
-
-    .ayira-header__drawer-close {
-      background: none;
-      border: none;
-      color: #2D2D2D;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ayira-header__drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .ayira-header__drawer-item {
-      border-bottom: 1px solid rgba(229, 229, 224, 0.5);
-      padding-bottom: 1rem;
-    }
-
-    .ayira-header__drawer-link {
-      text-decoration: none;
-      font-size: 1.6rem;
-      font-weight: 500;
-      color: #2D2D2D;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .ayira-header__drawer-submenu {
-      list-style: none;
-      padding: 1rem 0 0 1.5rem;
-      margin: 0;
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .ayira-header__drawer-item.is-open .ayira-header__drawer-submenu {
-      display: flex;
-    }
-
-    .ayira-header__drawer-sublink {
-      text-decoration: none;
-      font-size: 1.4rem;
-      color: #5A5A55;
-    }
-  }
-
-  /* Sticky behavior classes */
-  .shopify-section-header-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .shopify-section-header-sticky ayira-sticky-header,
-  .shopify-section-header-sticky .ayira-header-wrapper {
-    background-color: #F7F7F3 !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  }
-
-  .shopify-section-header-hidden {
-    top: calc(-1 * var(--header-height)) !important;
-  }
-
-  .section-header.animate {
-    transition: top 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* Predictive Search Suggestions Container */
-  predictive-search {
-    display: block;
-    position: relative;
-    width: 100%;
-  }
-
-  .predictive-search {
-    background-color: #FFFFFF !important;
-    border: 1px solid #E5E5E0 !important;
-    border-radius: 12px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-    margin-top: 0.5rem;
-    z-index: 999;
-  }
-
-  @media screen and (min-width: 750px) {
-    .predictive-search {
-      width: 620px !important;
-    }
+  :root {
+    --ayira-logo-max-height: {{ section.settings.logo_height }}px;
+    --ayira-logo-max-height-mobile: {{ section.settings.logo_height_mobile }}px;
   }
 </style>
 
-<ayira-sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}" class="ayira-header-wrapper color-{{ section.settings.color_scheme }} gradient">
+<ayira-sticky-header data-sticky-type="{{ sticky_type }}" class="ayira-header-wrapper color-{{ color_scheme }} gradient">
   <header class="ayira-header">
     
     <!-- DESKTOP ROW 1 -->
     <div class="ayira-header__row-1">
-      <!-- 1. Search Bar -->
+      <!-- 1. Search Bar (Modular Snippet) -->
       <div class="ayira-header__search-container">
-        {%- if settings.predictive_search_enabled -%}
-          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-        {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="ayira-header__search-form">
-          <span class="ayira-header__search-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 19L13.5 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <input 
-            type="search" 
-            name="q" 
-            value="{{ search.terms | escape }}"
-            placeholder="Search the store..." 
-            class="ayira-header__search-input"
-            aria-label="Search the store"
-            {%- if settings.predictive_search_enabled -%}
-              role="combobox"
-              aria-expanded="false"
-              aria-owns="predictive-search-results"
-              aria-controls="predictive-search-results"
-              aria-haspopup="listbox"
-              aria-autocomplete="list"
-              autocorrect="off"
-              autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
-            {%- endif -%}
-          >
-          <input type="hidden" name="options[prefix]" value="last">
-          <button type="reset" class="reset__button field__button hidden" style="display: none !important;" aria-label="Reset"></button>
-          <button type="submit" class="ayira-header__search-button"></button>
-
-          {%- if settings.predictive_search_enabled -%}
-            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-            </div>
-            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-          {%- endif -%}
-        </form>
-        {%- if settings.predictive_search_enabled -%}
-          </predictive-search>
-        {%- endif -%}
+        {%- render 'ayira-header-search', input_id: 'Header-Search-Desktop' -%}
       </div>
 
       <!-- 2. Store Logo Centered -->
@@ -640,51 +76,53 @@
       </div>
     </div>
 
-    <!-- DESKTOP ROW 2 (Centered Nav) -->
-    <div class="ayira-header__row-2">
-      <nav class="ayira-header__navigation">
-        <ul class="ayira-header__nav-list">
-          {%- for link in section.settings.menu.links -%}
-            {%- assign is_active = false -%}
-            {%- if link.active or link.child_active -%}
-              {%- assign is_active = true -%}
-            {%- endif -%}
-
-            <li class="ayira-header__nav-item{% if is_active %} ayira-header__nav-item--active{% endif %}">
-              <a href="{{ link.url }}" class="ayira-header__nav-link">
-                {{ link.title | escape }}
-                {%- if link.links.size > 0 -%}
-                  <span class="ayira-header__caret">
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                {%- endif -%}
-              </a>
-
-              {%- if link.links.size > 0 -%}
-                <div class="ayira-header__dropdown">
-                  <ul class="ayira-header__dropdown-list">
-                    {%- for child_link in link.links -%}
-                      <li>
-                        <a href="{{ child_link.url }}" class="ayira-header__dropdown-link">
-                          {{ child_link.title | escape }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
+    <!-- DESKTOP ROW 2 (Centered Navigation) -->
+    {%- if menu != blank -%}
+      <div class="ayira-header__row-2">
+        <nav class="ayira-header__navigation">
+          <ul class="ayira-header__nav-list">
+            {%- for link in menu.links -%}
+              {%- assign is_active = false -%}
+              {%- if link.active or link.child_active -%}
+                {%- assign is_active = true -%}
               {%- endif -%}
-            </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
-    </div>
+
+              <li class="ayira-header__nav-item{% if is_active %} ayira-header__nav-item--active{% endif %}">
+                <a href="{{ link.url }}" class="ayira-header__nav-link">
+                  {{ link.title | escape }}
+                  {%- if link.links.size > 0 -%}
+                    <span class="ayira-header__caret">
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  {%- endif -%}
+                </a>
+
+                {%- if link.links.size > 0 -%}
+                  <div class="ayira-header__dropdown">
+                    <ul class="ayira-header__dropdown-list">
+                      {%- for child_link in link.links -%}
+                        <li>
+                          <a href="{{ child_link.url }}" class="ayira-header__dropdown-link">
+                            {{ child_link.title | escape }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+    {%- endif -%}
 
     <!-- MOBILE VIEW (1-row Header) -->
     <div class="ayira-header__mobile">
       <div class="ayira-header__mobile-left">
-        <!-- Hamburger Menu -->
+        <!-- Hamburger Menu Drawer Toggle -->
         <button id="AyiraDrawerOpen" class="ayira-header__icon-btn" aria-label="Menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -733,57 +171,9 @@
         </a>
       </div>
 
-      <!-- Toggleable Mobile Search Input Panel (Fixed Overlay) -->
+      <!-- Toggleable Mobile Search Input Panel (Modular Snippet) -->
       <div id="AyiraMobileSearchPanel" class="ayira-header__mobile-search-overlay">
-        {%- if settings.predictive_search_enabled -%}
-          <predictive-search class="search-modal__form" style="width: 100%;" data-loading-text="{{ 'accessibility.loading' | t }}">
-        {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="ayira-header__mobile-search-form">
-          <span class="ayira-header__mobile-search-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 19L13.5 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <input 
-            type="search" 
-            name="q" 
-            value="{{ search.terms | escape }}"
-            placeholder="Search the store..." 
-            class="ayira-header__mobile-search-input"
-            aria-label="Search"
-            {%- if settings.predictive_search_enabled -%}
-              role="combobox"
-              aria-expanded="false"
-              aria-owns="predictive-search-results"
-              aria-controls="predictive-search-results"
-              aria-haspopup="listbox"
-              aria-autocomplete="list"
-              autocorrect="off"
-              autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
-            {%- endif -%}
-          >
-          <input type="hidden" name="options[prefix]" value="last">
-          <button type="reset" class="reset__button field__button hidden" style="display: none !important;" aria-label="Reset"></button>
-          <button id="AyiraSearchClose" type="button" class="ayira-header__mobile-search-close" aria-label="Close search">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-
-          {%- if settings.predictive_search_enabled -%}
-            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-            </div>
-            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-          {%- endif -%}
-        </form>
-        {%- if settings.predictive_search_enabled -%}
-          </predictive-search>
-        {%- endif -%}
+        {%- render 'ayira-header-search', input_id: 'Header-Search-Mobile' -%}
       </div>
     </div>
   </header>
@@ -801,176 +191,37 @@
         </button>
       </div>
       
-      <nav class="ayira-header__drawer-nav">
-        {%- for link in section.settings.menu.links -%}
-          <div class="ayira-header__drawer-item">
-            <a href="{{ link.url }}" class="ayira-header__drawer-link">
-              {{ link.title | escape }}
-              {%- if link.links.size > 0 -%}
-                <svg class="ayira-header__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              {%- endif -%}
-            </a>
+      {%- if menu != blank -%}
+        <nav class="ayira-header__drawer-nav">
+          {%- for link in menu.links -%}
+            <div class="ayira-header__drawer-item">
+              <a href="{{ link.url }}" class="ayira-header__drawer-link">
+                {{ link.title | escape }}
+                {%- if link.links.size > 0 -%}
+                  <svg class="ayira-header__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- endif -%}
+              </a>
 
-            {%- if link.links.size > 0 -%}
-              <ul class="ayira-header__drawer-submenu">
-                {%- for child_link in link.links -%}
-                  <li>
-                    <a href="{{ child_link.url }}" class="ayira-header__drawer-sublink">
-                      {{ child_link.title | escape }}
-                    </a>
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-      </nav>
+              {%- if link.links.size > 0 -%}
+                <ul class="ayira-header__drawer-submenu">
+                  {%- for child_link in link.links -%}
+                    <li>
+                      <a href="{{ child_link.url }}" class="ayira-header__drawer-sublink">
+                        {{ child_link.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
     </div>
   </div>
 </ayira-sticky-header>
-
-<script>
-  // Mobile search toggle logic
-  const searchToggle = document.getElementById('AyiraSearchToggle');
-  const searchClose = document.getElementById('AyiraSearchClose');
-  const searchPanel = document.getElementById('AyiraMobileSearchPanel');
-  
-  if (searchToggle && searchPanel) {
-    searchToggle.addEventListener('click', () => {
-      searchPanel.classList.add('is-active');
-      const searchInput = searchPanel.querySelector('.ayira-header__mobile-search-input');
-      if (searchInput) {
-        setTimeout(() => searchInput.focus(), 150);
-      }
-    });
-  }
-
-  if (searchClose && searchPanel) {
-    searchClose.addEventListener('click', () => {
-      searchPanel.classList.remove('is-active');
-    });
-  }
-
-  // Mobile menu drawer open/close logic
-  const drawerOpen = document.getElementById('AyiraDrawerOpen');
-  const drawerClose = document.getElementById('AyiraDrawerClose');
-  const mobileDrawer = document.getElementById('AyiraMobileDrawer');
-  const headerWrapper = document.querySelector('.ayira-header-wrapper');
-  
-  if (drawerOpen && mobileDrawer) {
-    drawerOpen.addEventListener('click', () => {
-      mobileDrawer.classList.add('is-active');
-      if (headerWrapper) headerWrapper.classList.add('menu-open');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-  
-  if (drawerClose && mobileDrawer) {
-    drawerClose.addEventListener('click', () => {
-      mobileDrawer.classList.remove('is-active');
-      if (headerWrapper) headerWrapper.classList.remove('menu-open');
-      document.body.style.overflow = '';
-    });
-    
-    // Close drawer when clicking outside content area
-    mobileDrawer.addEventListener('click', (e) => {
-      if (e.target === mobileDrawer) {
-        mobileDrawer.classList.remove('is-active');
-        if (headerWrapper) headerWrapper.classList.remove('menu-open');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Mobile drawer submenu dropdown triggers
-  const drawerLinks = document.querySelectorAll('.ayira-header__drawer-link');
-  drawerLinks.forEach(link => {
-    const parentItem = link.closest('.ayira-header__drawer-item');
-    const submenu = parentItem ? parentItem.querySelector('.ayira-header__drawer-submenu') : null;
-    
-    if (submenu) {
-      link.addEventListener('click', (e) => {
-        // Prevent default navigation only if it's a submenu toggle
-        e.preventDefault();
-        parentItem.classList.toggle('is-open');
-        const caret = link.querySelector('.ayira-header__caret');
-        if (caret) {
-          if (parentItem.classList.contains('is-open')) {
-            caret.style.transform = 'rotate(180deg)';
-          } else {
-            caret.style.transform = '';
-          }
-        }
-      });
-    }
-  });
-
-  // Sticky Header JS component
-  // Sticky Header JS component
-  class AyiraStickyHeader extends HTMLElement {
-    constructor() {
-      super();
-    }
-
-    connectedCallback() {
-      this.header = this.closest('.section-header') || this;
-      this.stickyType = this.getAttribute('data-sticky-type');
-      this.currentScrollTop = 0;
-      
-      this.setHeaderHeight();
-      this.resizeObserver = new ResizeObserver(() => this.setHeaderHeight());
-      this.resizeObserver.observe(this.header);
-
-      if (this.stickyType === 'always') {
-        this.header.classList.add('shopify-section-header-sticky');
-      } else if (this.stickyType === 'on-scroll-up') {
-        this.scrollHandler = this.onScroll.bind(this);
-        window.addEventListener('scroll', this.scrollHandler, { passive: true });
-      }
-    }
-
-    setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
-    }
-
-    onScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const headerHeight = this.header.offsetHeight;
-
-      if (scrollTop > headerHeight + 50) {
-        this.header.classList.add('shopify-section-header-sticky', 'animate');
-        
-        if (scrollTop > this.currentScrollTop) {
-          // Scrolling DOWN - Hide header
-          this.header.classList.add('shopify-section-header-hidden');
-        } else {
-          // Scrolling UP - Show header
-          this.header.classList.remove('shopify-section-header-hidden');
-        }
-      } else {
-        // Near the top of the page - reset to normal static flow to prevent layout collapse loops
-        if (scrollTop <= headerHeight) {
-          this.header.classList.remove('shopify-section-header-sticky', 'shopify-section-header-hidden', 'animate');
-        }
-      }
-
-      this.currentScrollTop = scrollTop;
-    }
-
-    disconnectedCallback() {
-      if (this.scrollHandler) {
-        window.removeEventListener('scroll', this.scrollHandler);
-      }
-      if (this.resizeObserver) {
-        this.resizeObserver.disconnect();
-      }
-    }
-  }
-
-  customElements.define('ayira-sticky-header', AyiraStickyHeader);
-</script>
 
 {% schema %}
 {
@@ -1009,7 +260,7 @@
     {
       "type": "range",
       "id": "logo_height_mobile",
-      "min": 14,
+      "min": 12,
       "max": 60,
       "step": 2,
       "unit": "px",
