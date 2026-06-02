@@ -1,0 +1,329 @@
+/* ==========================================================
+   section-ayira-hero-banner.css
+   Ayira Hero Banner — Carousel with rounded corners
+   ========================================================== */
+
+/* ── Outer wrapper ─────────────────────────────────────── */
+.ayira-hero-banner {
+  --ayira-banner-radius: 1.6rem;
+  --ayira-banner-small-h: 36rem;
+  --ayira-banner-medium-h: 52rem;
+  --ayira-banner-large-h: 68rem;
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Carousel root ─────────────────────────────────────── */
+.ayira-hero-banner__carousel {
+  display: block;
+  position: relative;
+  border-radius: var(--ayira-banner-radius);
+  overflow: hidden;
+  /* Clip slides that are off-screen */
+  isolation: isolate;
+}
+
+/* ── Slide track (horizontal scroll container) ─────────── */
+.ayira-hero-banner__track-wrapper {
+  overflow: hidden;
+  border-radius: var(--ayira-banner-radius);
+  width: 100%;
+}
+
+.ayira-hero-banner__track {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* JS-controlled via --slide-offset */
+  transform: translateX(calc(var(--slide-offset, 0) * -1px));
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ── Individual slide ─────────────────────────────────── */
+.ayira-hero-banner__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--ayira-banner-radius);
+  /* Height variants */
+}
+
+/* Height sizes — desktop */
+.ayira-hero-banner--small {
+  min-height: var(--ayira-banner-small-h);
+}
+
+.ayira-hero-banner--medium {
+  min-height: var(--ayira-banner-medium-h);
+}
+
+.ayira-hero-banner--large {
+  min-height: var(--ayira-banner-large-h);
+}
+
+.ayira-hero-banner--adapt {
+  min-height: 0;
+}
+
+/* Height sizes — mobile */
+@media screen and (max-width: 749px) {
+  .ayira-hero-banner--small {
+    min-height: calc(var(--ayira-banner-small-h) * 0.75);
+  }
+
+  .ayira-hero-banner--medium {
+    min-height: calc(var(--ayira-banner-medium-h) * 0.75);
+  }
+
+  .ayira-hero-banner--large {
+    min-height: calc(var(--ayira-banner-large-h) * 0.75);
+  }
+}
+
+/* ── Background image ─────────────────────────────────── */
+.ayira-hero-banner__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ayira-hero-banner__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ayira-hero-banner__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Content overlay ──────────────────────────────────── */
+.ayira-hero-banner__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding: 4rem 3.5rem;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* Vertical */
+.ayira-hero-banner__content--top-left,
+.ayira-hero-banner__content--top-center,
+.ayira-hero-banner__content--top-right {
+  align-items: flex-start;
+}
+
+.ayira-hero-banner__content--middle-left,
+.ayira-hero-banner__content--middle-center,
+.ayira-hero-banner__content--middle-right {
+  align-items: center;
+}
+
+.ayira-hero-banner__content--bottom-left,
+.ayira-hero-banner__content--bottom-center,
+.ayira-hero-banner__content--bottom-right {
+  align-items: flex-end;
+}
+
+/* Horizontal */
+.ayira-hero-banner__content--top-left,
+.ayira-hero-banner__content--middle-left,
+.ayira-hero-banner__content--bottom-left {
+  justify-content: flex-start;
+}
+
+.ayira-hero-banner__content--top-center,
+.ayira-hero-banner__content--middle-center,
+.ayira-hero-banner__content--bottom-center {
+  justify-content: center;
+}
+
+.ayira-hero-banner__content--top-right,
+.ayira-hero-banner__content--middle-right,
+.ayira-hero-banner__content--bottom-right {
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 749px) {
+  .ayira-hero-banner__content {
+    padding: 2.4rem 2rem;
+  }
+}
+
+/* ── Content inner box ────────────────────────────────── */
+.ayira-hero-banner__content-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 72rem;
+}
+
+/* Text alignment */
+.ayira-hero-banner__content--align-left .ayira-hero-banner__content-inner {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.ayira-hero-banner__content--align-center .ayira-hero-banner__content-inner {
+  align-items: center;
+  text-align: center;
+}
+
+.ayira-hero-banner__content--align-right .ayira-hero-banner__content-inner {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* ── Eyebrow badge ────────────────────────────────────── */
+.ayira-hero-banner__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+  opacity: 0.9;
+}
+
+.ayira-hero-banner__eyebrow-dot {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background-color: rgb(var(--color-button));
+  flex-shrink: 0;
+}
+
+/* ── Heading ──────────────────────────────────────────── */
+.ayira-hero-banner__heading {
+  margin: 0;
+  color: rgb(var(--color-foreground));
+}
+
+/* ── Subtext ──────────────────────────────────────────── */
+.ayira-hero-banner__text {
+  margin: 0;
+  color: rgb(var(--color-foreground));
+  opacity: 0.85;
+  line-height: 1.55;
+}
+
+/* ── Buttons row ──────────────────────────────────────── */
+.ayira-hero-banner__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.ayira-hero-banner__buttons--multiple > * {
+  flex: 1 0 auto;
+}
+
+@media screen and (max-width: 749px) {
+  .ayira-hero-banner__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ayira-hero-banner__buttons .button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ── Dot pagination ───────────────────────────────────── */
+.ayira-hero-banner__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.4rem 0 0.2rem;
+}
+
+.ayira-hero-banner__dot {
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background-color: rgba(var(--color-foreground), 0.25);
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease, width 0.25s ease;
+  flex-shrink: 0;
+}
+
+.ayira-hero-banner__dot.is-active {
+  background-color: rgb(var(--color-button));
+  /* Pill shape when active */
+  width: 2.4rem;
+  border-radius: 0.4rem;
+}
+
+.ayira-hero-banner__dot:hover:not(.is-active) {
+  background-color: rgba(var(--color-foreground), 0.5);
+  transform: scale(1.1);
+}
+
+.ayira-hero-banner__dot:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-button));
+  outline-offset: 0.3rem;
+}
+
+/* ── Keyboard / a11y — hide non-active slides ─────────── */
+.ayira-hero-banner__slide[aria-hidden='true'] {
+  visibility: hidden;
+  pointer-events: none;
+  tab-index: -1;
+}
+
+.ayira-hero-banner__slide.is-active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ── Touch / swipe visual hint (no scrollbar) ─────────── */
+.ayira-hero-banner__track-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Empty state ──────────────────────────────────────── */
+.ayira-hero-banner__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24rem;
+  background: rgba(var(--color-foreground), 0.05);
+  border-radius: var(--ayira-banner-radius);
+  padding: 3rem;
+  text-align: center;
+}
+
+/* ── Scroll trigger animations ────────────────────────── */
+.ayira-hero-banner.scroll-trigger.animate--fade-in {
+  visibility: hidden;
+}
+
+.ayira-hero-banner.scroll-trigger.animate--fade-in.is-visible {
+  visibility: visible;
+}

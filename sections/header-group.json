@@ -17,15 +17,17 @@
         "announcement_UXTmY8": {
           "type": "announcement",
           "settings": {
-            "text": "free delevvery",
-            "link": ""
+            "text": "Gumes,",
+            "link": "shopify://collections/gums",
+            "link_label": "shop now"
           }
         },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "link": ""
+            "link": "",
+            "link_label": ""
           }
         }
       },
@@ -34,6 +36,8 @@
         "announcement-bar-0"
       ],
       "settings": {
+        "layout_mode": "marquee",
+        "marquee_speed": 20,
         "auto_rotate": true,
         "change_slides_speed": 3,
         "color_scheme": "scheme-3",
@@ -50,7 +54,7 @@
         "logo_width": 130,
         "logo_height": 50,
         "logo_height_mobile": 42,
-        "sticky_header_type": "always",
+        "sticky_header_type": "on-scroll-up",
         "color_scheme": "scheme-1"
       }
     }

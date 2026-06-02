@@ -1,0 +1,211 @@
+/* Assets: section-announcement-bar.css */
+
+.ayira-announcement-bar-container {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 101;
+  font-family: inherit;
+  border-bottom: 1px solid rgba(229, 229, 224, 0.1);
+  line-height: 1.2;
+}
+
+.ayira-announcement-bar-container.ayira-theme-default {
+  background-color: #031E1B; /* Deep dark black-green from reference */
+  color: #FFFFFF; /* Bright white text */
+}
+
+/* Ensure bright text colors, full opacity, and bold weight */
+.ayira-announcement-bar-container h5,
+.ayira-announcement-bar-container p,
+.ayira-announcement-bar-container span,
+.ayira-announcement-bar-container a:not(.ayira-announcement-bar__cta) {
+  color: inherit !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+}
+
+.ayira-announcement-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.6rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.ayira-announcement-bar__message {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ayira-announcement-bar__cta {
+  color: #E5A93B !important; /* Gold accent color */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: opacity 0.2s ease;
+}
+
+.ayira-announcement-bar__cta:hover {
+  opacity: 0.85;
+}
+
+.ayira-announcement-bar__link-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.ayira-announcement-bar:has(.ayira-announcement-bar__link-overlay):hover,
+.ayira-announcement-bar__slide:has(.ayira-announcement-bar__link-overlay):hover,
+.ayira-announcement-bar__marquee-item:has(.ayira-announcement-bar__link-overlay):hover {
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+/* 1. Carousel Mode Styles */
+.ayira-announcement-bar__carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 36px;
+}
+
+.ayira-announcement-bar__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.ayira-announcement-bar__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
+/* Slide arrows styling */
+.ayira-announcement-bar__arrow {
+  background: none;
+  border: none;
+  color: #F7F7F3;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.ayira-announcement-bar__arrow:hover {
+  opacity: 1;
+}
+
+.ayira-announcement-bar__arrow--prev {
+  left: 2rem;
+}
+
+.ayira-announcement-bar__arrow--next {
+  right: 2rem;
+}
+
+/* Hide arrows on mobile for clean look */
+@media screen and (max-width: 749px) {
+  .ayira-announcement-bar__arrow {
+    display: none;
+  }
+}
+
+/* 2. Scrolling Marquee Mode Styles */
+.ayira-announcement-bar__marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  padding: 0.6rem 0; /* Premium compact padding */
+  align-items: center;
+}
+
+.ayira-announcement-bar__marquee-inner {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: ayiraMarquee var(--marquee-speed, 20s) linear infinite;
+}
+
+/* Pause marquee on hover */
+.ayira-announcement-bar__marquee-wrapper:hover .ayira-announcement-bar__marquee-inner {
+  animation-play-state: paused;
+}
+
+.ayira-announcement-bar__marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 5rem; /* Perfectly symmetrical gap between text items and stars */
+  padding-right: 5rem; /* Ensure gap between groups is identical */
+}
+
+.ayira-announcement-bar__marquee-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ayira-announcement-bar__marquee-text.is-link:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+.ayira-announcement-bar__divider {
+  color: #E5A93B; /* Gold stars */
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+@keyframes ayiraMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
