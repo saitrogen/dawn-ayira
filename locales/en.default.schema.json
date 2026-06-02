@@ -1151,6 +1151,14 @@
         }
       }
     },
+    "ayira-hero-banner": {
+      "name": "Ayira Hero Banner",
+      "carousel_label": "Hero banner",
+      "slide_of": "of",
+      "pagination_label": "Slide navigation",
+      "go_to_slide": "Go to slide {number}",
+      "add_slides": "Add slides using the theme editor."
+    },
     "image-banner": {
       "name": "Image banner",
       "settings": {

@@ -1,0 +1,492 @@
+{{- 'section-ayira-hero-banner.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'ayira-hero-banner.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign section_id = 'AyiraHeroBanner-' | append: section.id
+  assign autoplay_speed = section.settings.autoplay_speed | times: 1000
+  assign image_height = section.settings.image_height
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+-%}
+
+{%- style -%}
+  #{{ section_id }} {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+  }
+  @media screen and (max-width: 749px) {
+    #{{ section_id }} {
+      padding-top: {{ padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ padding_bottom | divided_by: 2 }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="{{ section_id }}"
+  class="ayira-hero-banner page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  data-section-id="{{ section.id }}"
+>
+  {%- if section.blocks.size > 0 -%}
+    <ayira-hero-banner-carousel
+      class="ayira-hero-banner__carousel"
+      data-autoplay="{{ section.settings.autoplay }}"
+      data-autoplay-speed="{{ autoplay_speed }}"
+      data-slide-count="{{ section.blocks.size }}"
+    >
+
+      {%- comment -%} Slides Track {%- endcomment -%}
+      <div class="ayira-hero-banner__track-wrapper">
+        <ul
+          class="ayira-hero-banner__track"
+          role="list"
+          aria-label="{{ 'sections.ayira_hero_banner.carousel_label' | t }}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign content_pos_h = block.settings.content_position_horizontal
+              assign content_pos_v = block.settings.content_position_vertical
+              assign text_align = block.settings.content_alignment
+            -%}
+            <li
+              class="ayira-hero-banner__slide ayira-hero-banner--{{ image_height }}{% if forloop.first %} is-active{% endif %}"
+              data-slide-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+              role="group"
+              aria-roledescription="slide"
+              aria-label="{{ forloop.index }} {{ 'sections.ayira_hero_banner.slide_of' | t }} {{ section.blocks.size }}"
+              aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+            >
+              {%- comment -%} Background Image {%- endcomment -%}
+              <div class="ayira-hero-banner__media media{% if block.settings.image_behavior != 'none' %} animate--{{ block.settings.image_behavior }}{% endif %}">
+                {%- if block.settings.image != blank -%}
+                  {%- liquid
+                    assign img_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
+                    assign fetch_priority = 'auto'
+                    if forloop.first and section.index == 1
+                      assign fetch_priority = 'high'
+                    endif
+                  -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 3840
+                    | image_tag:
+                      width: block.settings.image.width,
+                      height: img_height,
+                      class: 'ayira-hero-banner__img',
+                      sizes: '(min-width: 1200px) calc(100vw - 8rem), (min-width: 750px) calc(100vw - 4rem), 100vw',
+                      widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                      fetchpriority: fetch_priority,
+                      loading: forloop.first | default: 'lazy'
+                  }}
+                {%- else -%}
+                  {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg ayira-hero-banner__placeholder' }}
+                {%- endif -%}
+              </div>
+
+              {%- comment -%} Content Overlay {%- endcomment -%}
+              <div
+                class="ayira-hero-banner__content ayira-hero-banner__content--{{ content_pos_v }}-{{ content_pos_h }} ayira-hero-banner__content--align-{{ text_align }}"
+              >
+                <div class="ayira-hero-banner__content-inner">
+                  {%- if block.settings.eyebrow_label != blank -%}
+                    <p class="ayira-hero-banner__eyebrow">
+                      <span class="ayira-hero-banner__eyebrow-dot" aria-hidden="true"></span>
+                      {{- block.settings.eyebrow_label -}}
+                    </p>
+                  {%- endif -%}
+
+                  {%- if block.settings.heading != blank -%}
+                    <{{ block.settings.heading_tag }}
+                      class="ayira-hero-banner__heading {{ block.settings.heading_size }}"
+                    >
+                      {{- block.settings.heading -}}
+                    </{{ block.settings.heading_tag }}>
+                  {%- endif -%}
+
+                  {%- if block.settings.text != blank -%}
+                    <p class="ayira-hero-banner__text">
+                      {{- block.settings.text -}}
+                    </p>
+                  {%- endif -%}
+
+                  {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                    <div
+                      class="ayira-hero-banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} ayira-hero-banner__buttons--multiple{% endif %}"
+                    >
+                      {%- if block.settings.button_label_1 != blank -%}
+                        <a
+                          {% if block.settings.button_link_1 == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ block.settings.button_link_1 }}"
+                          {% endif %}
+                          class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                        >
+                          {{- block.settings.button_label_1 | escape -}}
+                        </a>
+                      {%- endif -%}
+
+                      {%- if block.settings.button_label_2 != blank -%}
+                        <a
+                          {% if block.settings.button_link_2 == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ block.settings.button_link_2 }}"
+                          {% endif %}
+                          class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                        >
+                          {{- block.settings.button_label_2 | escape -}}
+                        </a>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      {%- comment -%} Dot Pagination — outside track-wrapper so overflow:hidden doesn't clip dots {%- endcomment -%}
+      {%- if section.blocks.size > 1 -%}
+        <div
+          class="ayira-hero-banner__pagination"
+          role="tablist"
+          aria-label="{{ 'sections.ayira_hero_banner.pagination_label' | t }}"
+        >
+          {%- for block in section.blocks -%}
+            <button
+              class="ayira-hero-banner__dot{% if forloop.first %} is-active{% endif %}"
+              role="tab"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-label="{{ 'sections.ayira_hero_banner.go_to_slide' | t: number: forloop.index }}"
+              data-target-slide="{{ forloop.index0 }}"
+              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            ></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    </ayira-hero-banner-carousel>
+  {%- else -%}
+    <div class="ayira-hero-banner__empty">
+      <p>{{ 'sections.ayira_hero_banner.add_slides' | t }}</p>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Ayira Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-advance slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Banner height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Recommended: 2400 × 1200 px (2:1 ratio), JPG or WebP. Min 1200 × 600 px. Keep file size under 500 KB for best performance."
+        },
+        {
+          "type": "select",
+          "id": "image_behavior",
+          "label": "Image behavior",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "ambient",
+              "label": "Ambient movement"
+            },
+            {
+              "value": "zoom-in",
+              "label": "Zoom in"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow_label",
+          "label": "Eyebrow label",
+          "placeholder": "e.g. WEEKLY SPECIALS"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Fresh basics, delivered the same day."
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            },
+            {
+              "value": "hxl",
+              "label": "Extra large"
+            },
+            {
+              "value": "hxxl",
+              "label": "Double extra large"
+            }
+          ],
+          "default": "h1"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading HTML tag",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "p",
+              "label": "Paragraph"
+            }
+          ],
+          "default": "h2"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subtext",
+          "default": "Groceries, drinks and snacks — at your door in under two hours."
+        },
+        {
+          "type": "header",
+          "content": "Position & alignment"
+        },
+        {
+          "type": "select",
+          "id": "content_position_vertical",
+          "label": "Vertical position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "middle",
+              "label": "Middle"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "middle"
+        },
+        {
+          "type": "select",
+          "id": "content_position_horizontal",
+          "label": "Horizontal position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Text alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label",
+          "default": "Shop weekly specials",
+          "info": "Leave empty to hide button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "label": "Secondary style",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "default": "Browse all",
+          "info": "Leave empty to hide button"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "label": "Secondary style",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayira Hero Banner",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
