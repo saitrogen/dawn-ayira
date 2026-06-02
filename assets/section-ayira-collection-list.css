@@ -1,0 +1,265 @@
+/* ==========================================================
+   section-ayira-collection-list.css
+   Ayira Collection List — Horizontal scroll row with
+   full-bleed image tiles, gradient overlay, circle arrow
+   ========================================================== */
+
+/* ── Section wrapper ──────────────────────────────────────── */
+.ayira-collection-list {
+  overflow: hidden; /* clip the horizontal scroll track */
+}
+
+/* ── Section header ───────────────────────────────────────── */
+.ayira-collection-list__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ayira-collection-list__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ayira-collection-list__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #E5A93B;
+  line-height: 1;
+}
+
+.ayira-collection-list__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #031E1B;
+  margin: 0;
+  font-family: var(--font-heading-family, inherit);
+}
+
+.ayira-collection-list__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #031E1B;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.ayira-collection-list__view-all:hover {
+  color: #E5A93B;
+}
+
+.ayira-collection-list__view-all svg {
+  transition: transform 0.2s ease;
+}
+
+.ayira-collection-list__view-all:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Scroll track (desktop horizontal) ───────────────────── */
+.ayira-collection-list__track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  padding-bottom: 4px; /* room for focus rings */
+  /* Negative margin to allow peek past the page-width padding */
+  margin-right: -24px;
+  padding-right: 24px;
+}
+
+.ayira-collection-list__track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* ── Individual collection tile ───────────────────────────── */
+.ayira-collection-tile {
+  position: relative;
+  flex: 0 0 calc(20% - 12px); /* 5 visible at 1280px + peek */
+  min-width: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #1B2D2A;
+  scroll-snap-align: start;
+  text-decoration: none;
+  display: block;
+  aspect-ratio: 3 / 4;
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(3, 30, 27, 0.12);
+}
+
+.ayira-collection-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(3, 30, 27, 0.22);
+}
+
+.ayira-collection-tile:focus-visible {
+  outline: 2px solid #E5A93B;
+  outline-offset: 3px;
+}
+
+/* ── Tile image ───────────────────────────────────────────── */
+.ayira-collection-tile__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ayira-collection-tile:hover .ayira-collection-tile__img {
+  transform: scale(1.04);
+}
+
+/* ── Gradient overlay (bottom-left heavy) ─────────────────── */
+.ayira-collection-tile__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(3, 30, 27, 0.02) 0%,
+    rgba(3, 30, 27, 0.08) 30%,
+    rgba(3, 30, 27, 0.55) 65%,
+    rgba(3, 30, 27, 0.82) 100%
+  );
+  pointer-events: none;
+}
+
+/* Placeholder tiles (no image) */
+.ayira-collection-tile--placeholder {
+  background: linear-gradient(135deg, #2A3D39 0%, #1B2D2A 100%);
+}
+
+.ayira-collection-tile--placeholder .ayira-collection-tile__placeholder-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.15);
+  font-family: var(--font-heading-family, inherit);
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+/* ── Tile content (bottom overlay) ───────────────────────── */
+.ayira-collection-tile__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  gap: 2px;
+}
+
+.ayira-collection-tile__name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  font-family: var(--font-heading-family, inherit);
+  margin: 0;
+  /* prevent long names pushing arrow off */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ayira-collection-tile__count {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1;
+  margin: 0;
+}
+
+/* ── Circle arrow button ──────────────────────────────────── */
+.ayira-collection-tile__arrow {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ayira-collection-tile:hover .ayira-collection-tile__arrow {
+  background-color: #E5A93B;
+  transform: translateX(2px);
+}
+
+.ayira-collection-tile__arrow svg {
+  width: 14px;
+  height: 14px;
+  color: #031E1B;
+}
+
+/* ── Mobile: 2-column grid ────────────────────────────────── */
+@media screen and (max-width: 749px) {
+  .ayira-collection-list__track {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    margin-right: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .ayira-collection-tile {
+    flex: unset;
+    min-width: unset;
+    aspect-ratio: 4 / 5;
+  }
+
+  .ayira-collection-tile__name {
+    font-size: 16px;
+  }
+}
+
+/* ── Tablet: 3 columns ────────────────────────────────────── */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .ayira-collection-tile {
+    flex: 0 0 calc(33.333% - 10px);
+    min-width: 180px;
+  }
+}
+
+/* ── Large desktop: constrain max card width ─────────────── */
+@media screen and (min-width: 1280px) {
+  .ayira-collection-tile {
+    max-width: 220px;
+  }
+}
+
+/* ── Scroll-reveal animation ─────────────────────────────── */
+.ayira-collection-list__track .ayira-collection-tile.scroll-trigger {
+  transition-property: opacity, transform;
+}

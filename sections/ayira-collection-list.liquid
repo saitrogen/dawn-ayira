@@ -1,0 +1,291 @@
+{{- 'section-ayira-collection-list.css' | asset_url | stylesheet_tag -}}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #AyiraCollectionList-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    #AyiraCollectionList-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="AyiraCollectionList-{{ section.id }}"
+  class="color-{{ section.settings.color_scheme }} gradient"
+>
+  <div class="ayira-collection-list page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {%- comment -%} ── Section Header ────────────────────────────────────── {%- endcomment -%}
+    <div class="ayira-collection-list__header">
+      <div class="ayira-collection-list__header-left">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="ayira-collection-list__eyebrow">
+            {{- section.settings.eyebrow | escape -}}
+          </span>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="ayira-collection-list__title">
+            {{- section.settings.title -}}
+          </h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_view_all -%}
+        <a
+          href="{{ routes.collections_url }}"
+          class="ayira-collection-list__view-all"
+          aria-label="{{ 'sections.collection_list.view_all' | t }}"
+        >
+          {{- section.settings.view_all_label | default: 'All collections' | escape -}}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── Collection Tiles Track ─────────────────────────── {%- endcomment -%}
+    <div
+      class="ayira-collection-list__track"
+      role="list"
+      aria-label="{{ section.settings.title | default: 'Collections' | escape }}"
+    >
+      {%- liquid
+        assign block_count = section.blocks.size
+      -%}
+
+      {%- if block_count > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign col = block.settings.collection
+            assign delay_order = forloop.index
+          -%}
+
+          <a
+            href="{% if col != blank %}{{ col.url }}{% else %}{{ routes.collections_url }}{% endif %}"
+            class="ayira-collection-tile{% if col == blank or col.featured_image == nil %} ayira-collection-tile--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            role="listitem"
+            aria-label="{% if col != blank %}{{ col.title | escape }}{% else %}{{ 'onboarding.collection_title' | t }}{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              style="--animation-order: {{ delay_order }};"
+              data-cascade
+            {% endif %}
+          >
+            {%- comment -%} Collection image {%- endcomment -%}
+            {%- if col != blank and col.featured_image != nil -%}
+              <img
+                srcset="
+                  {%- if col.featured_image.width >= 330 -%}{{ col.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+                  {%- if col.featured_image.width >= 500 -%}{{ col.featured_image | image_url: width: 500 }} 500w,{%- endif -%}
+                  {%- if col.featured_image.width >= 750 -%}{{ col.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {{ col.featured_image | image_url }} {{ col.featured_image.width }}w
+                "
+                src="{{ col.featured_image | image_url: width: 500 }}"
+                alt="{{ col.featured_image.alt | default: col.title | escape }}"
+                width="{{ col.featured_image.width }}"
+                height="{{ col.featured_image.height }}"
+                loading="lazy"
+                class="ayira-collection-tile__img motion-reduce"
+              >
+            {%- elsif col == blank -%}
+              {%- comment -%} Placeholder — show collection placeholder SVG {%- endcomment -%}
+              {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+              {%- assign placeholder_svg = 'collection-apparel-' | append: placeholder_index -%}
+              <div class="ayira-collection-tile__placeholder-icon" aria-hidden="true">
+                {{ placeholder_svg | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {%- else -%}
+              {%- comment -%} Collection exists but has no image — show first letter {%- endcomment -%}
+              <div class="ayira-collection-tile__placeholder-icon" aria-hidden="true">
+                {{ col.title | slice: 0, 1 | upcase }}
+              </div>
+            {%- endif -%}
+
+            {%- comment -%} Gradient overlay {%- endcomment -%}
+            <div class="ayira-collection-tile__overlay" aria-hidden="true"></div>
+
+            {%- comment -%} Text content {%- endcomment -%}
+            <div class="ayira-collection-tile__content">
+              <p class="ayira-collection-tile__name">
+                {%- if col != blank -%}
+                  {{- col.title | escape -}}
+                {%- else -%}
+                  {{- 'onboarding.collection_title' | t -}}
+                {%- endif -%}
+              </p>
+              {%- if section.settings.show_product_count -%}
+                <p class="ayira-collection-tile__count">
+                  {%- if col != blank -%}
+                    {{- col.all_products_count }} {{ 'sections.ayira_collection_list.items' | t -}}
+                  {%- else -%}
+                    {{- 'sections.ayira_collection_list.items_placeholder' | t -}}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+
+            {%- comment -%} Circle arrow {%- endcomment -%}
+            <span class="ayira-collection-tile__arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+        {%- endfor -%}
+
+      {%- else -%}
+        {%- comment -%} No blocks — render placeholder tiles {%- endcomment -%}
+        {%- for i in (1..5) -%}
+          <div
+            class="ayira-collection-tile ayira-collection-tile--placeholder"
+            role="listitem"
+            aria-hidden="true"
+          >
+            {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+            {%- assign placeholder_svg = 'collection-apparel-' | append: placeholder_index -%}
+            <div class="ayira-collection-tile__placeholder-icon">
+              {{ placeholder_svg | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+            <div class="ayira-collection-tile__overlay"></div>
+            <div class="ayira-collection-tile__content">
+              <p class="ayira-collection-tile__name">{{ 'onboarding.collection_title' | t }}</p>
+              {%- if section.settings.show_product_count -%}
+                <p class="ayira-collection-tile__count">{{ 'sections.ayira_collection_list.items_placeholder' | t }}</p>
+              {%- endif -%}
+            </div>
+            <span class="ayira-collection-tile__arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ayira Collection List",
+  "tag": "section",
+  "class": "section section-ayira-collection-list",
+  "max_blocks": 20,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Shop by Aisle",
+      "info": "Small label above the title (e.g. 'Shop by Category')"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Browse our collections"
+    },
+    {
+      "type": "header",
+      "content": "View All Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'All collections' link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Link label",
+      "default": "All collections"
+    },
+    {
+      "type": "header",
+      "content": "Card Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": true,
+      "info": "Displays '10 items' beneath the collection name"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayira Collection List",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
