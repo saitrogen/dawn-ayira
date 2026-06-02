@@ -14,6 +14,13 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_UXTmY8": {
+          "type": "announcement",
+          "settings": {
+            "text": "free delevvery",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -23,12 +30,13 @@
         }
       },
       "block_order": [
+        "announcement_UXTmY8",
         "announcement-bar-0"
       ],
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "color_scheme": "scheme-3",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -36,22 +44,14 @@
       }
     },
     "header": {
-      "type": "header",
+      "type": "ayira-header",
       "settings": {
-        "logo_position": "top-center",
-        "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "logo_width": 130,
+        "logo_height": 50,
+        "logo_height_mobile": 42,
+        "sticky_header_type": "always",
+        "color_scheme": "scheme-1"
       }
     }
   },
