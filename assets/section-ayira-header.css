@@ -116,6 +116,27 @@
   object-fit: contain;
 }
 
+.ayira-header__logo-image.logo-light {
+  display: none;
+}
+
+.ayira-header__logo-image.logo-default {
+  display: block;
+}
+
+/* Dark header schemes (scheme-3, scheme-4, scheme-5) switch to light logo */
+.ayira-header-wrapper.color-scheme-3 .logo-default,
+.ayira-header-wrapper.color-scheme-4 .logo-default,
+.ayira-header-wrapper.color-scheme-5 .logo-default {
+  display: none !important;
+}
+
+.ayira-header-wrapper.color-scheme-3 .logo-light,
+.ayira-header-wrapper.color-scheme-4 .logo-light,
+.ayira-header-wrapper.color-scheme-5 .logo-light {
+  display: block !important;
+}
+
 /* Column 3: Icons Right */
 .ayira-header__icons-container {
   justify-self: end;
