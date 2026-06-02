@@ -23,16 +23,19 @@ The component follows Shopify OS 2.0 best practices, separating markup, style, b
 
 The header is fully configurable inside the **Shopify Theme Customizer**:
 
-1.  **Desktop Logo Dimensions:**
+1.  **Dual Logo Toggling (Light / Dark Branding):**
+    *   `settings.logo` (Theme Settings): Standard dark/default logo rendered on light backgrounds (e.g. Cream).
+    *   `logo_light` (Header Section Settings): Cream/Light logo automatically displayed when the header uses a dark background scheme (e.g. Forest Green, Dark Charcoal).
+2.  **Desktop Logo Dimensions:**
     *   `logo_width` (Range: `80px` - `220px`): Desktop width.
     *   `logo_height` (Range: `20px` - `100px`): Desktop height.
-2.  **Mobile Logo Dimensions:**
+3.  **Mobile Logo Dimensions:**
     *   `logo_height_mobile` (Range: `12px` - `60px`): Mobile height.
-3.  **Sticky Styles (`sticky_header_type`):**
+4.  **Sticky Styles (`sticky_header_type`):**
     *   `none`: Regular static element.
     *   `always`: Fixed to the top under all scroll conditions.
     *   `on-scroll-up`: Slides down into view *only* when the user scrolls upwards.
-4.  **Color Schemes:** Inherits default Shopify color scheme gradients and tokens natively.
+5.  **Color Schemes:** Inherits default Shopify color scheme gradients and tokens natively.
 
 ---
 

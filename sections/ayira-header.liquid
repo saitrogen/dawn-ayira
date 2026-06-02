@@ -28,17 +28,30 @@
       <!-- 2. Store Logo Centered -->
       <div class="ayira-header__logo-container">
         <a href="{{ routes.root_url }}" class="ayira-header__logo-link">
-          {%- if settings.logo != blank -%}
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- if settings.logo != blank or section.settings.logo_light != blank -%}
             {%- assign logo_width = section.settings.logo_width -%}
-            {%- assign logo_height = logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {{ settings.logo | image_url: width: 400 | image_tag:
-              class: 'ayira-header__logo-image',
-              height: logo_height,
-              width: logo_width,
-              alt: logo_alt,
-              preload: true
-            }}
+            {%- if settings.logo != blank -%}
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {{ settings.logo | image_url: width: 400 | image_tag:
+                class: 'ayira-header__logo-image logo-default',
+                height: logo_height,
+                width: logo_width,
+                alt: logo_alt,
+                preload: true
+              }}
+            {%- endif -%}
+            {%- if section.settings.logo_light != blank -%}
+              {%- assign logo_light_alt = section.settings.logo_light.alt | default: shop.name | escape -%}
+              {%- assign logo_light_height = logo_width | divided_by: section.settings.logo_light.aspect_ratio -%}
+              {{ section.settings.logo_light | image_url: width: 400 | image_tag:
+                class: 'ayira-header__logo-image logo-light',
+                height: logo_light_height,
+                width: logo_width,
+                alt: logo_light_alt,
+                preload: true
+              }}
+            {%- endif -%}
           {%- else -%}
             <span class="ayira-header__logo-text">{{ shop.name }}</span>
           {%- endif -%}
@@ -143,15 +156,26 @@
       <!-- Mobile Logo Center -->
       <div class="ayira-header__logo-container">
         <a href="{{ routes.root_url }}" class="ayira-header__logo-link">
-          {%- if settings.logo != blank -%}
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- if settings.logo != blank or section.settings.logo_light != blank -%}
             {%- assign logo_width = section.settings.logo_width | at_most: 100 -%}
-            {{ settings.logo | image_url: width: 250 | image_tag:
-              class: 'ayira-header__logo-image',
-              height: 35,
-              width: logo_width,
-              alt: logo_alt
-            }}
+            {%- if settings.logo != blank -%}
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {{ settings.logo | image_url: width: 250 | image_tag:
+                class: 'ayira-header__logo-image logo-default',
+                height: 35,
+                width: logo_width,
+                alt: logo_alt
+              }}
+            {%- endif -%}
+            {%- if section.settings.logo_light != blank -%}
+              {%- assign logo_light_alt = section.settings.logo_light.alt | default: shop.name | escape -%}
+              {{ section.settings.logo_light | image_url: width: 250 | image_tag:
+                class: 'ayira-header__logo-image logo-light',
+                height: 35,
+                width: logo_width,
+                alt: logo_light_alt
+              }}
+            {%- endif -%}
           {%- else -%}
             <span class="ayira-header__logo-text">{{ shop.name }}</span>
           {%- endif -%}
@@ -236,6 +260,11 @@
       "id": "menu",
       "label": "Navigation Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_light",
+      "label": "Light / Cream Logo (for Dark Headers)"
     },
     {
       "type": "range",
