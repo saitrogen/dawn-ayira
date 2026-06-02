@@ -60,51 +60,10 @@
     "ayira_hero_banner_3dKUAi": {
       "type": "ayira-hero-banner",
       "blocks": {
-        "slide_eWWLY9": {
-          "type": "slide",
-          "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "Fresh basics, delivered the same day.",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "Groceries, drinks and snacks — at your door in under two hours.",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "Shop weekly specials",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Browse all",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
-        "slide_fPPkzH": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/glass-with-iced-red-beverage-reflects-on-a-white-table.jpg",
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "bottom",
-            "content_position_horizontal": "left",
-            "content_alignment": "left",
-            "button_label_1": "Shop weekly specials",
-            "button_link_1": "shopify://collections/dairy",
-            "button_style_secondary_1": false,
-            "button_label_2": "Browse all",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
         "slide_i9mBHf": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/rooibos-tea.jpg",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -124,8 +83,6 @@
         }
       },
       "block_order": [
-        "slide_eWWLY9",
-        "slide_fPPkzH",
         "slide_i9mBHf"
       ],
       "name": "Ayira Hero Banner",
@@ -263,20 +220,20 @@
         "collection-0": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "soft-drinks"
           }
         },
         "product": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "dandy-almond-delight-ice-cream",
             "second_image": false
           }
         },
         "collection-1": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "ice-cream-1"
           }
         }
       },
@@ -293,20 +250,6 @@
         "card_styles": "product-card-wrapper",
         "color_scheme": "scheme-1",
         "ayira_card_style": "compact",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -372,7 +315,6 @@
     "rich_text",
     "featured_collection",
     "collage",
-    "video",
     "multicolumn"
   ]
 }
