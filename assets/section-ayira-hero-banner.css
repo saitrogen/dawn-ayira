@@ -6,6 +6,9 @@
 /* ── Outer wrapper ─────────────────────────────────────── */
 .ayira-hero-banner {
   --ayira-banner-radius: 1.6rem;
+  --ayira-banner-small-h: 36rem;
+  --ayira-banner-medium-h: 52rem;
+  --ayira-banner-large-h: 68rem;
 
   position: relative;
   width: 100%;
@@ -53,15 +56,64 @@
   overflow: hidden;
 }
 
+/* ── Slide height classes ─────────────────────────────── */
+.ayira-hero-banner__slide--small {
+  min-height: var(--ayira-banner-small-h);
+}
+
+.ayira-hero-banner__slide--medium {
+  min-height: var(--ayira-banner-medium-h);
+}
+
+.ayira-hero-banner__slide--large {
+  min-height: var(--ayira-banner-large-h);
+}
+
+.ayira-hero-banner__slide--adapt {
+  min-height: auto;
+}
+
+@media screen and (max-width: 749px) {
+  .ayira-hero-banner__slide--small {
+    min-height: calc(var(--ayira-banner-small-h) * 0.75);
+  }
+
+  .ayira-hero-banner__slide--medium {
+    min-height: calc(var(--ayira-banner-medium-h) * 0.75);
+  }
+
+  .ayira-hero-banner__slide--large {
+    min-height: calc(var(--ayira-banner-large-h) * 0.75);
+  }
+
+  .ayira-hero-banner__slide--adapt {
+    min-height: auto;
+  }
+}
+
 /* ── Background image ─────────────────────────────────── */
 .ayira-hero-banner__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ayira-hero-banner__slide--adapt .ayira-hero-banner__media {
   position: relative;
   width: 100%;
+  height: auto;
 }
 
 .ayira-hero-banner__img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ayira-hero-banner__slide--adapt .ayira-hero-banner__img {
   height: auto;
   object-fit: contain;
 }
@@ -69,6 +121,10 @@
 .ayira-hero-banner__placeholder {
   display: block;
   width: 100%;
+  height: 100%;
+}
+
+.ayira-hero-banner__slide--adapt .ayira-hero-banner__placeholder {
   height: auto;
   aspect-ratio: 2 / 1;
 }
