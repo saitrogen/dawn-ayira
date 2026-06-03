@@ -306,12 +306,13 @@
             "text_color": "#ffffff"
           }
         },
-        "banner_2": {
+        "banner_zEbiCF": {
           "type": "banner",
           "settings": {
-            "title": "Fresh & Chilled",
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
             "link": "",
-            "background_color": "#b42318",
+            "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
@@ -329,7 +330,7 @@
         "banner_1",
         "banner_mtwGwc",
         "banner_YgB48A",
-        "banner_2",
+        "banner_zEbiCF",
         "banner_3"
       ],
       "settings": {
