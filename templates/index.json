@@ -273,6 +273,77 @@
         "padding_bottom": 36
       }
     },
+    "ayira_vertical_banners": {
+      "type": "ayira-vertical-banners",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_mtwGwc": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_YgB48A": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_zEbiCF": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_3": {
+          "type": "banner",
+          "settings": {
+            "title": "Snacks & Chocolates",
+            "link": "",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_mtwGwc",
+        "banner_YgB48A",
+        "banner_zEbiCF",
+        "banner_3"
+      ],
+      "settings": {
+        "title": "Shop by Category",
+        "eyebrow": "Browse",
+        "show_view_all": true,
+        "view_all_label": "All Categories",
+        "view_all_link": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -332,99 +403,6 @@
         "padding_top": 28,
         "padding_bottom": 36
       }
-    },
-    "collage": {
-      "type": "collage",
-      "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {
-            "collection": "soft-drinks"
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "dandy-almond-delight-ice-cream",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": "ice-cream-1"
-          }
-        }
-      },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
-      "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
-        "ayira_card_style": "compact",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -432,9 +410,8 @@
     "ayira_hero_banner_3dKUAi",
     "ayira_collection_list_Bc9rpK",
     "ayira_collection_icon_list_y9zUpF",
+    "ayira_vertical_banners",
     "rich_text",
-    "featured_collection",
-    "collage",
-    "multicolumn"
+    "featured_collection"
   ]
 }
