@@ -1,50 +1,46 @@
 /* ==========================================================
    section-ayira-hero-banner.css
-   Ayira Hero Banner — Carousel with rounded corners
+   Ayira Hero Banner — CSS scroll-snap carousel
    ========================================================== */
 
 /* ── Outer wrapper ─────────────────────────────────────── */
 .ayira-hero-banner {
   --ayira-banner-radius: 1.6rem;
-  --ayira-banner-small-h: 36rem;
-  --ayira-banner-medium-h: 52rem;
-  --ayira-banner-large-h: 68rem;
 
   position: relative;
-  overflow: hidden;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* ── Carousel root ─────────────────────────────────────── */
+/* ── Carousel custom element ──────────────────────────── */
 .ayira-hero-banner__carousel {
   display: block;
   position: relative;
-  /* NOTE: no overflow:hidden here — track-wrapper clips slides,
-     and we need dots (below the track) to be visible */
-  isolation: isolate;
-  touch-action: pan-y;
 }
 
-/* ── Slide track (horizontal scroll container) ─────────── */
+/* ── Scroll track wrapper — clips + enables scroll-snap ── */
 .ayira-hero-banner__track-wrapper {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--ayira-banner-radius);
-  position: relative;
-  width: 100%;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE / Edge */
 }
 
+.ayira-hero-banner__track-wrapper::-webkit-scrollbar {
+  display: none;                   /* Chrome / Safari */
+}
+
+/* ── Slide track (flex row) ───────────────────────────── */
 .ayira-hero-banner__track {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 0;
-  /* JS-controlled via --slide-offset (includes px unit) */
-  transform: translateX(var(--slide-offset, 0px));
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 /* ── Individual slide ─────────────────────────────────── */
@@ -52,65 +48,29 @@
   position: relative;
   flex: 0 0 100%;
   width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   overflow: hidden;
-  border-radius: var(--ayira-banner-radius);
-  /* Height variants */
-}
-
-/* Height sizes — desktop */
-.ayira-hero-banner--small {
-  min-height: var(--ayira-banner-small-h);
-}
-
-.ayira-hero-banner--medium {
-  min-height: var(--ayira-banner-medium-h);
-}
-
-.ayira-hero-banner--large {
-  min-height: var(--ayira-banner-large-h);
-}
-
-.ayira-hero-banner--adapt {
-  min-height: 0;
-}
-
-/* Height sizes — mobile */
-@media screen and (max-width: 749px) {
-  .ayira-hero-banner--small {
-    min-height: calc(var(--ayira-banner-small-h) * 0.75);
-  }
-
-  .ayira-hero-banner--medium {
-    min-height: calc(var(--ayira-banner-medium-h) * 0.75);
-  }
-
-  .ayira-hero-banner--large {
-    min-height: calc(var(--ayira-banner-large-h) * 0.75);
-  }
 }
 
 /* ── Background image ─────────────────────────────────── */
 .ayira-hero-banner__media {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 .ayira-hero-banner__img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  object-fit: contain;
 }
 
 .ayira-hero-banner__placeholder {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 2 / 1;
 }
 
 /* ── Content overlay ──────────────────────────────────── */
@@ -118,12 +78,18 @@
   position: absolute;
   inset: 0;
   display: flex;
-  padding: 4rem 3.5rem;
+  padding: 3.2rem;
   z-index: 2;
-  box-sizing: border-box;
 }
 
-/* Vertical */
+.ayira-hero-banner__content-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 64rem;
+}
+
+/* Vertical position */
 .ayira-hero-banner__content--top-left,
 .ayira-hero-banner__content--top-center,
 .ayira-hero-banner__content--top-right {
@@ -142,7 +108,7 @@
   align-items: flex-end;
 }
 
-/* Horizontal */
+/* Horizontal position */
 .ayira-hero-banner__content--top-left,
 .ayira-hero-banner__content--middle-left,
 .ayira-hero-banner__content--bottom-left {
@@ -161,48 +127,33 @@
   justify-content: flex-end;
 }
 
-@media screen and (max-width: 749px) {
-  .ayira-hero-banner__content {
-    padding: 2.4rem 2rem;
-  }
-}
-
-/* ── Content inner box ────────────────────────────────── */
-.ayira-hero-banner__content-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 72rem;
-}
-
 /* Text alignment */
 .ayira-hero-banner__content--align-left .ayira-hero-banner__content-inner {
-  align-items: flex-start;
   text-align: left;
+  align-items: flex-start;
 }
 
 .ayira-hero-banner__content--align-center .ayira-hero-banner__content-inner {
-  align-items: center;
   text-align: center;
+  align-items: center;
 }
 
 .ayira-hero-banner__content--align-right .ayira-hero-banner__content-inner {
-  align-items: flex-end;
   text-align: right;
+  align-items: flex-end;
 }
 
-/* ── Eyebrow badge ────────────────────────────────────── */
+/* ── Typography ───────────────────────────────────────── */
 .ayira-hero-banner__eyebrow {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgb(var(--color-foreground));
-  opacity: 0.9;
+  margin: 0;
 }
 
 .ayira-hero-banner__eyebrow-dot {
@@ -210,95 +161,32 @@
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
-  background-color: rgb(var(--color-button));
+  background-color: currentColor;
   flex-shrink: 0;
 }
 
-/* ── Heading ──────────────────────────────────────────── */
 .ayira-hero-banner__heading {
-  margin: 0;
   color: rgb(var(--color-foreground));
+  margin: 0;
+  line-height: 1.15;
 }
 
-/* ── Subtext ──────────────────────────────────────────── */
 .ayira-hero-banner__text {
+  color: rgba(var(--color-foreground), 0.75);
+  font-size: 1.6rem;
+  line-height: 1.6;
   margin: 0;
-  color: rgb(var(--color-foreground));
-  opacity: 0.85;
-  line-height: 1.55;
+  max-width: 50rem;
 }
 
-/* ── Hero-specific button overrides ──────────────────────
-   Override Dawn's default .button styles within the banner
-   to achieve a cleaner, pill-shaped look that works on
-   top of images without the heavy border/box-shadow system.
-──────────────────────────────────────────────────────────── */
-/* ── Buttons flex container ───────────────────────────── */
+/* ── Buttons ──────────────────────────────────────────── */
 .ayira-hero-banner__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
 }
 
-.ayira-hero-banner__buttons--multiple > * {
-  flex: 1 0 auto;
-}
-
-.ayira-hero-banner__buttons .button {
-  /* Reset Dawn pseudo-element border system */
-  border-radius: 10rem;
-  min-width: 0;
-  min-height: 0;
-  padding: 1.15rem 2.4rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* Primary button — solid, opaque, uses theme accent color */
-.ayira-hero-banner__buttons .button--primary {
-  background-color: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.12);
-}
-
-.ayira-hero-banner__buttons .button--primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.14);
-}
-
-.ayira-hero-banner__buttons .button--primary:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
-}
-
-/* Secondary button — glass/ghost pill with backdrop blur */
-.ayira-hero-banner__buttons .button--secondary {
-  background-color: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-}
-
-.ayira-hero-banner__buttons .button--secondary:hover {
-  background-color: rgba(255, 255, 255, 0.28);
-  border-color: rgba(255, 255, 255, 0.7);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
-}
-
-.ayira-hero-banner__buttons .button--secondary:active {
-  transform: translateY(0);
-}
-
-/* Reset the Dawn ::before / ::after pseudo-element border
-   system inside the banner so it doesn't double up */
 .ayira-hero-banner__buttons .button::before,
 .ayira-hero-banner__buttons .button::after {
   display: none;
@@ -312,144 +200,104 @@
 
   .ayira-hero-banner__buttons .button {
     width: 100%;
-    text-align: center;
-    justify-content: center;
+    min-width: unset;
+  }
+
+  .ayira-hero-banner__content {
+    padding: 2rem;
   }
 }
 
-/* ── Navigation buttons (Next/Prev) ─────────────────────── */
+/* ── Navigation arrows ────────────────────────────────── */
 .ayira-hero-banner__nav-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 4.8rem;
-  height: 4.8rem;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: rgba(0, 0, 0, 0.25);
-  color: #ffffff;
+  z-index: 3;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(var(--color-background), 0.7);
+  color: rgb(var(--color-foreground));
   cursor: pointer;
-  z-index: 5;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: unset;
+  min-height: unset;
 }
 
-.ayira-hero-banner__nav-button svg {
-  width: 2rem;
-  height: 2rem;
-  transition: transform 0.25s ease;
+.ayira-hero-banner__nav-button:hover {
+  background: rgba(var(--color-background), 0.9);
 }
 
 .ayira-hero-banner__nav-button--prev {
-  left: 2rem;
+  left: 1.2rem;
 }
 
 .ayira-hero-banner__nav-button--next {
-  right: 2rem;
+  right: 1.2rem;
 }
 
-/* Hover effects */
-.ayira-hero-banner__nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.45);
+.ayira-hero-banner__nav-button .icon {
+  width: 2rem;
+  height: 2rem;
 }
 
-.ayira-hero-banner__nav-button--prev:hover {
-  transform: translateY(-50%) scale(1.05);
-}
-
-.ayira-hero-banner__nav-button--prev:hover svg {
-  transform: translateX(-2px);
-}
-
-.ayira-hero-banner__nav-button--next:hover {
-  transform: translateY(-50%) scale(1.05);
-}
-
-.ayira-hero-banner__nav-button--next:hover svg {
-  transform: translateX(2px);
-}
-
-.ayira-hero-banner__nav-button:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-/* Focus outline */
 .ayira-hero-banner__nav-button:focus-visible {
-  outline: 0.2rem solid rgb(var(--color-button));
+  outline: 0.2rem solid rgb(var(--color-foreground));
   outline-offset: 0.3rem;
 }
 
-/* Responsive: hide arrows on mobile */
 @media screen and (max-width: 749px) {
   .ayira-hero-banner__nav-button {
     display: none;
   }
 }
 
-/* ── Dot pagination ───────────────────────────────────── */
+/* ── Dot pagination (below banner) ────────────────────── */
 .ayira-hero-banner__pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  margin-top: 2rem;
-  padding: 0;
-  list-style: none;
-  z-index: 5;
-  position: relative;
+  padding: 1.6rem 0 0.8rem;
 }
 
 .ayira-hero-banner__dot {
   display: block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
-  border: none;
+  border: 0.15rem solid rgba(var(--color-foreground), 0.4);
   padding: 0;
-  background-color: rgba(var(--color-foreground, 18, 18, 18), 0.15);
+  background-color: transparent;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   flex-shrink: 0;
+  min-width: unset;
+  min-height: unset;
 }
 
 .ayira-hero-banner__dot.is-active {
-  background-color: rgba(var(--color-foreground, 18, 18, 18), 0.8);
-  width: 0.8rem;
-  border-radius: 50%;
+  background-color: rgb(var(--color-foreground));
+  border-color: rgb(var(--color-foreground));
 }
 
 .ayira-hero-banner__dot:hover:not(.is-active) {
-  background-color: rgba(var(--color-foreground, 18, 18, 18), 0.35);
-  transform: scale(1.1);
+  background-color: rgba(var(--color-foreground), 0.2);
+  border-color: rgba(var(--color-foreground), 0.6);
+  transform: scale(1.15);
 }
 
 .ayira-hero-banner__dot:focus-visible {
-  outline: 0.2rem solid rgba(var(--color-foreground, 18, 18, 18), 0.8);
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.8);
   outline-offset: 0.3rem;
-}
-
-/* ── Keyboard / a11y — hide non-active slides ─────────── */
-.ayira-hero-banner__slide[aria-hidden='true'] {
-  visibility: hidden;
-  pointer-events: none;
-  tab-index: -1;
-}
-
-.ayira-hero-banner__slide.is-active {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* ── Touch / swipe visual hint (no scrollbar) ─────────── */
-.ayira-hero-banner__track-wrapper {
-  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Empty state ──────────────────────────────────────── */
@@ -464,11 +312,3 @@
   text-align: center;
 }
 
-/* ── Scroll trigger animations ────────────────────────── */
-.ayira-hero-banner.scroll-trigger.animate--fade-in {
-  visibility: hidden;
-}
-
-.ayira-hero-banner.scroll-trigger.animate--fade-in.is-visible {
-  visibility: visible;
-}
