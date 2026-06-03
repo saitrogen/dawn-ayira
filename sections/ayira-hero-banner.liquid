@@ -146,31 +146,31 @@
             </li>
           {%- endfor -%}
         </ul>
-      </div>
 
-      {%- comment -%} Navigation Arrows {%- endcomment -%}
-      {%- if section.blocks.size > 1 -%}
-        <button
-          type="button"
-          class="ayira-hero-banner__nav-button ayira-hero-banner__nav-button--prev"
-          aria-label="{{ 'sections.ayira_hero_banner.previous_slide' | t }}"
-          data-nav-prev
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-chevron-left">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="ayira-hero-banner__nav-button ayira-hero-banner__nav-button--next"
-          aria-label="{{ 'sections.ayira_hero_banner.next_slide' | t }}"
-          data-nav-next
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-chevron-right">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      {%- endif -%}
+        {%- comment -%} Navigation Arrows {%- endcomment -%}
+        {%- if section.blocks.size > 1 -%}
+          <button
+            type="button"
+            class="ayira-hero-banner__nav-button ayira-hero-banner__nav-button--prev"
+            aria-label="{{ 'sections.ayira_hero_banner.previous_slide' | t }}"
+            data-nav-prev
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-chevron-left">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="ayira-hero-banner__nav-button ayira-hero-banner__nav-button--next"
+            aria-label="{{ 'sections.ayira_hero_banner.next_slide' | t }}"
+            data-nav-next
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        {%- endif -%}
+      </div>
 
       {%- comment -%} Dot Pagination — overlaid on the bottom center of the carousel {%- endcomment -%}
       {%- if section.blocks.size > 1 -%}
@@ -255,7 +255,7 @@
           "label": "Adapt to image"
         }
       ],
-      "default": "medium"
+      "default": "adapt"
     },
     {
       "type": "header",

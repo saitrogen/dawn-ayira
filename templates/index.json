@@ -60,6 +60,27 @@
     "ayira_hero_banner_3dKUAi": {
       "type": "ayira-hero-banner",
       "blocks": {
+        "slide_wQxm4X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/276fe653-5c41-4869-a1f3-ae6462aead86.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
         "slide_i9mBHf": {
           "type": "slide",
           "settings": {
@@ -83,6 +104,7 @@
         }
       },
       "block_order": [
+        "slide_wQxm4X",
         "slide_i9mBHf"
       ],
       "name": "Ayira Hero Banner",
@@ -142,6 +164,7 @@
         "collection_7BgcUg",
         "collection_UGXGdz"
       ],
+      "disabled": true,
       "name": "Ayira Collection List",
       "settings": {
         "eyebrow": "Shop by Aisle",
@@ -152,6 +175,80 @@
         "color_scheme": "",
         "padding_top": 48,
         "padding_bottom": 48
+      }
+    },
+    "ayira_collection_icon_list_y9zUpF": {
+      "type": "ayira-collection-icon-list",
+      "blocks": {
+        "collection_YUyEFM": {
+          "type": "collection",
+          "settings": {
+            "collection": "candy"
+          }
+        },
+        "collection_MWUQke": {
+          "type": "collection",
+          "settings": {
+            "collection": "candy"
+          }
+        },
+        "collection_xn7j6K": {
+          "type": "collection",
+          "settings": {
+            "collection": "dairy"
+          }
+        },
+        "collection_zRtbNf": {
+          "type": "collection",
+          "settings": {
+            "collection": "ice-cream-1"
+          }
+        },
+        "collection_KemTnW": {
+          "type": "collection",
+          "settings": {
+            "collection": "ice-cream-1"
+          }
+        },
+        "collection_nynVeh": {
+          "type": "collection",
+          "settings": {
+            "collection": "soft-drinks"
+          }
+        },
+        "collection_FMhBic": {
+          "type": "collection",
+          "settings": {
+            "collection": "water"
+          }
+        },
+        "collection_fw7mae": {
+          "type": "collection",
+          "settings": {
+            "collection": "gums"
+          }
+        }
+      },
+      "block_order": [
+        "collection_YUyEFM",
+        "collection_MWUQke",
+        "collection_xn7j6K",
+        "collection_zRtbNf",
+        "collection_KemTnW",
+        "collection_nynVeh",
+        "collection_FMhBic",
+        "collection_fw7mae"
+      ],
+      "name": "Ayira Collection Icons",
+      "settings": {
+        "eyebrow": "Shop by Aisle",
+        "title": "Browse our collections",
+        "show_view_all": true,
+        "view_all_label": "All collections",
+        "show_product_count": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "rich_text": {
@@ -312,6 +409,7 @@
     "image_banner",
     "ayira_hero_banner_3dKUAi",
     "ayira_collection_list_Bc9rpK",
+    "ayira_collection_icon_list_y9zUpF",
     "rich_text",
     "featured_collection",
     "collage",

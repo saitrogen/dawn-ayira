@@ -1,6 +1,6 @@
 # Ayira Hero Banner Component Documentation
 
-The **Ayira Hero Banner** is a premium, fully customisable hero carousel section for the Ayira storefront. It features auto-advancing slides with horizontal transitions, per-slide content overlays, a pill-animated dot pagination bar, touch/swipe support, and scoped hero-specific button styles — all implemented as a native Shopify OS 2.0 custom element with no external dependencies.
+The **Ayira Hero Banner** is a premium, fully customisable hero carousel section for the Ayira storefront. It features an infinite looping horizontal carousel layout with 100% full-width slides, simple circular dot pagination aligned below the cards, touch/swipe support, and scoped hero-specific button styles — all implemented as a native Shopify OS 2.0 custom element with no external dependencies.
 
 ---
 
@@ -10,22 +10,22 @@ The **Ayira Hero Banner** is a premium, fully customisable hero carousel section
 | :--- | :--- |
 | `sections/ayira-hero-banner.liquid` | Section markup, slide blocks, dot pagination, schema |
 | `assets/section-ayira-hero-banner.css` | All component styles (carousel, slides, overlay, buttons, dots) |
-| `assets/ayira-hero-banner.js` | Custom element `<ayira-hero-banner-carousel>` — autoplay, swipe, dots, keyboard nav |
+| `assets/ayira-hero-banner.js` | Custom element `<ayira-hero-banner-carousel>` — infinite looping autoplay, swipe, dots, keyboard nav |
 | `locales/en.default.schema.json` | English translation keys under `sections.ayira-hero-banner` |
 
 ---
 
 ## ⚡ Key Features
 
-1. **Auto-advancing carousel** with a configurable timer (3 – 15 s). Pauses automatically on hover and keyboard focus; resumes on mouseout / blur.
-2. **Horizontal slide transition** driven by a CSS custom property (`--slide-offset`) and `translateX`, giving a smooth `cubic-bezier(0.4, 0, 0.2, 1)` glide with zero layout reflow.
+1. **Auto-advancing infinite loop** with a configurable timer (3 – 15 s). Moves continuously in a single direction (leftward) and loops seamlessly by snapping. Pauses automatically on hover and keyboard focus; resumes on mouseout / blur.
+2. **Full-width layout** driven by a CSS flex layout and calculated pixel offset, fitting each slide exactly to 100% of the container width.
 3. **Per-slide content overlay** — each slide block independently controls vertical position (top / middle / bottom), horizontal position (left / center / right), and text alignment.
 4. **Eyebrow badge** — a dot + uppercase label (e.g. `• WEEKLY SPECIALS`) rendered above the heading with the theme accent colour.
-5. **Pill-animated dot pagination** — inactive dots are circular; the active dot expands to a pill shape via CSS `width` transition. Dots are keyboard-navigable with arrow keys.
+5. **Circular dot pagination** — clean, circular dots centered underneath the banner card. The active dot matches the primary button theme color. Dots are keyboard-navigable with arrow keys.
 6. **Touch / pointer swipe** — 50 px threshold; ignores predominantly vertical drags. Works on both touch and pointer devices.
 7. **Scoped hero button styles** — Dawn's default `.button` border/pseudo-element system is overridden *only within this section*, giving pill-shaped primary and frosted-glass secondary buttons without affecting any other component.
 8. **`prefers-reduced-motion` safe** — autoplay is disabled and slide transitions snap instantly when the user has reduced motion enabled.
-9. **Rounded corners** — the slide track wrapper carries `border-radius: 1.6rem` (`--ayira-banner-radius`), matching the Ayira card aesthetic.
+9. **Rounded corners** — each slide card carries `border-radius: 1.6rem` (`--ayira-banner-radius`), matching the Ayira card aesthetic.
 
 ---
 
@@ -37,7 +37,7 @@ The **Ayira Hero Banner** is a premium, fully customisable hero carousel section
 | :--- | :--- | :--- | :--- | :--- |
 | `autoplay` | `checkbox` | Auto-advance slides | `true` | Enables timed slide advancement. |
 | `autoplay_speed` | `range` | Change slides every | `5` s | Interval between slide advances (3 – 15 s). |
-| `image_height` | `select` | Banner height | `medium` | `small` (36 rem) / `medium` (52 rem) / `large` (68 rem) / `adapt` (no min-height, adapts to image aspect ratio). Mobile heights are 75 % of desktop values. |
+| `image_height` | `select` | Banner height | `adapt` | `small` (36 rem) / `medium` (52 rem) / `large` (68 rem) / `adapt` (no min-height, adapts to image aspect ratio). Mobile heights are 75 % of desktop values. |
 | `padding_top` | `range` | Top padding | `0` px | Section wrapper top padding (0 – 100 px). Halved automatically on mobile. |
 | `padding_bottom` | `range` | Bottom padding | `0` px | Section wrapper bottom padding (0 – 100 px). Halved automatically on mobile. |
 
@@ -77,27 +77,35 @@ The carousel is implemented as a Web Components custom element defined in `ayira
 
 ### Slide Transition Mechanism
 
-Slides are laid out in a horizontal flex row inside `.ayira-hero-banner__track`. The JS calculates a pixel offset (`currentIndex × slideWidth`) and writes it to the CSS custom property `--slide-offset` (with a `px` unit suffix). The CSS applies it via:
+To achieve a seamless infinite loop in a single direction (leftward):
+1. **Dynamic Cloning**: If there are 2 or more slides, the first slide is cloned and appended, and the last slide is cloned and prepended.
+2. **Translation Offset**: The track offset is computed in JS based on container and slide widths:
+   `TranslateX = - elementIndex * slideWidth`
+3. **Transition Snapping**: The JS listens to `transitionend` events. When transitioning to a clone at index `0` (prepended last slide) or index `slideCount + 1` (appended first slide), the script instantly resets the track translation to the corresponding real slide index (index `slideCount` or index `1` respectively) without animation (`transition = 'none'`), creating an infinite loop.
+
+The CSS applies the offset via:
 
 ```css
 .ayira-hero-banner__track {
-  transform: translateX(calc(-1 * var(--slide-offset, 0px)));
+  transform: translateX(var(--slide-offset, 0px));
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 ```
 
-When `prefers-reduced-motion` is active or `animate = false`, the transition is set to `none` for a single frame before being re-enabled, producing an instant snap.
+When `prefers-reduced-motion` is active or `animate = false`, the transitions snap instantly, bypassing the `transitionend` listener to immediately complete the snap.
 
-### Why `overflow: hidden` is on the Track Wrapper, Not the Carousel Root
+### How `overflow: hidden` clips adjacent slides
 
-The dot pagination is a sibling of `.ayira-hero-banner__track-wrapper` inside `<ayira-hero-banner-carousel>`. If `overflow: hidden` were on the carousel root, the dots would be clipped and invisible. The solution:
+The track wrapper `.ayira-hero-banner__track-wrapper` has `overflow: hidden` and `border-radius: var(--ayira-banner-radius)` to clip the trailing slide track content and keep the corners rounded.
+
+The dot pagination is rendered below the track wrapper inside `<ayira-hero-banner-carousel>`. Since the wrapper is standard block flow, the pagination is positioned below it naturally:
 
 ```
 <ayira-hero-banner-carousel>
-  <div class="ayira-hero-banner__track-wrapper">  ← overflow: hidden clips slides here
+  <div class="ayira-hero-banner__track-wrapper">  ← overflow: hidden clips adjacent slides here
     <ul class="ayira-hero-banner__track"> ... </ul>
   </div>
-  <div class="ayira-hero-banner__pagination"> ... </div>  ← visible because it's a sibling
+  <div class="ayira-hero-banner__pagination"> ... </div>  ← flows below the slides naturally
 </ayira-hero-banner-carousel>
 ```
 
@@ -125,8 +133,8 @@ On `window.resize` (debounced 150 ms), the JS recalculates `slideWidth` and rewr
 ## 💡 Maintenance Tips
 
 - **Add a new slide:** In the Theme Customizer, click **Add block → Slide** inside the Ayira Hero Banner section. Each block is fully independent.
-- **Change border radius:** Update `--ayira-banner-radius` at the top of `section-ayira-hero-banner.css`. The value cascades to both the track wrapper and individual slides.
-- **Adjust dot size / active pill width:** Edit `.ayira-hero-banner__dot` (`width` / `height`) and `.ayira-hero-banner__dot.is-active` (`width`) in the CSS.
+- **Change border radius:** Update `--ayira-banner-radius` at the top of `section-ayira-hero-banner.css`. The value cascades to individual slides.
+- **Adjust dot size / color:** Edit `.ayira-hero-banner__dot` (`width` / `height`) and `.ayira-hero-banner__dot.is-active` in the CSS.
 - **Change autoplay default:** The `autoplay_speed` schema default is `5` (seconds). Change the `"default"` value in the schema to adjust it project-wide.
 - **Single-slide use:** When only one slide block is added, the dot pagination bar is automatically hidden (the `{% if section.blocks.size > 1 %}` guard in the Liquid).
 - **Theme Editor live reload:** The custom element re-initialises cleanly because the browser destroys and recreates the element when Shopify injects a new section HTML payload during customiser edits.

@@ -1,0 +1,263 @@
+/* ==========================================================
+   section-ayira-collection-icon-list.css
+   Ayira Collection Icon List — Horizontal native scroll row
+   with circle icon tiles and labels directly underneath
+   ========================================================== */
+
+/* ── Section wrapper ──────────────────────────────────────── */
+.ayira-collection-icon-list {
+  overflow: hidden; /* clip horizontal scroll overflow */
+}
+
+/* ── Section header ───────────────────────────────────────── */
+.ayira-collection-icon-list__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.6rem;
+  margin-bottom: 2.4rem;
+}
+
+.ayira-collection-icon-list__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ayira-collection-icon-list__eyebrow {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--color-button));
+  line-height: 1;
+}
+
+.ayira-collection-icon-list__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: rgb(var(--color-foreground));
+  margin: 0;
+  font-family: var(--font-heading-family, inherit);
+}
+
+.ayira-collection-icon-list__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.ayira-collection-icon-list__view-all:hover {
+  color: rgb(var(--color-button));
+}
+
+.ayira-collection-icon-list__view-all svg {
+  transition: transform 0.2s ease;
+}
+
+.ayira-collection-icon-list__view-all:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Scroll track (horizontal swipable) ──────────────────── */
+.ayira-collection-icon-list__track {
+  display: grid;
+  grid-template-rows: repeat(var(--row-count, 1), auto);
+  grid-auto-flow: column;
+  gap: 1.2rem 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  padding: 0.8rem 2.4rem 1.6rem 0.8rem; /* room for hover lift and shadows */
+  margin-left: -0.8rem;
+  margin-right: -2.4rem;
+  padding-right: 2.4rem;
+}
+
+.ayira-collection-icon-list__track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-list__track {
+    gap: 1.6rem 3.2rem;
+  }
+}
+
+/* ── Individual collection item ───────────────────────────── */
+.ayira-collection-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  flex: 0 0 auto;
+  width: 8rem; /* aligns with circle width */
+  scroll-snap-align: start;
+  cursor: pointer;
+  position: relative;
+  transition: outline 0.25s ease;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item {
+    width: 11rem; /* aligns with desktop circle width */
+  }
+}
+
+/* ── Circle wrap ──────────────────────────────────────────── */
+.ayira-collection-icon-item__circle {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(var(--color-foreground), 0.03);
+  border: 2px solid rgba(var(--color-foreground), 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item__circle {
+    width: 11rem;
+    height: 11rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* Hover & Focus state */
+.ayira-collection-icon-item:hover .ayira-collection-icon-item__circle {
+  transform: translateY(-3px);
+  border-color: rgb(var(--color-button));
+  box-shadow: 0 8px 20px rgba(var(--color-button), 0.18);
+}
+
+.ayira-collection-icon-item:focus-visible {
+  outline: none;
+}
+
+.ayira-collection-icon-item:focus-visible .ayira-collection-icon-item__circle {
+  border-color: rgb(var(--color-button));
+  box-shadow: 0 0 0 3px rgba(var(--color-button), 0.3);
+}
+
+/* ── Tile Image ───────────────────────────────────────────── */
+.ayira-collection-icon-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ayira-collection-icon-item:hover .ayira-collection-icon-item__img {
+  transform: scale(1.05);
+}
+
+/* ── Placeholders ─────────────────────────────────────────── */
+/* Lettering fallback */
+.ayira-collection-icon-item__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(var(--color-button), 0.05) 0%, rgba(var(--color-button), 0.12) 100%);
+  color: rgb(var(--color-button));
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: var(--font-heading-family, inherit);
+  letter-spacing: -0.02em;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item__placeholder {
+    font-size: 3.2rem;
+  }
+}
+
+/* SVG placeholder */
+.ayira-collection-icon-item__placeholder-svg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--color-foreground), 0.02);
+  padding: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item__placeholder-svg {
+    padding: 2.2rem;
+  }
+}
+
+.ayira-collection-icon-item__placeholder-svg svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(var(--color-foreground), 0.12);
+  color: rgba(var(--color-foreground), 0.12);
+}
+
+/* ── Collection Title / Label ─────────────────────────────── */
+.ayira-collection-icon-item__label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+  line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.25s ease;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item__label {
+    font-size: 1.4rem;
+  }
+}
+
+.ayira-collection-icon-item:hover .ayira-collection-icon-item__label {
+  color: rgb(var(--color-button));
+}
+
+/* ── Product count ────────────────────────────────────────── */
+.ayira-collection-icon-item__count {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(var(--color-foreground), 0.5);
+  margin: 0.2rem 0 0 0;
+  line-height: 1;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-collection-icon-item__count {
+    font-size: 1.1rem;
+  }
+}
+
+/* ── Scroll-reveal animation ─────────────────────────────── */
+.ayira-collection-icon-list__track .ayira-collection-icon-item.scroll-trigger {
+  transition-property: opacity, transform;
+}

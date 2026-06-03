@@ -2,11 +2,9 @@
  * ayira-hero-banner.js
  *
  * Custom element: <ayira-hero-banner-carousel>
- * - Auto-advancing carousel with configurable speed
- * - Pause on hover / focus, resume on mouseout / blur
- * - Dot pagination (ARIA tablist)
- * - Touch / pointer swipe support
- * - Keyboard navigation (arrow keys on dots)
+ * - Infinite looping carousel with single-direction leftward auto-scroll
+ * - Centered active slide with visible neighboring slides (peeks)
+ * - Dot pagination (circular dots, outside the card)
  * - Respects prefers-reduced-motion
  */
 
@@ -16,10 +14,12 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       super();
 
       this.currentIndex = 0;
+      this.currentElementIndex = 0;
       this.slideCount = 0;
       this.autoplayTimer = null;
       this.isHovered = false;
       this.isFocused = false;
+      this.isTransitioning = false;
 
       /* Touch tracking */
       this._touchStartX = 0;
@@ -33,6 +33,13 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       if (this.slideCount < 1) return;
 
       this._cacheDom();
+      
+      // Clone slides for infinite loop if we have at least 2 slides
+      if (this.slideCount > 1) {
+        this._setupClones();
+        this._setupTransitionEndListener();
+      }
+      
       this._setupSlideOffsets();
       this._bindEvents();
       this._startAutoplay();
@@ -44,16 +51,66 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
 
     /* ── DOM caching ───────────────────────────────────── */
     _cacheDom() {
+      this.trackWrapper = this.querySelector('.ayira-hero-banner__track-wrapper');
       this.track = this.querySelector('.ayira-hero-banner__track');
-      this.slides = Array.from(this.querySelectorAll('.ayira-hero-banner__slide'));
+      this.slides = Array.from(this.track?.children || []);
       this.dots = Array.from(this.querySelectorAll('.ayira-hero-banner__dot'));
       this.prevButton = this.querySelector('[data-nav-prev]');
       this.nextButton = this.querySelector('[data-nav-next]');
     }
 
-    /* ── Set initial CSS custom property ─────────────── */
+    /* ── Clone first and last slides for infinite looping ── */
+    _setupClones() {
+      const originalSlides = Array.from(this.track.children);
+      if (originalSlides.length <= 1) return;
+
+      // Clone the last slide and prepend it
+      const lastSlide = originalSlides[originalSlides.length - 1];
+      const cloneLast = lastSlide.cloneNode(true);
+      cloneLast.classList.add('is-clone');
+      cloneLast.setAttribute('aria-hidden', 'true');
+      cloneLast.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+      this.track.insertBefore(cloneLast, this.track.firstChild);
+
+      // Clone the first slide and append it
+      const firstSlide = originalSlides[0];
+      const cloneFirst = firstSlide.cloneNode(true);
+      cloneFirst.classList.add('is-clone');
+      cloneFirst.setAttribute('aria-hidden', 'true');
+      cloneFirst.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+      this.track.appendChild(cloneFirst);
+
+      // Re-cache slides array to include clones
+      this.slides = Array.from(this.track.children);
+    }
+
+    /* ── Set initial positions and states ──────────────── */
     _setupSlideOffsets() {
-      this._updateTrackPosition(0, false);
+      const startElementIndex = this.slideCount > 1 ? 1 : 0;
+      this.currentIndex = 0;
+      this.currentElementIndex = startElementIndex;
+      this._updateTrackPosition(startElementIndex, false);
+      this._updateSlideVisibility();
+      this._updateDots(0);
+    }
+
+    /* ── Transitionend listener for looping snap ──────── */
+    _setupTransitionEndListener() {
+      this.track.addEventListener('transitionend', (e) => {
+        if (e.target !== this.track) return;
+        
+        this.isTransitioning = false;
+        
+        if (this.slideCount > 1) {
+          if (this.currentElementIndex === 0) {
+            // Snapping to the real last slide
+            this._updateTrackPosition(this.slideCount, false);
+          } else if (this.currentElementIndex === this.slideCount + 1) {
+            // Snapping to the real first slide
+            this._updateTrackPosition(1, false);
+          }
+        }
+      });
     }
 
     /* ── Event binding ────────────────────────────────── */
@@ -68,6 +125,7 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
         dot.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             e.preventDefault();
+            if (this.isTransitioning) return;
             const delta = e.key === 'ArrowRight' ? 1 : -1;
             const next = (this.currentIndex + delta + this.slideCount) % this.slideCount;
             this.goTo(next);
@@ -121,7 +179,7 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
 
     /* ── Swipe handlers ───────────────────────────────── */
     _onPointerDown(e) {
-      if (e.pointerType === 'mouse') return; // mouse handled by hover
+      if (e.pointerType === 'mouse' || this.isTransitioning) return;
       this._isDragging = true;
       this._touchStartX = e.clientX;
       this._touchStartY = e.clientY;
@@ -158,49 +216,105 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
 
     /* ── Navigation ───────────────────────────────────── */
     next() {
-      this.goTo((this.currentIndex + 1) % this.slideCount);
+      if (this.slideCount <= 1) return;
+      if (this.isTransitioning) return;
+
+      this.isTransitioning = true;
+      const nextElementIndex = this.currentIndex + 2;
+      this.currentIndex = (this.currentIndex + 1) % this.slideCount;
+
+      this._updateSlideVisibility();
+      this._updateTrackPosition(nextElementIndex, true);
+      this._updateDots(this.currentIndex);
     }
 
     prev() {
-      this.goTo((this.currentIndex - 1 + this.slideCount) % this.slideCount);
+      if (this.slideCount <= 1) return;
+      if (this.isTransitioning) return;
+
+      this.isTransitioning = true;
+      const prevElementIndex = this.currentIndex;
+      this.currentIndex = (this.currentIndex - 1 + this.slideCount) % this.slideCount;
+
+      this._updateSlideVisibility();
+      this._updateTrackPosition(prevElementIndex, true);
+      this._updateDots(this.currentIndex);
     }
 
     goTo(index) {
-      if (index === this.currentIndex) return;
-      const previous = this.currentIndex;
+      if (this.slideCount <= 1) return;
+      if (this.isTransitioning || index === this.currentIndex) return;
+
+      this.isTransitioning = true;
       this.currentIndex = index;
-      this._updateSlideVisibility(previous);
-      this._updateTrackPosition(index, true);
+
+      this._updateSlideVisibility();
+      this._updateTrackPosition(index + 1, true);
       this._updateDots(index);
     }
 
-    /* ── Track position ───────────────────────────────── */
-    _updateTrackPosition(index, animate) {
+    /* ── Track position using centering calculations ─── */
+    _updateTrackPosition(elementIndex, animate) {
       if (!this.track) return;
 
-      /* Get the width of a single slide for pixel offset */
-      const slideWidth = this.slides[0]?.offsetWidth || 0;
-      const offset = index * slideWidth;
+      this.currentElementIndex = elementIndex;
 
-      if (!animate || this._prefersReducedMotion()) {
-        /* Snap immediately */
+      const containerWidth = this.trackWrapper?.offsetWidth || this.offsetWidth || 0;
+      const slideWidth = this.slides[0]?.offsetWidth || 0;
+      
+      // Read gap between slides from computed styles
+      const gap = parseFloat(window.getComputedStyle(this.track).gap) || 0;
+
+      // Centering offset formula: TranslateX = (containerWidth - slideWidth) / 2 - elementIndex * (slideWidth + gap)
+      const offsetToCenter = (containerWidth - slideWidth) / 2;
+      const translateX = offsetToCenter - elementIndex * (slideWidth + gap);
+
+      const isInstant = !animate || this._prefersReducedMotion();
+
+      if (isInstant) {
         this.track.style.transition = 'none';
-        this.track.style.setProperty('--slide-offset', `${offset}px`);
-        /* Re-enable transition after frame */
-        requestAnimationFrame(() => {
-          this.track.style.transition = '';
-        });
+        this.track.style.setProperty('--slide-offset', `${translateX}px`);
+        this.track.offsetHeight; // Force reflow
+        this.track.style.transition = '';
+        
+        this.isTransitioning = false;
+        
+        // Handle snap immediately for instant transitions
+        if (this.slideCount > 1) {
+          if (elementIndex === 0) {
+            this._updateTrackPosition(this.slideCount, false);
+          } else if (elementIndex === this.slideCount + 1) {
+            this._updateTrackPosition(1, false);
+          }
+        }
       } else {
-        this.track.style.setProperty('--slide-offset', `${offset}px`);
+        this.track.style.setProperty('--slide-offset', `${translateX}px`);
       }
     }
 
     /* ── Slide ARIA visibility ────────────────────────── */
-    _updateSlideVisibility(previousIndex) {
+    _updateSlideVisibility() {
       this.slides.forEach((slide, i) => {
-        const isActive = i === this.currentIndex;
+        let isActive = false;
+        if (i === this.currentIndex + 1) {
+          isActive = true;
+        } else if (i === 0 && this.currentIndex === this.slideCount - 1) {
+          isActive = true;
+        } else if (i === this.slideCount + 1 && this.currentIndex === 0) {
+          isActive = true;
+        }
+
         slide.classList.toggle('is-active', isActive);
-        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+
+        if (slide.classList.contains('is-clone')) {
+          slide.setAttribute('aria-hidden', 'true');
+          slide.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+        } else {
+          slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          slide.querySelectorAll('a, button').forEach(el => {
+            el.setAttribute('tabindex', isActive ? '0' : '-1');
+          });
+        }
       });
     }
 
@@ -219,7 +333,6 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       const enabled = this.dataset.autoplay === 'true';
       if (!enabled || this.slideCount <= 1) return;
 
-      /* Never start if reduced-motion prefers no animation */
       if (this._prefersReducedMotion()) return;
 
       const speed = parseInt(this.dataset.autoplaySpeed, 10) || 5000;
@@ -245,7 +358,8 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
 
     /* ── Handle resize: recalculate offset ────────────── */
     handleResize() {
-      this._updateTrackPosition(this.currentIndex, false);
+      const elementIndex = this.slideCount > 1 ? this.currentIndex + 1 : 0;
+      this._updateTrackPosition(elementIndex, false);
     }
   }
 

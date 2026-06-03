@@ -29,6 +29,7 @@
 .ayira-hero-banner__track-wrapper {
   overflow: hidden;
   border-radius: var(--ayira-banner-radius);
+  position: relative;
   width: 100%;
 }
 
@@ -37,8 +38,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 0;
   /* JS-controlled via --slide-offset (includes px unit) */
-  transform: translateX(calc(-1 * var(--slide-offset, 0px)));
+  transform: translateX(var(--slide-offset, 0px));
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
   backface-visibility: hidden;
@@ -396,18 +398,11 @@
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10rem;
-  padding: 0.8rem 1.4rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
 .ayira-hero-banner__dot {
@@ -417,26 +412,25 @@
   border-radius: 50%;
   border: none;
   padding: 0;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(var(--color-foreground), 0.15);
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.25s ease, width 0.25s ease, border-radius 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.25s ease;
   flex-shrink: 0;
 }
 
 .ayira-hero-banner__dot.is-active {
-  background-color: #ffffff;
-  /* Pill shape when active */
-  width: 2rem;
-  border-radius: 0.4rem;
+  background-color: rgb(var(--color-button));
+  width: 0.8rem;
+  border-radius: 50%;
 }
 
 .ayira-hero-banner__dot:hover:not(.is-active) {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(var(--color-foreground), 0.35);
   transform: scale(1.1);
 }
 
 .ayira-hero-banner__dot:focus-visible {
-  outline: 0.2rem solid #ffffff;
+  outline: 0.2rem solid rgb(var(--color-button));
   outline-offset: 0.3rem;
 }
 
