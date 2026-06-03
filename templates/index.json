@@ -80,18 +80,40 @@
             "button_link_2": "",
             "button_style_secondary_2": true
           }
+        },
+        "slide_yQtfMN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
         }
       },
       "block_order": [
-        "slide_nKnCyR"
+        "slide_nKnCyR",
+        "slide_yQtfMN"
       ],
       "name": "Ayira Hero Banner",
       "settings": {
         "autoplay": true,
         "autoplay_speed": 5,
-        "image_height": "small",
+        "image_height": "medium",
         "color_scheme": "",
-        "padding_top": 0,
+        "padding_top": 16,
         "padding_bottom": 0
       }
     },

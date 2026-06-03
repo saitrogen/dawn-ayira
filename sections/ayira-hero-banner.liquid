@@ -20,18 +20,26 @@
       padding-bottom: {{ padding_bottom | divided_by: 2 }}px;
     }
   }
-  {%- if image_height == 'adapt' -%}
-    {%- liquid
+  {%- liquid
+    assign aspect_ratio = '2.2 / 1'
+
+    if image_height == 'small'
+      assign aspect_ratio = '3 / 1'
+    elsif image_height == 'medium'
+      assign aspect_ratio = '2.2 / 1'
+    elsif image_height == 'large'
+      assign aspect_ratio = '1.6 / 1'
+    elsif image_height == 'adapt'
       assign first_block = section.blocks | where: "type", "slide" | first
       assign aspect_ratio = 2.0
       if first_block and first_block.settings.image != blank
         assign aspect_ratio = first_block.settings.image.aspect_ratio
       endif
-    -%}
-    #{{ section_id }} .ayira-hero-banner__track-wrapper {
-      aspect-ratio: {{ aspect_ratio }};
-    }
-  {%- endif -%}
+    endif
+  -%}
+  #{{ section_id }} .ayira-hero-banner__track-wrapper {
+    aspect-ratio: {{ aspect_ratio }};
+  }
 {%- endstyle -%}
 
 <div
@@ -75,8 +83,12 @@
                   {%- liquid
                     assign img_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
                     assign fetch_priority = 'auto'
-                    if forloop.first and section.index == 1
-                      assign fetch_priority = 'high'
+                    assign loading = 'lazy'
+                    if forloop.first
+                      assign loading = 'eager'
+                      if section.index == 1
+                        assign fetch_priority = 'high'
+                      endif
                     endif
                   -%}
                   {{
@@ -89,7 +101,7 @@
                       sizes: '(min-width: 1200px) calc(100vw - 8rem), (min-width: 750px) calc(100vw - 4rem), 100vw',
                       widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
                       fetchpriority: fetch_priority,
-                      loading: forloop.first | default: 'lazy'
+                      loading: loading
                   }}
                 {%- else -%}
                   {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg ayira-hero-banner__placeholder' }}
@@ -270,12 +282,6 @@
         }
       ],
       "default": "medium"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
     },
     {
       "type": "color_scheme",

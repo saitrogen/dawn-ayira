@@ -44,6 +44,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 /* ── Individual slide ─────────────────────────────────── */
@@ -51,44 +52,10 @@
   position: relative;
   flex: 0 0 100%;
   width: 100%;
+  height: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
-}
-
-/* ── Slide height classes ─────────────────────────────── */
-.ayira-hero-banner__slide--small {
-  min-height: var(--ayira-banner-small-h);
-}
-
-.ayira-hero-banner__slide--medium {
-  min-height: var(--ayira-banner-medium-h);
-}
-
-.ayira-hero-banner__slide--large {
-  min-height: var(--ayira-banner-large-h);
-}
-
-.ayira-hero-banner__slide--adapt {
-  min-height: auto;
-}
-
-@media screen and (max-width: 749px) {
-  .ayira-hero-banner__slide--small {
-    min-height: calc(var(--ayira-banner-small-h) * 0.75);
-  }
-
-  .ayira-hero-banner__slide--medium {
-    min-height: calc(var(--ayira-banner-medium-h) * 0.75);
-  }
-
-  .ayira-hero-banner__slide--large {
-    min-height: calc(var(--ayira-banner-large-h) * 0.75);
-  }
-
-  .ayira-hero-banner__slide--adapt {
-    min-height: auto;
-  }
 }
 
 /* ── Background image ─────────────────────────────────── */
@@ -100,12 +67,6 @@
   overflow: hidden;
 }
 
-.ayira-hero-banner__slide--adapt .ayira-hero-banner__media {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
 .ayira-hero-banner__img {
   display: block;
   width: 100%;
@@ -113,20 +74,10 @@
   object-fit: cover;
 }
 
-.ayira-hero-banner__slide--adapt .ayira-hero-banner__img {
-  height: auto;
-  object-fit: contain;
-}
-
 .ayira-hero-banner__placeholder {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.ayira-hero-banner__slide--adapt .ayira-hero-banner__placeholder {
-  height: auto;
-  aspect-ratio: 2 / 1;
 }
 
 /* ── Content overlay ──────────────────────────────────── */
@@ -250,17 +201,49 @@
 
 @media screen and (max-width: 749px) {
   .ayira-hero-banner__buttons {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
   }
 
   .ayira-hero-banner__buttons .button {
-    width: 100%;
+    width: auto;
     min-width: unset;
+    font-size: 1.1rem;
+    padding: 0.6rem 1.4rem;
+    min-height: 3.2rem;
   }
 
   .ayira-hero-banner__content {
-    padding: 2rem;
+    padding: 1.2rem;
+  }
+
+  .ayira-hero-banner__content-inner {
+    gap: 0.6rem;
+    max-width: 90%;
+  }
+
+  .ayira-hero-banner__eyebrow {
+    font-size: 1rem;
+    gap: 0.4rem;
+  }
+
+  .ayira-hero-banner__eyebrow-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+
+  .ayira-hero-banner__heading {
+    font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+  }
+
+  .ayira-hero-banner__text {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    max-width: 100%;
   }
 }
 

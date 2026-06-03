@@ -1100,6 +1100,7 @@ input.mobile-facets__checkbox {
   align-self: center;
   position: relative;
   text-align: right;
+  white-space: nowrap;
 }
 
 .product-count__text {
@@ -1253,5 +1254,19 @@ input.mobile-facets__checkbox {
 
   .facets-vertical .active-facets__button-remove {
     padding: 0 1rem 1rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .facets-container {
+    grid-template-columns: 1fr;
+    row-gap: 1.2rem;
+  }
+  
+  .facets-container .product-count {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+    margin: 0;
   }
 }
