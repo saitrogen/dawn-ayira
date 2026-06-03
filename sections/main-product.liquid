@@ -10,6 +10,7 @@
   {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'section-ayira-pdp.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -74,6 +75,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
+    {%- render 'breadcrumbs' -%}
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
@@ -226,6 +228,57 @@
                       {{ block.settings.page.content }}
                     </div>
                   </details>
+                </div>
+              {%- when 'trust_badges' -%}
+                <div class="ay-pdp-meta" {{ block.shopify_attributes }}>
+                  {%- if block.settings.title_1 != blank -%}
+                    <div class="ay-pdp-meta-item">
+                      <span class="ic">
+                        {%- case block.settings.icon_1 -%}
+                          {%- when 'truck' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                          {%- when 'package-check' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line><polyline points="16 16 18.5 18.5 22 15"></polyline></svg>
+                          {%- when 'checkmark' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          {%- when 'heart' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                          {%- when 'shield' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                          {%- when 'info' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        {%- endcase -%}
+                      </span>
+                      <div>
+                        <div class="ttl">{{ block.settings.title_1 | escape }}</div>
+                        <div class="sub">{{ block.settings.subtitle_1 | escape }}</div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.title_2 != blank -%}
+                    <div class="ay-pdp-meta-item">
+                      <span class="ic">
+                        {%- case block.settings.icon_2 -%}
+                          {%- when 'truck' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                          {%- when 'package-check' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line><polyline points="16 16 18.5 18.5 22 15"></polyline></svg>
+                          {%- when 'checkmark' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          {%- when 'heart' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                          {%- when 'shield' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                          {%- when 'info' -%}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        {%- endcase -%}
+                      </span>
+                      <div>
+                        <div class="ttl">{{ block.settings.title_2 | escape }}</div>
+                        <div class="sub">{{ block.settings.subtitle_2 | escape }}</div>
+                      </div>
+                    </div>
+                  {%- endif -%}
                 </div>
               {%- when 'quantity_selector' -%}
                 <div
@@ -741,6 +794,59 @@
       {{ product | structured_data }}
     </script>
   </div>
+
+  {%- if product.available -%}
+    <div id="AyStickyAtc" class="ay-sticky-atc">
+      <div class="price-info">
+        <div class="p">{{ product.selected_or_first_available_variant.price | money }}</div>
+        <div class="u">
+          {%- unless product.has_only_default_variant -%}
+            {{ product.selected_or_first_available_variant.title }} ·
+          {%- endunless -%}
+          In stock
+        </div>
+      </div>
+      <button
+        type="button"
+        class="ay-btn-primary"
+        onclick="const btn = document.querySelector('.product-form__submit'); if(btn) btn.click();"
+      >
+        Add to cart
+      </button>
+    </div>
+
+    <script>
+      (function() {
+        function initStickyAtc() {
+          const stickyAtc = document.getElementById('AyStickyAtc');
+          const buyButtons = document.querySelector('.product-form__submit');
+          if (!stickyAtc || !buyButtons) return;
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              const isOut = !entry.isIntersecting && (entry.boundingClientRect.top < 0);
+              if (isOut) {
+                stickyAtc.classList.add('is-visible');
+              } else {
+                stickyAtc.classList.remove('is-visible');
+              }
+            });
+          }, {
+            threshold: 0
+          });
+
+          observer.observe(buyButtons);
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initStickyAtc);
+        } else {
+          initStickyAtc();
+        }
+        document.addEventListener('shopify:section:load', initStickyAtc);
+      })();
+    </script>
+  {%- endif -%}
 </product-info>
 
 {% schema %}
@@ -2113,6 +2219,65 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "trust_badges",
+      "name": "Trust Badges",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_1",
+          "label": "Icon 1",
+          "options": [
+            { "value": "truck", "label": "Truck / Delivery" },
+            { "value": "package-check", "label": "Package check" },
+            { "value": "checkmark", "label": "Checkmark" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "info", "label": "Info" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Title 1",
+          "default": "Same-day delivery"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_1",
+          "label": "Subtitle 1",
+          "default": "Order before 4pm in Al Khor"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "label": "Icon 2",
+          "options": [
+            { "value": "truck", "label": "Truck / Delivery" },
+            { "value": "package-check", "label": "Package check" },
+            { "value": "checkmark", "label": "Checkmark" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "info", "label": "Info" }
+          ],
+          "default": "package-check"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title 2",
+          "default": "Easy returns"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_2",
+          "label": "Subtitle 2",
+          "default": "Within 48 hours of delivery"
         }
       ]
     }
