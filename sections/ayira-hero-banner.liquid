@@ -4,7 +4,6 @@
 {%- liquid
   assign section_id = 'AyiraHeroBanner-' | append: section.id
   assign autoplay_speed = section.settings.autoplay_speed | times: 1000
-  assign image_height = section.settings.image_height
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
 -%}
@@ -20,24 +19,6 @@
       padding-bottom: {{ padding_bottom | divided_by: 2 }}px;
     }
   }
-  {%- if image_height == 'adapt' and section.blocks.first.settings.image != blank -%}
-    @media screen and (max-width: 749px) {
-      #{{ section_id }} .ayira-hero-banner__track-wrapper::before,
-      #{{ section_id }} .ayira-hero-banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
-    @media screen and (min-width: 750px) {
-      #{{ section_id }} .ayira-hero-banner__track-wrapper::before,
-      #{{ section_id }} .ayira-hero-banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
-  {%- endif -%}
 {%- endstyle -%}
 
 <div
@@ -53,7 +34,7 @@
       data-slide-count="{{ section.blocks.size }}"
     >
 
-      {%- comment -%} Slides Track {%- endcomment -%}
+      {%- comment -%} Slides Track — native scroll-snap container {%- endcomment -%}
       <div class="ayira-hero-banner__track-wrapper">
         <ul
           class="ayira-hero-banner__track"
@@ -67,7 +48,7 @@
               assign text_align = block.settings.content_alignment
             -%}
             <li
-              class="ayira-hero-banner__slide ayira-hero-banner--{{ image_height }}{% if forloop.first %} is-active{% endif %}"
+              class="ayira-hero-banner__slide"
               data-slide-index="{{ forloop.index0 }}"
               {{ block.shopify_attributes }}
               role="group"
@@ -75,8 +56,8 @@
               aria-label="{{ forloop.index }} {{ 'sections.ayira_hero_banner.slide_of' | t }} {{ section.blocks.size }}"
               aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
             >
-              {%- comment -%} Background Image {%- endcomment -%}
-              <div class="ayira-hero-banner__media media{% if block.settings.image_behavior != 'none' %} animate--{{ block.settings.image_behavior }}{% endif %}">
+              {%- comment -%} Background Image — adapt to natural ratio {%- endcomment -%}
+              <div class="ayira-hero-banner__media{% if block.settings.image_behavior != 'none' %} animate--{{ block.settings.image_behavior }}{% endif %}">
                 {%- if block.settings.image != blank -%}
                   {%- liquid
                     assign img_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
@@ -103,69 +84,71 @@
               </div>
 
               {%- comment -%} Content Overlay {%- endcomment -%}
-              <div
-                class="ayira-hero-banner__content ayira-hero-banner__content--{{ content_pos_v }}-{{ content_pos_h }} ayira-hero-banner__content--align-{{ text_align }}"
-              >
-                <div class="ayira-hero-banner__content-inner">
-                  {%- if block.settings.eyebrow_label != blank -%}
-                    <p class="ayira-hero-banner__eyebrow">
-                      <span class="ayira-hero-banner__eyebrow-dot" aria-hidden="true"></span>
-                      {{- block.settings.eyebrow_label -}}
-                    </p>
-                  {%- endif -%}
+              {%- if block.settings.eyebrow_label != blank or block.settings.heading != blank or block.settings.text != blank or block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                <div
+                  class="ayira-hero-banner__content ayira-hero-banner__content--{{ content_pos_v }}-{{ content_pos_h }} ayira-hero-banner__content--align-{{ text_align }}"
+                >
+                  <div class="ayira-hero-banner__content-inner">
+                    {%- if block.settings.eyebrow_label != blank -%}
+                      <p class="ayira-hero-banner__eyebrow">
+                        <span class="ayira-hero-banner__eyebrow-dot" aria-hidden="true"></span>
+                        {{- block.settings.eyebrow_label -}}
+                      </p>
+                    {%- endif -%}
 
-                  {%- if block.settings.heading != blank -%}
-                    <{{ block.settings.heading_tag }}
-                      class="ayira-hero-banner__heading {{ block.settings.heading_size }}"
-                    >
-                      {{- block.settings.heading -}}
-                    </{{ block.settings.heading_tag }}>
-                  {%- endif -%}
+                    {%- if block.settings.heading != blank -%}
+                      <{{ block.settings.heading_tag }}
+                        class="ayira-hero-banner__heading {{ block.settings.heading_size }}"
+                      >
+                        {{- block.settings.heading -}}
+                      </{{ block.settings.heading_tag }}>
+                    {%- endif -%}
 
-                  {%- if block.settings.text != blank -%}
-                    <p class="ayira-hero-banner__text">
-                      {{- block.settings.text -}}
-                    </p>
-                  {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                      <p class="ayira-hero-banner__text">
+                        {{- block.settings.text -}}
+                      </p>
+                    {%- endif -%}
 
-                  {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-                    <div
-                      class="ayira-hero-banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} ayira-hero-banner__buttons--multiple{% endif %}"
-                    >
-                      {%- if block.settings.button_label_1 != blank -%}
-                        <a
-                          {% if block.settings.button_link_1 == blank %}
-                            role="link" aria-disabled="true"
-                          {% else %}
-                            href="{{ block.settings.button_link_1 }}"
-                          {% endif %}
-                          class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
-                        >
-                          {{- block.settings.button_label_1 | escape -}}
-                        </a>
-                      {%- endif -%}
+                    {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                      <div
+                        class="ayira-hero-banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} ayira-hero-banner__buttons--multiple{% endif %}"
+                      >
+                        {%- if block.settings.button_label_1 != blank -%}
+                          <a
+                            {% if block.settings.button_link_1 == blank %}
+                              role="link" aria-disabled="true"
+                            {% else %}
+                              href="{{ block.settings.button_link_1 }}"
+                            {% endif %}
+                            class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                          >
+                            {{- block.settings.button_label_1 | escape -}}
+                          </a>
+                        {%- endif -%}
 
-                      {%- if block.settings.button_label_2 != blank -%}
-                        <a
-                          {% if block.settings.button_link_2 == blank %}
-                            role="link" aria-disabled="true"
-                          {% else %}
-                            href="{{ block.settings.button_link_2 }}"
-                          {% endif %}
-                          class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                        >
-                          {{- block.settings.button_label_2 | escape -}}
-                        </a>
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
+                        {%- if block.settings.button_label_2 != blank -%}
+                          <a
+                            {% if block.settings.button_link_2 == blank %}
+                              role="link" aria-disabled="true"
+                            {% else %}
+                              href="{{ block.settings.button_link_2 }}"
+                            {% endif %}
+                            class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                          >
+                            {{- block.settings.button_label_2 | escape -}}
+                          </a>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
                 </div>
-              </div>
+              {%- endif -%}
             </li>
           {%- endfor -%}
         </ul>
 
-        {%- comment -%} Navigation Arrows {%- endcomment -%}
+        {%- comment -%} Navigation Arrows (inside track-wrapper for positioning) {%- endcomment -%}
         {%- if section.blocks.size > 1 -%}
           <button
             type="button"
@@ -190,7 +173,7 @@
         {%- endif -%}
       </div>
 
-      {%- comment -%} Dot Pagination — overlaid on the bottom center of the carousel {%- endcomment -%}
+      {%- comment -%} Dot Pagination — below banner, on page background {%- endcomment -%}
       {%- if section.blocks.size > 1 -%}
         <div
           class="ayira-hero-banner__pagination"
@@ -252,28 +235,10 @@
       "content": "Layout"
     },
     {
-      "type": "select",
-      "id": "image_height",
-      "label": "Banner height",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        },
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        }
-      ],
-      "default": "adapt"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
     },
     {
       "type": "color_scheme",
