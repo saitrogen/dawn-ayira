@@ -185,7 +185,26 @@
             </ul>
 
             {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- if section.settings.enable_load_more -%}
+                <div class="collection-load-more-wrapper center" id="LoadMoreWrapper" data-next-url="{{ paginate.next.url }}">
+                  <button type="button" class="button button--secondary" id="LoadMoreButton">
+                    <span class="load-more-text">Load More</span>
+                    <span class="loading-spinner hidden">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        class="spinner"
+                        viewBox="0 0 66 66"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              {%- else -%}
+                {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- endif -%}
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -373,6 +392,13 @@
     {
       "type": "header",
       "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_load_more",
+      "default": true,
+      "label": "Enable Modern Load More",
+      "info": "Replaces standard numbered pagination with an AJAX-based Load More button."
     },
     {
       "type": "checkbox",

@@ -199,6 +199,11 @@
                               if value.count == 0 and value.active == false
                                 assign is_disabled = true
                               endif
+                              assign is_color = false
+                              assign filter_name = filter.label | downcase
+                              if filter_name == 'color' or filter_name == 'colour'
+                                assign is_color = true
+                              endif
                             %}
                             {%- capture label_class -%}
                             facets__label facet-checkbox{% if is_disabled %} disabled{% endif %}{% if value.active %} active{% endif %}
@@ -220,7 +225,7 @@
                               </span>
                             {%- endcapture -%}
 
-                            <li class="list-menu__item facets__item{% if forloop.index > show_more_number and filter_type == 'vertical' %} show-more-item hidden{% endif %}">
+                            <li class="list-menu__item facets__item{% if forloop.index > show_more_number and filter_type == 'vertical' %} show-more-item hidden{% endif %}{% if is_color %} facets__item--swatch{% endif %}">
                               {%- if presentation == 'swatch' -%}
                                 <div class="{{ label_class }}">
                                   <div class="swatch-input-wrapper">
@@ -237,6 +242,58 @@
                                   </div>
 
                                   {{ text_value }}
+                                </div>
+                              {%- elsif is_color -%}
+                                <div class="facet-swatch-wrapper {{ label_class }}">
+                                  {%- liquid
+                                    assign color_handle = value.label | handle
+                                    assign color_hex = '#FFFFFF'
+                                    case color_handle
+                                      when 'forest' or 'forest-green'
+                                        assign color_hex = '#0D4F47'
+                                      when 'mustard'
+                                        assign color_hex = '#D4A737'
+                                      when 'cream'
+                                        assign color_hex = '#F6F6EE'
+                                      when 'black'
+                                        assign color_hex = '#000000'
+                                      when 'white'
+                                        assign color_hex = '#FFFFFF'
+                                      when 'red'
+                                        assign color_hex = '#FF0000'
+                                      when 'blue'
+                                        assign color_hex = '#0000FF'
+                                      when 'yellow'
+                                        assign color_hex = '#FFFF00'
+                                      when 'green'
+                                        assign color_hex = '#008000'
+                                      when 'orange'
+                                        assign color_hex = '#FFA500'
+                                      when 'purple'
+                                        assign color_hex = '#800080'
+                                      when 'pink'
+                                        assign color_hex = '#FFC0CB'
+                                      when 'grey' or 'gray'
+                                        assign color_hex = '#808080'
+                                      when 'brown'
+                                        assign color_hex = '#A52A2A'
+                                      else
+                                        assign color_hex = color_handle
+                                    endcase
+                                  -%}
+                                  <label for="{{ input_id }}" class="facet-swatch-label">
+                                    <input
+                                      type="checkbox"
+                                      name="{{ value.param_name }}"
+                                      value="{{ value.value }}"
+                                      id="{{ input_id }}"
+                                      class="swatch-checkbox"
+                                      {% if value.active %}checked{% endif %}
+                                      {% if is_disabled %}disabled{% endif %}
+                                    >
+                                    <span class="swatch-circle" style="background-color: {{ color_hex }};" title="{{ value.label }}"></span>
+                                    <span class="facet-checkbox__text-label swatch-text-label">{{ value.label }} <span class="facet-checkbox__count">{{ value.count }}</span></span>
+                                  </label>
                                 </div>
                               {%- else -%}
                                 <label for="{{ input_id }}" class="{{ label_class }}">
@@ -569,14 +626,18 @@
                               endif
                             -%}
                             {%- for value in sorted_values -%}
-                              {% liquid
+                              {%- liquid
                                 assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-mobile-' | append: forloop.index
                                 assign is_disabled = false
                                 if value.count == 0 and value.active == false
                                   assign is_disabled = true
                                 endif
-                              %}
-
+                                assign is_color = false
+                                assign filter_name = filter.label | downcase
+                                if filter_name == 'color' or filter_name == 'colour'
+                                  assign is_color = true
+                                endif
+                              -%}
                               {%- capture label_class -%}
                               facets__label mobile-facets__label{% if is_disabled %} disabled{% endif %}{% if value.active %} active{% endif %}
                               {%- endcapture -%}
@@ -597,7 +658,7 @@
                                 </span>
                               {%- endcapture -%}
 
-                              <li class="mobile-facets__item list-menu__item">
+                              <li class="mobile-facets__item list-menu__item{% if is_color %} mobile-facets__item--swatch{% endif %}">
                                 {% if presentation == 'swatch' %}
                                   <div class="{{ label_class }}">
                                     <div class="swatch-input-wrapper">
@@ -614,6 +675,58 @@
                                     </div>
 
                                     {{ text_value }}
+                                  </div>
+                                {% elsif is_color %}
+                                  <div class="facet-swatch-wrapper {{ label_class }}">
+                                    {%- liquid
+                                      assign color_handle = value.label | handle
+                                      assign color_hex = '#FFFFFF'
+                                      case color_handle
+                                        when 'forest' or 'forest-green'
+                                          assign color_hex = '#0D4F47'
+                                        when 'mustard'
+                                          assign color_hex = '#D4A737'
+                                        when 'cream'
+                                          assign color_hex = '#F6F6EE'
+                                        when 'black'
+                                          assign color_hex = '#000000'
+                                        when 'white'
+                                          assign color_hex = '#FFFFFF'
+                                        when 'red'
+                                          assign color_hex = '#FF0000'
+                                        when 'blue'
+                                          assign color_hex = '#0000FF'
+                                        when 'yellow'
+                                          assign color_hex = '#FFFF00'
+                                        when 'green'
+                                          assign color_hex = '#008000'
+                                        when 'orange'
+                                          assign color_hex = '#FFA500'
+                                        when 'purple'
+                                          assign color_hex = '#800080'
+                                        when 'pink'
+                                          assign color_hex = '#FFC0CB'
+                                        when 'grey' or 'gray'
+                                          assign color_hex = '#808080'
+                                        when 'brown'
+                                          assign color_hex = '#A52A2A'
+                                        else
+                                          assign color_hex = color_handle
+                                      endcase
+                                    -%}
+                                    <label for="{{ input_id }}" class="facet-swatch-label">
+                                      <input
+                                        type="checkbox"
+                                        name="{{ value.param_name }}"
+                                        value="{{ value.value }}"
+                                        id="{{ input_id }}"
+                                        class="swatch-checkbox"
+                                        {% if value.active %}checked{% endif %}
+                                        {% if is_disabled %}disabled{% endif %}
+                                      >
+                                      <span class="swatch-circle" style="background-color: {{ color_hex }};" title="{{ value.label }}"></span>
+                                      <span class="facet-checkbox__text-label swatch-text-label">{{ value.label }} <span class="facet-checkbox__count">{{ value.count }}</span></span>
+                                    </label>
                                   </div>
                                 {% else %}
                                   <label for="{{ input_id }}" class="{{ label_class }}">

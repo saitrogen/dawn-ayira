@@ -198,10 +198,10 @@ span.active-facets__button-inner {
   color: #0D4F47 !important;
   box-shadow: none !important;
   border: 1px solid #0D4F47 !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
   border-radius: 100px !important;
-  padding: 6px 14px !important;
+  padding: 4px 12px !important;
   transition: all 150ms ease !important;
 }
 
@@ -280,6 +280,14 @@ a.pagination__item:hover {
 
 /* Custom Mobile Filter Trigger & Sort dropdown row */
 @media screen and (max-width: 749px) {
+  .template-collection .facets-container {
+    display: block !important;
+    padding-top: 0 !important;
+  }
+  .template-collection .product-count {
+    display: none !important;
+  }
+
   .mobile-facets__wrapper {
     display: flex !important;
     width: 100% !important;
@@ -327,18 +335,19 @@ a.pagination__item:hover {
     border-radius: 100px !important;
     color: #031E1B !important;
     font-weight: 600 !important;
-    font-size: 13.5px !important;
-    height: 42px !important;
-    min-height: 42px !important;
+    font-size: 12px !important;
+    height: 36px !important;
+    min-height: 36px !important;
     display: flex !important;
     align-items: center !important;
-    padding: 0 16px !important;
+    padding: 0 12px !important;
     box-sizing: border-box !important;
     justify-content: center !important;
     transition: all 150ms ease !important;
     width: 100% !important;
     text-transform: none !important;
     box-shadow: none !important;
+    white-space: nowrap !important;
   }
 
   .mobile-facets__open {
@@ -420,4 +429,181 @@ a.pagination__item:hover {
   color: rgb(var(--color-foreground));
   font-weight: 500;
 }
+
+/* Compact spacing layout overrides for Collection Pages */
+.template-collection .section-header {
+  margin-bottom: 0 !important;
+}
+.template-collection .collection-hero {
+  padding-top: 8px !important;
+  padding-bottom: 0 !important;
+}
+.template-collection .collection-hero__inner {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+.template-collection .collection-hero__text-wrapper {
+  padding: 0 !important;
+}
+.template-collection .collection-hero .breadcrumbs {
+  padding: 0 0 2px 0 !important;
+}
+.template-collection .collection-hero__title {
+  margin: 4px 0 2px 0 !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #031E1B !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+}
+.template-collection .collection-hero__title + .collection-hero__description {
+  margin-top: 2px !important;
+  margin-bottom: 8px !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  color: rgba(3, 30, 27, 0.7) !important;
+}
+.template-collection .collection-hero__description * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce vertical space above product grid & mobile filters */
+.template-collection .section-template--main-collection-product-grid-padding,
+.template-collection [class*="section-"][class*="-padding"] {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+.template-collection .section + .section {
+  margin-top: 0 !important;
+}
+
+@media screen and (min-width: 750px) {
+  .template-collection .collection-hero {
+    padding-top: 16px !important;
+  }
+  .template-collection .collection-hero__title {
+    margin: 6px 0 4px 0 !important;
+    font-size: 32px !important;
+  }
+  .template-collection .collection-hero__title + .collection-hero__description {
+    margin-top: 4px !important;
+    margin-bottom: 12px !important;
+    font-size: 14px !important;
+  }
+  .template-collection .section-template--main-collection-product-grid-padding,
+  .template-collection [class*="section-"][class*="-padding"] {
+    padding-top: 12px !important;
+    padding-bottom: 16px !important;
+  }
+  .template-collection .section + .section {
+    margin-top: 0 !important;
+  }
+}
+
+/* Color Swatches Styling */
+.facet-swatch-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.facet-swatch-label {
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* Hide standard checkbox input inside wrapper */
+.facet-swatch-wrapper .swatch-checkbox {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Circular Swatch Circle */
+.swatch-circle {
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  border: 1px solid #D2D6DC !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+  transition: all 150ms ease !important;
+  box-sizing: border-box !important;
+}
+
+/* Swatch hover state */
+.facet-swatch-label:hover .swatch-circle {
+  transform: scale(1.1) !important;
+  border-color: #0D4F47 !important;
+}
+
+/* Checked swatch: colored border ring */
+.facet-swatch-wrapper .swatch-checkbox:checked + .swatch-circle {
+  border-color: #0D4F47 !important;
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3.5px #0D4F47 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Text label side alignment */
+.swatch-text-label {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  color: #031E1B !important;
+  font-weight: 500 !important;
+}
+
+.facets__item--swatch,
+.mobile-facets__item--swatch {
+  padding: 4px 0 !important;
+}
+
+/* AJAX Load More Button Styling */
+.collection-load-more-wrapper {
+  margin-top: 3.6rem !important;
+  margin-bottom: 3.6rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.collection-load-more-wrapper .button {
+  min-width: 18rem !important;
+  height: 4.2rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.collection-load-more-wrapper .loading-spinner {
+  width: 2rem !important;
+  height: 2rem !important;
+  display: inline-block !important;
+}
+
+.collection-load-more-wrapper .spinner {
+  animation: rotation-spin 1.4s linear infinite !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes rotation-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 

@@ -363,3 +363,69 @@ class FacetRemove extends HTMLElement {
 }
 
 customElements.define('facet-remove', FacetRemove);
+
+class CollectionLoadMore {
+  static init() {
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest('#LoadMoreButton');
+      if (!button) return;
+
+      const wrapper = document.getElementById('LoadMoreWrapper');
+      const grid = document.getElementById('product-grid');
+      const nextUrl = wrapper.dataset.nextUrl;
+      if (!nextUrl || button.disabled) return;
+
+      // Show spinner
+      const textSpan = button.querySelector('.load-more-text');
+      const spinnerSpan = button.querySelector('.loading-spinner');
+      if (textSpan) textSpan.classList.add('hidden');
+      if (spinnerSpan) spinnerSpan.classList.remove('hidden');
+      button.disabled = true;
+
+      try {
+        const response = await fetch(nextUrl);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const responseText = await response.text();
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(responseText, 'text/html');
+        
+        // Extract new products and append to grid
+        const newProducts = doc.querySelectorAll('#product-grid > li');
+        newProducts.forEach((item) => {
+          // If animations on scroll are enabled, reset them
+          const animElement = item.querySelector('.scroll-trigger');
+          if (animElement) {
+            animElement.classList.add('scroll-trigger--cancel');
+          }
+          grid.appendChild(item);
+        });
+
+        // Re-evaluate the Load More wrapper state
+        const newWrapper = doc.getElementById('LoadMoreWrapper');
+        if (newWrapper && newWrapper.dataset.nextUrl) {
+          wrapper.dataset.nextUrl = newWrapper.dataset.nextUrl;
+        } else {
+          // No more pages
+          wrapper.remove();
+        }
+
+        // Initialize scroll animations for the new items if defined
+        if (window.initializeScrollAnimationTrigger) {
+          window.initializeScrollAnimationTrigger();
+        }
+      } catch (error) {
+        console.error('Error loading more products:', error);
+      } finally {
+        if (button && button.parentNode) { // check if button still exists in DOM
+          if (textSpan) textSpan.classList.remove('hidden');
+          if (spinnerSpan) spinnerSpan.classList.add('hidden');
+          button.disabled = false;
+        }
+      }
+    });
+  }
+}
+
+CollectionLoadMore.init();
+
