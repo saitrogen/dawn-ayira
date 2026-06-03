@@ -1,0 +1,49 @@
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+  {%- assign t = template | split: '.' | first -%}
+  <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+    <ol class="breadcrumbs__list">
+      <li class="breadcrumbs__item">
+        <a class="breadcrumbs__link" href="{{ routes.root_url }}">Home</a>
+      </li>
+      {%- case t -%}
+        {%- when 'product' -%}
+          {%- if collection.url -%}
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__sep">/</span>
+              {{ collection.title | link_to: collection.url, class: 'breadcrumbs__link' }}
+            </li>
+          {%- endif -%}
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__sep">/</span>
+            <span class="breadcrumbs__current" aria-current="page">{{ product.title }}</span>
+          </li>
+        {%- when 'collection' and collection.handle -%}
+          {%- if current_tags -%}
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__sep">/</span>
+              {{ collection.title | link_to: collection.url, class: 'breadcrumbs__link' }}
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__sep">/</span>
+              <span class="breadcrumbs__current" aria-current="page">{{ current_tags | join: " + " }}</span>
+            </li>
+          {%- else -%}
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__sep">/</span>
+              <span class="breadcrumbs__current" aria-current="page">{{ collection.title }}</span>
+            </li>
+          {%- endif -%}
+        {%- when 'page' -%}
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__sep">/</span>
+            <span class="breadcrumbs__current" aria-current="page">{{ page.title }}</span>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__sep">/</span>
+            <span class="breadcrumbs__current" aria-current="page">{{ page_title }}</span>
+          </li>
+      {%- endcase -%}
+    </ol>
+  </nav>
+{%- endunless -%}
