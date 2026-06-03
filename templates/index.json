@@ -57,10 +57,10 @@
         "show_text_below": false
       }
     },
-    "ayira_hero_banner_3dKUAi": {
+    "ayira_hero_banner_nLAPLr": {
       "type": "ayira-hero-banner",
       "blocks": {
-        "slide_i9mBHf": {
+        "slide_nKnCyR": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
@@ -80,54 +80,10 @@
             "button_link_2": "",
             "button_style_secondary_2": true
           }
-        },
-        "slide_yWUFdV": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/unnamed.jpg",
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
-        "slide_YUJRkm": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/handful-of-acorns.jpg",
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
         }
       },
       "block_order": [
-        "slide_i9mBHf",
-        "slide_yWUFdV",
-        "slide_YUJRkm"
+        "slide_nKnCyR"
       ],
       "name": "Ayira Hero Banner",
       "settings": {
@@ -135,7 +91,7 @@
         "autoplay_speed": 5,
         "image_height": "small",
         "color_scheme": "",
-        "padding_top": 16,
+        "padding_top": 0,
         "padding_bottom": 0
       }
     },
@@ -408,7 +364,7 @@
   },
   "order": [
     "image_banner",
-    "ayira_hero_banner_3dKUAi",
+    "ayira_hero_banner_nLAPLr",
     "ayira_collection_list_Bc9rpK",
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners",
