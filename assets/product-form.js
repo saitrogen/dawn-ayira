@@ -10,7 +10,11 @@ if (!customElements.get('product-form')) {
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
         this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         this.submitButton = this.querySelector('[type="submit"]');
-        this.submitButtonText = this.submitButton.querySelector('span');
+        this.submitButtonText =
+          this.submitButton.querySelector('.atc-title') ||
+          this.submitButton.querySelector('.atc-status') ||
+          this.submitButton.querySelector('span:not(.svg-wrapper)') ||
+          this.submitButton.querySelector('span');
 
         if (document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
 

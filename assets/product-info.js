@@ -196,6 +196,16 @@ if (!customElements.get('product-info')) {
           this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
           this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
 
+          const updatedSubmitButton = html.getElementById(`ProductSubmitButton-${this.sectionId}`);
+          const currentSubmitButton = this.querySelector(`#ProductSubmitButton-${this.dataset.section}`);
+          if (updatedSubmitButton && currentSubmitButton) {
+            const currentLabel = currentSubmitButton.querySelector('.atc-label-wrapper');
+            const updatedLabel = updatedSubmitButton.querySelector('.atc-label-wrapper');
+            if (currentLabel && updatedLabel) {
+              currentLabel.innerHTML = updatedLabel.innerHTML;
+            }
+          }
+
           this.productForm?.toggleSubmitButton(
             html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
             window.variantStrings.soldOut

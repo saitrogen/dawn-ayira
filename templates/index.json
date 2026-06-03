@@ -133,6 +133,7 @@
       "settings": {
         "autoplay": true,
         "autoplay_speed": 5,
+        "image_height": "small",
         "color_scheme": "",
         "padding_top": 16,
         "padding_bottom": 0
