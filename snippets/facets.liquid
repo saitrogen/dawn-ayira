@@ -206,7 +206,8 @@
 
                             {%- capture text_value -%}
                               <span class="facet-checkbox__text" aria-hidden="true">
-                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span> ({{- value.count -}})
+                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span>
+                                <span class="facet-checkbox__count">{{- value.count -}}</span>
                               </span>
                               <span class="visually-hidden">
                                 {{- value.label | escape }} (
@@ -330,6 +331,13 @@
                       <price-range class="facets__price">
                         {% render 'price-facet', filter: filter, id_prefix: 'Filter-', filter_type: filter_type %}
                       </price-range>
+                      {%- if filter_type == 'vertical' -%}
+                        <div class="facets__price-apply-wrapper">
+                          <button type="submit" class="button button--secondary facets__price-apply">
+                            Apply
+                          </button>
+                        </div>
+                      {%- endif -%}
                     </div>
                   </details>
               {% endcase %}
@@ -575,7 +583,8 @@
 
                               {%- capture text_value -%}
                                 <span class="facet-checkbox__text" aria-hidden="true">
-                                  <span class="facet-checkbox__text-label">{{- value.label | escape }}</span> ({{- value.count -}})
+                                  <span class="facet-checkbox__text-label">{{- value.label | escape }}</span>
+                                  <span class="facet-checkbox__count">{{- value.count -}}</span>
                                 </span>
                                 <span class="visually-hidden">
                                   {{- value.label | escape }} (
@@ -780,6 +789,39 @@
         </form>
       </facet-filters-form>
     </details>
+    {%- if enable_sorting -%}
+      <facet-filters-form class="mobile-facets__sort-wrapper">
+        <form id="FacetSortMobileOutsideForm" class="facets__form">
+          <div class="facet-filters sorting caption">
+            <div class="facet-filters__field">
+              <div class="select">
+                {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+                <select
+                  name="sort_by"
+                  class="facet-filters__sort select__select caption-large"
+                  id="SortBy-Mobile-Outside"
+                  aria-describedby="a11y-refresh-page-message"
+                >
+                  {%- for option in results.sort_options -%}
+                    <option
+                      value="{{ option.value | escape }}"
+                      {% if option.value == sort_by %}
+                        selected="selected"
+                      {% endif %}
+                    >
+                      {{ option.name | escape }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </facet-filters-form>
+    {%- endif -%}
   </menu-drawer>
 
   <div class="active-facets active-facets-mobile medium-hide large-up-hide">

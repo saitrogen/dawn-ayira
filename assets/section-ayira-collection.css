@@ -1,0 +1,382 @@
+/* ==========================================================
+   section-ayira-collection.css
+   Ayira Collection Page (PLP) — Custom filter & sorting overrides
+   ========================================================== */
+
+/* Left Sidebar Filter Sections styling */
+.facets__disclosure-vertical {
+  border-top: none !important;
+  border-bottom: 1.5px solid #F0F2F5 !important;
+  margin: 0 !important;
+  padding: 16px 0 !important;
+}
+
+.facets__disclosure-vertical:last-of-type {
+  border-bottom: none !important;
+}
+
+/* Uppercase and bold green filter section headings */
+.facets__disclosure-vertical .facets__summary-label {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  color: #031E1B !important; /* Branded dark green */
+  letter-spacing: 0.06em !important;
+}
+
+/* Hide caret summaries arrow inside vertical filters list */
+.facets__disclosure-vertical summary .icon-caret {
+  display: none !important;
+}
+
+/* Custom checkbox styling to match visual mockup */
+.facet-checkbox {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 0 !important;
+  font-size: 14px !important;
+  color: #031E1B !important;
+  cursor: pointer !important;
+  position: relative !important;
+  font-weight: 500 !important;
+}
+
+/* Unchecked checkmark boxes default */
+.facet-checkbox > svg {
+  background-color: transparent !important;
+  border-radius: 4px !important;
+  color: #D2D6DC !important; /* Light grey border outline */
+  transition: all 150ms ease !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.facet-checkbox:hover > svg {
+  color: #0D4F47 !important;
+}
+
+/* Checked checkbox box filled styling */
+.facet-checkbox > input[type='checkbox']:checked ~ svg {
+  fill: #0D4F47 !important;
+  color: #0D4F47 !important;
+  stroke: #0D4F47 !important;
+}
+
+/* Align checkmark symbol inside checkbox wrapper */
+.facet-checkbox .svg-wrapper {
+  position: absolute !important;
+  left: 2px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 12px !important;
+  height: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  background-color: transparent !important;
+  margin-right: 0 !important;
+  visibility: hidden !important;
+}
+
+.facet-checkbox > input[type='checkbox']:checked ~ .svg-wrapper {
+  visibility: visible !important;
+  color: #FFFFFF !important;
+}
+
+.facet-checkbox .svg-wrapper svg {
+  width: 8px !important;
+  height: 8px !important;
+  color: #FFFFFF !important;
+  fill: currentColor !important;
+}
+
+/* Aligned count styling on the right side without parenthesis */
+.facet-checkbox__text {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.facet-checkbox__count {
+  margin-left: auto !important;
+  color: rgba(var(--color-foreground), 0.4) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+/* Price Range Filter controls overrides */
+.facets__price {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 0 !important;
+}
+
+.facets__price .field-currency {
+  display: none !important; /* Hide currency prefix since it's in the title */
+}
+
+.facets__price .field {
+  flex-grow: 1 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.facets__price .field__input {
+  border: 1.5px solid var(--color-border-subtle, #E4E7EC) !important;
+  border-radius: 8px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background-color: #FFFFFF !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #031E1B !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+
+.facets__price .field__input:focus {
+  border-color: #0D4F47 !important;
+}
+
+.facets__price .field__label {
+  display: none !important; /* Hide the floating labels to show clean placeholders */
+}
+
+/* Insert separator arrow between min and max price inputs */
+.facets__price .field + .field {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-left: 0 !important;
+}
+
+.facets__price .field + .field::before {
+  content: "→" !important;
+  color: rgba(var(--color-foreground), 0.3) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-right: 2px !important;
+}
+
+/* Small Apply button for Price Filter */
+.facets__price-apply-wrapper {
+  padding-top: 4px;
+  text-align: left;
+}
+
+.facets__price-apply {
+  background-color: #FFFFFF !important;
+  border: 1.5px solid var(--color-border-subtle, #E4E7EC) !important;
+  color: #031E1B !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  min-height: 34px !important;
+  height: 34px !important;
+  padding: 0 16px !important;
+  cursor: pointer !important;
+  transition: all 150ms ease !important;
+  box-shadow: none !important;
+}
+
+.facets__price-apply:hover {
+  border-color: #0D4F47 !important;
+  color: #0D4F47 !important;
+  background-color: #FBFBF6 !important;
+}
+
+/* Active Filter Pills (Tags) styling */
+span.active-facets__button-inner {
+  background-color: #E6EEED !important; /* Branded light tint */
+  color: #0D4F47 !important;
+  box-shadow: none !important;
+  border: 1px solid #0D4F47 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 100px !important;
+  padding: 6px 14px !important;
+  transition: all 150ms ease !important;
+}
+
+.active-facets__button--light:hover span.active-facets__button-inner,
+.active-facets__button:hover span.active-facets__button-inner {
+  background-color: #0D4F47 !important;
+  color: #FFFFFF !important;
+  border-color: #0D4F47 !important;
+}
+
+/* Close icon color inside hover tags */
+.active-facets__button:hover span.active-facets__button-inner svg {
+  color: #FFFFFF !important;
+}
+
+.active-facets__button .svg-wrapper {
+  color: #0D4F47 !important;
+  margin-left: 6px !important;
+}
+
+/* Clear all filter tags text link */
+.active-facets__button-wrapper .active-facets__button-remove,
+.active-facets__button-remove {
+  color: #0D4F47 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-underline-offset: 4px !important;
+}
+
+.active-facets__button-wrapper .active-facets__button-remove:hover,
+.active-facets__button-remove:hover {
+  color: #D4A737 !important;
+}
+
+/* Modern Rounded Pagination circles */
+.pagination__list > li {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 40px !important;
+  max-width: 40px !important;
+}
+
+.pagination__item {
+  border-radius: 50% !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 150ms ease !important;
+  color: #031E1B !important;
+}
+
+/* Hide default bottom outline line */
+.pagination__item::after,
+.pagination__item:hover::after,
+a.pagination__item:hover::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Current active page indicator */
+.pagination__item--current {
+  background-color: #0D4F47 !important; /* Branded Forest Green */
+  color: #FFFFFF !important;
+}
+
+/* Page hover transition state */
+a.pagination__item:hover {
+  background-color: #E6EEED !important;
+  color: #0D4F47 !important;
+}
+
+/* Custom Mobile Filter Trigger & Sort dropdown row */
+@media screen and (max-width: 749px) {
+  .mobile-facets__wrapper {
+    display: flex !important;
+    width: 100% !important;
+    gap: 12px !important;
+    align-items: center !important;
+    margin-bottom: 16px !important;
+  }
+
+  .mobile-facets__disclosure {
+    flex-grow: 1 !important;
+    display: flex !important;
+    margin: 0 !important;
+  }
+
+  .mobile-facets__disclosure summary {
+    width: 100% !important;
+  }
+
+  .mobile-facets__sort-wrapper {
+    flex-grow: 1 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .mobile-facets__sort-wrapper .facet-filters {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .mobile-facets__sort-wrapper .facet-filters__field {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .mobile-facets__sort-wrapper .select {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Rounded pill styling for mobile filter and sort buttons */
+  .mobile-facets__open,
+  .mobile-facets__sort-wrapper .select__select {
+    background-color: #FFFFFF !important;
+    border: 1.5px solid var(--color-border-subtle, #E4E7EC) !important;
+    border-radius: 100px !important;
+    color: #031E1B !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    transition: all 150ms ease !important;
+    width: 100% !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .mobile-facets__open {
+    text-decoration: none !important;
+  }
+
+  .mobile-facets__open:hover,
+  .mobile-facets__sort-wrapper .select__select:hover {
+    border-color: #0D4F47 !important;
+    color: #0D4F47 !important;
+  }
+
+  .mobile-facets__open:hover .mobile-facets__open-label {
+    text-decoration: none !important;
+  }
+
+  .mobile-facets__open .svg-wrapper {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 8px !important;
+    color: #0D4F47 !important;
+    display: inline-flex !important;
+  }
+
+  .mobile-facets__sort-wrapper .select .svg-wrapper {
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    pointer-events: none !important;
+    width: 12px !important;
+    height: 12px !important;
+    color: #0D4F47 !important;
+    display: inline-flex !important;
+  }
+
+  /* Clear the default margins of filters */
+  .mobile-facets__wrapper .disclosure-has-popup[open] > summary::before {
+    z-index: 100 !important;
+  }
+}
