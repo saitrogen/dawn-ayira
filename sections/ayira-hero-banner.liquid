@@ -42,7 +42,7 @@
 
 <div
   id="{{ section_id }}"
-  class="ayira-hero-banner page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="ayira-hero-banner color-{{ section.settings.color_scheme }} gradient page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
   data-section-id="{{ section.id }}"
 >
   {%- if section.blocks.size > 0 -%}
@@ -274,6 +274,12 @@
         }
       ],
       "default": "adapt"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
     },
     {
       "type": "header",
