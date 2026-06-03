@@ -85,22 +85,7 @@
   inset: 0;
   opacity: 0;
   z-index: 1;
-}
-
-.ay-prod:hover .ay-prod-img img.hover-image {
-  opacity: 1;
-  transform: scale(1.04);
-}
-
-/* If there is a hover image, fade out the first image on card hover */
-.ay-prod:hover .ay-prod-img img:first-child:not(:only-child) {
-  opacity: 0;
-  transform: scale(1.04);
-}
-
-/* If it is a single image, scale it up on card hover */
-.ay-prod:hover .ay-prod-img img:only-child {
-  transform: scale(1.04);
+  display: none !important;
 }
 
 /* Sold-out styling (excludes resting hover-image to prevent double-exposure blend) */
