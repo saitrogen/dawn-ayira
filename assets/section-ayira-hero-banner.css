@@ -23,6 +23,7 @@
   /* NOTE: no overflow:hidden here — track-wrapper clips slides,
      and we need dots (below the track) to be visible */
   isolation: isolate;
+  touch-action: pan-y;
 }
 
 /* ── Slide track (horizontal scroll container) ─────────── */
@@ -419,7 +420,7 @@
 }
 
 .ayira-hero-banner__dot.is-active {
-  background-color: rgb(var(--color-button));
+  background-color: rgba(var(--color-foreground), 0.8);
   width: 0.8rem;
   border-radius: 50%;
 }
@@ -430,7 +431,7 @@
 }
 
 .ayira-hero-banner__dot:focus-visible {
-  outline: 0.2rem solid rgb(var(--color-button));
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.8);
   outline-offset: 0.3rem;
 }
 

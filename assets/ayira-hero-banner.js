@@ -3,8 +3,10 @@
  *
  * Custom element: <ayira-hero-banner-carousel>
  * - Infinite looping carousel with single-direction leftward auto-scroll
- * - Centered active slide with visible neighboring slides (peeks)
- * - Dot pagination (circular dots, outside the card)
+ * - 100% full-width slides with adaptive layout
+ * - Dot pagination (circular dots, underneath the banner)
+ * - Supports swiping/dragging for both touch and mouse devices
+ * - Uses ResizeObserver for robust layout positioning on initial load and resize
  * - Respects prefers-reduced-motion
  */
 
@@ -20,8 +22,9 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       this.isHovered = false;
       this.isFocused = false;
       this.isTransitioning = false;
+      this._resizeObserver = null;
 
-      /* Touch tracking */
+      /* Touch/Mouse tracking */
       this._touchStartX = 0;
       this._touchStartY = 0;
       this._isDragging = false;
@@ -42,11 +45,15 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       
       this._setupSlideOffsets();
       this._bindEvents();
+      this._setupResizeObserver();
       this._startAutoplay();
     }
 
     disconnectedCallback() {
       this._stopAutoplay();
+      if (this._resizeObserver) {
+        this._resizeObserver.disconnect();
+      }
     }
 
     /* ── DOM caching ───────────────────────────────────── */
@@ -113,6 +120,19 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       });
     }
 
+    /* ── ResizeObserver for robust layout updates ──────── */
+    _setupResizeObserver() {
+      if (typeof ResizeObserver === 'undefined') return;
+      
+      this._resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          // Recalculate track offset without animation to adjust to parent sizes
+          this._updateTrackPosition(this.currentElementIndex, false);
+        }
+      });
+      this._resizeObserver.observe(this);
+    }
+
     /* ── Event binding ────────────────────────────────── */
     _bindEvents() {
       /* Dot clicks */
@@ -170,20 +190,29 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
         }
       });
 
-      /* Touch / pointer swipe */
-      this.addEventListener('pointerdown', this._onPointerDown.bind(this), { passive: true });
+      /* Touch & Mouse swipable dragging */
+      this.addEventListener('pointerdown', this._onPointerDown.bind(this));
       this.addEventListener('pointermove', this._onPointerMove.bind(this), { passive: true });
       this.addEventListener('pointerup', this._onPointerUp.bind(this));
       this.addEventListener('pointercancel', this._onPointerUp.bind(this));
     }
 
-    /* ── Swipe handlers ───────────────────────────────── */
+    /* ── Swipe / Drag handlers ────────────────────────── */
     _onPointerDown(e) {
-      if (e.pointerType === 'mouse' || this.isTransitioning) return;
+      if (this.isTransitioning) return;
+      // Drag on touch, or left click for mouse
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+
       this._isDragging = true;
       this._touchStartX = e.clientX;
       this._touchStartY = e.clientY;
       this._stopAutoplay();
+
+      try {
+        this.setPointerCapture(e.pointerId);
+      } catch (err) {
+        // Fallback
+      }
     }
 
     _onPointerMove(e) {
@@ -194,12 +223,22 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       if (!this._isDragging) return;
       this._isDragging = false;
 
+      try {
+        this.releasePointerCapture(e.pointerId);
+      } catch (err) {
+        // Fallback
+      }
+
       const deltaX = e.clientX - this._touchStartX;
       const deltaY = e.clientY - this._touchStartY;
 
-      /* Ignore if more vertical than horizontal */
-      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      /* Resume autoplay if not hovered or focused */
+      if (!this.isHovered && !this.isFocused) {
         this._startAutoplay();
+      }
+
+      /* Ignore vertical scroll drags */
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
         return;
       }
 
@@ -210,8 +249,6 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
           this.prev();
         }
       }
-
-      this._startAutoplay();
     }
 
     /* ── Navigation ───────────────────────────────────── */
@@ -253,7 +290,7 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       this._updateDots(index);
     }
 
-    /* ── Track position using centering calculations ─── */
+    /* ── Track position calculations ──────────────────── */
     _updateTrackPosition(elementIndex, animate) {
       if (!this.track) return;
 
@@ -265,7 +302,7 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
       // Read gap between slides from computed styles
       const gap = parseFloat(window.getComputedStyle(this.track).gap) || 0;
 
-      // Centering offset formula: TranslateX = (containerWidth - slideWidth) / 2 - elementIndex * (slideWidth + gap)
+      // TranslateX = (containerWidth - slideWidth) / 2 - elementIndex * (slideWidth + gap)
       const offsetToCenter = (containerWidth - slideWidth) / 2;
       const translateX = offsetToCenter - elementIndex * (slideWidth + gap);
 
@@ -355,24 +392,7 @@ if (!customElements.get('ayira-hero-banner-carousel')) {
     _prefersReducedMotion() {
       return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
-
-    /* ── Handle resize: recalculate offset ────────────── */
-    handleResize() {
-      const elementIndex = this.slideCount > 1 ? this.currentIndex + 1 : 0;
-      this._updateTrackPosition(elementIndex, false);
-    }
   }
 
   customElements.define('ayira-hero-banner-carousel', AyiraHeroBannerCarousel);
-
-  /* Recalculate on window resize (debounced) */
-  let _resizeDebounce;
-  window.addEventListener('resize', () => {
-    clearTimeout(_resizeDebounce);
-    _resizeDebounce = setTimeout(() => {
-      document.querySelectorAll('ayira-hero-banner-carousel').forEach((el) => {
-        el.handleResize?.();
-      });
-    }, 150);
-  });
 }

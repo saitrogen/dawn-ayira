@@ -20,6 +20,24 @@
       padding-bottom: {{ padding_bottom | divided_by: 2 }}px;
     }
   }
+  {%- if image_height == 'adapt' and section.blocks.first.settings.image != blank -%}
+    @media screen and (max-width: 749px) {
+      #{{ section_id }} .ayira-hero-banner__track-wrapper::before,
+      #{{ section_id }} .ayira-hero-banner__media::before {
+        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+    @media screen and (min-width: 750px) {
+      #{{ section_id }} .ayira-hero-banner__track-wrapper::before,
+      #{{ section_id }} .ayira-hero-banner__media::before {
+        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <div
