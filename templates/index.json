@@ -312,18 +312,18 @@
         "banner_jnw6DH": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_53_17_AM.png",
-            "title": "Grocery Essentials",
-            "link": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_17_52_PM.png",
+            "title": "",
+            "link": "shopify://collections/chocolates-1",
             "background_color": "#d4a737",
-            "text_color": "#ffffff"
+            "text_color": "#0d4f47"
           }
         },
         "banner_LqCKAT": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_57_37_AM.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_21_04_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
@@ -332,8 +332,8 @@
         "banner_67hQgN": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_51_13_AM.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_22_51_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
@@ -342,8 +342,8 @@
         "banner_86RADA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_55_06_AM.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_24_23_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
@@ -371,8 +371,8 @@
         "eyebrow": "",
         "show_view_all": false,
         "view_all_label": "",
-        "view_all_link": "shopify://collections/water",
-        "color_scheme": "scheme-3",
+        "view_all_link": "",
+        "color_scheme": "scheme-5",
         "padding_top": 0,
         "padding_bottom": 0
       }
