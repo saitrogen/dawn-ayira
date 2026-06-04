@@ -84,7 +84,49 @@
         "slide_yQtfMN": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_03_02_AM.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "slide_JTQjHh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_04_44_AM.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "slide_XfzY7E": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_13_25_AM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -105,7 +147,9 @@
       },
       "block_order": [
         "slide_nKnCyR",
-        "slide_yQtfMN"
+        "slide_yQtfMN",
+        "slide_JTQjHh",
+        "slide_XfzY7E"
       ],
       "name": "Ayira Hero Banner",
       "settings": {
@@ -333,77 +377,68 @@
         "padding_bottom": 0
       }
     },
-    "ayira_collection_list_Bc9rpK": {
-      "type": "ayira-collection-list",
-      "blocks": {
-        "collection_btLara": {
-          "type": "collection",
-          "settings": {
-            "collection": "chocolates-1"
-          }
-        },
-        "collection_Tk4TN3": {
-          "type": "collection",
-          "settings": {
-            "collection": "chocolates-1"
-          }
-        },
-        "collection_eBfjat": {
-          "type": "collection",
-          "settings": {
-            "collection": "juice"
-          }
-        },
-        "collection_xpqnFp": {
-          "type": "collection",
-          "settings": {
-            "collection": "soft-drinks"
-          }
-        },
-        "collection_RjekzF": {
-          "type": "collection",
-          "settings": {
-            "collection": "gums"
-          }
-        },
-        "collection_7BgcUg": {
-          "type": "collection",
-          "settings": {
-            "collection": "ice-cream-1"
-          }
-        },
-        "collection_UGXGdz": {
-          "type": "collection",
-          "settings": {
-            "collection": "water"
-          }
-        }
-      },
-      "block_order": [
-        "collection_btLara",
-        "collection_Tk4TN3",
-        "collection_eBfjat",
-        "collection_xpqnFp",
-        "collection_RjekzF",
-        "collection_7BgcUg",
-        "collection_UGXGdz"
-      ],
-      "name": "Ayira Collection List",
-      "settings": {
-        "eyebrow": "Shop by Aisle",
-        "title": "Browse our collections",
-        "show_view_all": true,
-        "view_all_label": "All collections",
-        "show_product_count": true,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 20
-      }
-    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "all",
+        "collection": "chocolates-1",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "ayira_card_style": "compact",
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    },
+    "featured_collection_bCGXWp": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "gums",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "ayira_card_style": "compact",
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    },
+    "featured_collection_TRJ48d": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "soft-drinks",
         "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
@@ -496,8 +531,9 @@
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners",
     "ayira_vertical_banners_i6h748",
-    "ayira_collection_list_Bc9rpK",
     "featured_collection",
+    "featured_collection_bCGXWp",
+    "featured_collection_TRJ48d",
     "ayira_hero_banner_Ry3KJH"
   ]
 }
