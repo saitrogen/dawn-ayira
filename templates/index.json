@@ -197,7 +197,7 @@
         "banner_1": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "image": "shopify://shop_images/ice-cream-banner.png",
             "title": "Grocery Essentials",
             "link": "",
             "background_color": "#d4a737",
@@ -207,7 +207,7 @@
         "banner_mtwGwc": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "image": "shopify://shop_images/soft-drinks.png",
             "title": "Grocery Essentials",
             "link": "",
             "background_color": "#d4a737",
@@ -217,7 +217,7 @@
         "banner_YgB48A": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "image": "shopify://shop_images/fruits-and-vegitables.png",
             "title": "Grocery Essentials",
             "link": "",
             "background_color": "#d4a737",
@@ -227,7 +227,7 @@
         "banner_zEbiCF": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "image": "shopify://shop_images/toys.png",
             "title": "Grocery Essentials",
             "link": "",
             "background_color": "#d4a737",
