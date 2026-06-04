@@ -262,6 +262,77 @@
         "padding_bottom": 36
       }
     },
+    "ayira_vertical_banners_i6h748": {
+      "type": "ayira-vertical-banners",
+      "blocks": {
+        "banner_jnw6DH": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_53_17_AM.png",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_LqCKAT": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_57_37_AM.png",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_67hQgN": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_51_13_AM.png",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_86RADA": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_55_06_AM.png",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_tBEH7z": {
+          "type": "banner",
+          "settings": {
+            "title": "Snacks & Chocolates",
+            "link": "",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "banner_jnw6DH",
+        "banner_LqCKAT",
+        "banner_67hQgN",
+        "banner_86RADA",
+        "banner_tBEH7z"
+      ],
+      "settings": {
+        "title": "Shop by Category",
+        "eyebrow": "Browse",
+        "show_view_all": true,
+        "view_all_label": "All Categories",
+        "view_all_link": "",
+        "color_scheme": "",
+        "padding_top": 8,
+        "padding_bottom": 0
+      }
+    },
     "ayira_collection_list_Bc9rpK": {
       "type": "ayira-collection-list",
       "blocks": {
@@ -417,77 +488,6 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "ayira_vertical_banners_i6h748": {
-      "type": "ayira-vertical-banners",
-      "blocks": {
-        "banner_jnw6DH": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_53_17_AM.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_LqCKAT": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_57_37_AM.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_67hQgN": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_51_13_AM.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_86RADA": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_55_06_AM.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_tBEH7z": {
-          "type": "banner",
-          "settings": {
-            "title": "Snacks & Chocolates",
-            "link": "",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "banner_jnw6DH",
-        "banner_LqCKAT",
-        "banner_67hQgN",
-        "banner_86RADA",
-        "banner_tBEH7z"
-      ],
-      "settings": {
-        "title": "Shop by Category",
-        "eyebrow": "Browse",
-        "show_view_all": true,
-        "view_all_label": "All Categories",
-        "view_all_link": "",
-        "color_scheme": "",
-        "padding_top": 8,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
@@ -495,9 +495,9 @@
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners",
+    "ayira_vertical_banners_i6h748",
     "ayira_collection_list_Bc9rpK",
     "featured_collection",
-    "ayira_hero_banner_Ry3KJH",
-    "ayira_vertical_banners_i6h748"
+    "ayira_hero_banner_Ry3KJH"
   ]
 }
