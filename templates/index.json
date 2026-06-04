@@ -367,13 +367,13 @@
         "banner_tBEH7z"
       ],
       "settings": {
-        "title": "Shop by Category",
-        "eyebrow": "Browse",
-        "show_view_all": true,
-        "view_all_label": "All Categories",
-        "view_all_link": "",
-        "color_scheme": "",
-        "padding_top": 8,
+        "title": "",
+        "eyebrow": "",
+        "show_view_all": false,
+        "view_all_label": "",
+        "view_all_link": "shopify://collections/water",
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
         "padding_bottom": 0
       }
     },
