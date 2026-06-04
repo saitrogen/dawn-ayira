@@ -117,67 +117,6 @@
         "padding_bottom": 0
       }
     },
-    "ayira_collection_list_Bc9rpK": {
-      "type": "ayira-collection-list",
-      "blocks": {
-        "collection_btLara": {
-          "type": "collection",
-          "settings": {
-            "collection": "chocolates-1"
-          }
-        },
-        "collection_eBfjat": {
-          "type": "collection",
-          "settings": {
-            "collection": "juice"
-          }
-        },
-        "collection_xpqnFp": {
-          "type": "collection",
-          "settings": {
-            "collection": "soft-drinks"
-          }
-        },
-        "collection_RjekzF": {
-          "type": "collection",
-          "settings": {
-            "collection": "gums"
-          }
-        },
-        "collection_7BgcUg": {
-          "type": "collection",
-          "settings": {
-            "collection": "ice-cream-1"
-          }
-        },
-        "collection_UGXGdz": {
-          "type": "collection",
-          "settings": {
-            "collection": "water"
-          }
-        }
-      },
-      "block_order": [
-        "collection_btLara",
-        "collection_eBfjat",
-        "collection_xpqnFp",
-        "collection_RjekzF",
-        "collection_7BgcUg",
-        "collection_UGXGdz"
-      ],
-      "disabled": true,
-      "name": "Ayira Collection List",
-      "settings": {
-        "eyebrow": "Shop by Aisle",
-        "title": "Browse our collections",
-        "show_view_all": true,
-        "view_all_label": "All collections",
-        "show_product_count": true,
-        "color_scheme": "",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
     "ayira_collection_icon_list_y9zUpF": {
       "type": "ayira-collection-icon-list",
       "blocks": {
@@ -248,8 +187,8 @@
         "view_all_label": "All collections",
         "show_product_count": false,
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 16,
+        "padding_bottom": 8
       }
     },
     "ayira_vertical_banners": {
@@ -323,35 +262,71 @@
         "padding_bottom": 36
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "ayira_collection_list_Bc9rpK": {
+      "type": "ayira-collection-list",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "collection_btLara": {
+          "type": "collection",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "collection": "chocolates-1"
           }
         },
-        "text": {
-          "type": "text",
+        "collection_Tk4TN3": {
+          "type": "collection",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "collection": "chocolates-1"
+          }
+        },
+        "collection_eBfjat": {
+          "type": "collection",
+          "settings": {
+            "collection": "juice"
+          }
+        },
+        "collection_xpqnFp": {
+          "type": "collection",
+          "settings": {
+            "collection": "soft-drinks"
+          }
+        },
+        "collection_RjekzF": {
+          "type": "collection",
+          "settings": {
+            "collection": "gums"
+          }
+        },
+        "collection_7BgcUg": {
+          "type": "collection",
+          "settings": {
+            "collection": "ice-cream-1"
+          }
+        },
+        "collection_UGXGdz": {
+          "type": "collection",
+          "settings": {
+            "collection": "water"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
+        "collection_btLara",
+        "collection_Tk4TN3",
+        "collection_eBfjat",
+        "collection_xpqnFp",
+        "collection_RjekzF",
+        "collection_7BgcUg",
+        "collection_UGXGdz"
       ],
-      "disabled": true,
+      "name": "Ayira Collection List",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "eyebrow": "Shop by Aisle",
+        "title": "Browse our collections",
+        "show_view_all": true,
+        "view_all_label": "All collections",
+        "show_product_count": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 20
       }
     },
     "featured_collection": {
@@ -372,25 +347,157 @@
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "ayira_card_style": "compact",
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 28,
-        "padding_bottom": 36
+        "swipe_on_mobile": true,
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    },
+    "ayira_hero_banner_Ry3KJH": {
+      "type": "ayira-hero-banner",
+      "blocks": {
+        "slide_L8grnV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "slide_rtUrCY": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "slide_L8grnV",
+        "slide_rtUrCY"
+      ],
+      "name": "Ayira Hero Banner",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "image_height": "medium",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ayira_vertical_banners_i6h748": {
+      "type": "ayira-vertical-banners",
+      "blocks": {
+        "banner_jnw6DH": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_LqCKAT": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_67hQgN": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_86RADA": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Unleash_10_One_Cart_Half_Price_Tricks_To_Save_Today.jpg",
+            "title": "Grocery Essentials",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_tBEH7z": {
+          "type": "banner",
+          "settings": {
+            "title": "Snacks & Chocolates",
+            "link": "",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "banner_jnw6DH",
+        "banner_LqCKAT",
+        "banner_67hQgN",
+        "banner_86RADA",
+        "banner_tBEH7z"
+      ],
+      "settings": {
+        "title": "Shop by Category",
+        "eyebrow": "Browse",
+        "show_view_all": true,
+        "view_all_label": "All Categories",
+        "view_all_link": "",
+        "color_scheme": "",
+        "padding_top": 8,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "image_banner",
     "ayira_hero_banner_nLAPLr",
-    "ayira_collection_list_Bc9rpK",
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners",
-    "rich_text",
-    "featured_collection"
+    "ayira_collection_list_Bc9rpK",
+    "featured_collection",
+    "ayira_hero_banner_Ry3KJH",
+    "ayira_vertical_banners_i6h748"
   ]
 }
