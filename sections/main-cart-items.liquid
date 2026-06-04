@@ -1,48 +1,28 @@
-{{ 'component-cart.css' | asset_url | stylesheet_tag }}
-{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
-{{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
 
 {%- unless settings.cart_type == 'drawer' -%}
   <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}
-
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
-<cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
+<cart-items class="ayira-cart{% if cart == empty %} is-empty{% endif %}">
   <div class="page-width">
-    <div class="title-wrapper-with-link">
-      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
-        {{- 'general.continue_shopping' | t -}}
-      </a>
-    </div>
 
-    <div class="cart__warnings">
+    <div class="cart__warnings ayira-cart__empty-state">
+      <div class="ayira-cart__empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </div>
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="button">
+      <a href="{{ routes.all_products_collection_url }}" class="ayira-btn">
         {{ 'general.continue_shopping' | t }}
       </a>
-
       {%- if shop.customer_accounts_enabled and customer == null -%}
-        <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
-        <p class="cart__login-paragraph">
+        <p class="ayira-cart__login-note">
           {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
         </p>
       {%- endif -%}
@@ -52,410 +32,717 @@
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
-            <table class="cart-items">
-              <caption class="visually-hidden">
-                {{ 'sections.cart.title' | t }}
-              </caption>
-              <thead>
-                <tr>
-                  <th class="caption-with-letter-spacing" colspan="2" scope="col">
-                    {{ 'sections.cart.headings.product' | t }}
-                  </th>
-                  <th class="medium-hide large-up-hide right caption-with-letter-spacing" colspan="1" scope="col">
-                    {{ 'sections.cart.headings.total' | t }}
-                  </th>
-                  <th
-                    class="cart-items__heading--wide cart-items__heading--quantity small-hide caption-with-letter-spacing"
-                    colspan="1"
-                    scope="col"
-                  >
-                    {{ 'sections.cart.headings.quantity' | t }}
-                  </th>
-                  <th class="small-hide right caption-with-letter-spacing" colspan="1" scope="col">
-                    {{ 'sections.cart.headings.total' | t }}
-                  </th>
-                </tr>
-              </thead>
 
-              <tbody>
-                {%- for item in cart.items -%}
-                  <tr
-                    class="cart-item {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
-                    id="CartItem-{{ item.index | plus: 1 }}"
-                    {% if item.parent_relationship.parent != null %}
-                      aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
-                    {% endif %}
-                  >
-                    <td class="cart-item__media">
-                      {% if item.image %}
-                        {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                        <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
-                        <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">
-                          <img
-                            src="{{ item.image | image_url: width: 300 }}"
-                            class="cart-item__image {% if item.parent_relationship.parent != null %}global-media-settings{% endif %}"
-                            alt="{{ item.image.alt | escape }}"
-                            loading="lazy"
-                            width="150"
-                            height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
-                          >
-                        </div>
-                      {% endif %}
-                    </td>
+            <div class="ayira-cart-layout">
 
-                    <td class="cart-item__details">
-                      {%- if settings.show_vendor -%}
-                        <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
-                      {%- endif -%}
+              <div class="ayira-cart-items-col">
 
-                      <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
+                <div class="ayira-cart-title-row">
+                  <h1 class="ayira-cart-title">{{ 'sections.cart.title' | t }}</h1>
+                  <a href="{{ routes.all_products_collection_url }}" class="ayira-continue-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <line x1="19" y1="12" x2="5" y2="12"/>
+                      <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                    {{ 'general.continue_shopping' | t }}
+                  </a>
+                </div>
 
-                      {%- if item.original_price != item.final_price -%}
-                        <div class="cart-item__discounted-prices">
-                          <span class="visually-hidden">
-                            {{ 'products.product.price.regular_price' | t }}
-                          </span>
-                          <s class="cart-item__old-price product-option">
-                            {{- item.original_price | money -}}
-                          </s>
-                          <span class="visually-hidden">
-                            {{ 'products.product.price.sale_price' | t }}
-                          </span>
-                          <strong class="cart-item__final-price product-option">
-                            {{ item.final_price | money }}
-                          </strong>
-                        </div>
-                      {%- else -%}
-                        <div class="product-option">
-                          {{ item.original_price | money }}
-                        </div>
-                      {%- endif -%}
+                <table class="ayira-items-table">
+                  <thead>
+                    <tr>
+                      <th class="ayira-items-table__th" colspan="2">{{ 'sections.cart.headings.product' | t }}</th>
+                      <th class="ayira-items-table__th small-hide">{{ 'sections.cart.headings.quantity' | t }}</th>
+                      <th class="ayira-items-table__th small-hide">{{ 'sections.cart.headings.total' | t }}</th>
+                      <th class="ayira-items-table__th"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%- for item in cart.items -%}
+                      <tr class="ayira-item{% if item.parent_relationship.parent != null %} ayira-item--nested{% endif %}" id="CartItem-{{ item.index | plus: 1 }}">
 
-                      {%- if item.product.has_only_default_variant == false
-                        or item.properties.size != 0
-                        or item.selling_plan_allocation != null
-                      -%}
-                        <dl>
-                          {%- if item.product.has_only_default_variant == false -%}
-                            {%- for option in item.options_with_values -%}
-                              <div class="product-option">
-                                <dt>{{ option.name }}:</dt>
-                                <dd>{{ option.value }}</dd>
-                              </div>
-                            {%- endfor -%}
+                        <td class="ayira-item__img-cell">
+                          {%- if item.image -%}
+                            <a href="{{ item.url }}" class="ayira-item__img-link" tabindex="-1" aria-hidden="true">
+                              <img
+                                src="{{ item.image | image_url: width: 160 }}"
+                                class="ayira-item__img"
+                                alt="{{ item.image.alt | escape }}"
+                                loading="lazy"
+                                width="72"
+                                height="{{ 72 | divided_by: item.image.aspect_ratio | ceil }}"
+                              >
+                            </a>
                           {%- endif -%}
+                        </td>
 
+                        <td class="ayira-item__details">
+                          {%- if settings.show_vendor -%}
+                            <p class="ayira-item__vendor">{{ item.product.vendor }}</p>
+                          {%- endif -%}
+                          <a href="{{ item.url }}" class="ayira-item__name">{{ item.product.title | escape }}</a>
+                          {%- unless item.product.has_only_default_variant -%}
+                            <dl class="ayira-item__options">
+                              {%- for option in item.options_with_values -%}
+                                <div class="ayira-item__option">
+                                  <dt>{{ option.name }}:</dt>
+                                  <dd>{{ option.value }}</dd>
+                                </div>
+                              {%- endfor -%}
+                            </dl>
+                          {%- endunless -%}
                           {%- for property in item.properties -%}
                             {%- assign property_first_char = property.first | slice: 0 -%}
                             {%- if property.last != blank and property_first_char != '_' -%}
-                              <div class="product-option">
-                                <dt>{{ property.first }}:</dt>
-                                <dd>
-                                  {%- if property.last contains '/uploads/' -%}
-                                    <a href="{{ property.last }}" class="link" target="_blank">
-                                      {{ property.last | split: '/' | last }}
-                                    </a>
-                                  {%- else -%}
-                                    {{ property.last }}
-                                  {%- endif -%}
-                                </dd>
-                              </div>
+                              <p class="ayira-item__property">{{ property.first }}: {{ property.last }}</p>
                             {%- endif -%}
                           {%- endfor -%}
-                        </dl>
+                          <p class="ayira-item__unit-price">{{ item.original_price | money }}</p>
+                          <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                            <small class="cart-item__error-text"></small>
+                          </div>
+                        </td>
 
-                        <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
-                      {%- endif -%}
-
-                      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                        {%- for discount in item.line_level_discount_allocations -%}
-                          <li class="discounts__discount">
-                            {{- 'icon-discount.svg' | inline_asset_content -}}
-                            {{ discount.discount_application.title | escape }}
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </td>
-
-                    <td class="cart-item__totals right medium-hide large-up-hide">
-                      {%- render 'loading-spinner' -%}
-                      <div class="cart-item__price-wrapper">
-                        {%- if item.original_line_price != item.final_line_price -%}
-                          <dl class="cart-item__discounted-prices">
-                            <dt class="visually-hidden">
-                              {{ 'products.product.price.regular_price' | t }}
-                            </dt>
-                            <dd>
-                              <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
-                              </s>
-                            </dd>
-                            <dt class="visually-hidden">
-                              {{ 'products.product.price.sale_price' | t }}
-                            </dt>
-                            <dd class="price price--end">
-                              {{ item.final_line_price | money }}
-                            </dd>
-                          </dl>
-                        {%- else -%}
-                          <span class="price price--end">
-                            {{ item.original_line_price | money }}
-                          </span>
-                        {%- endif -%}
-
-                        {%- if item.variant.available and item.unit_price_measurement -%}
-                          {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
-                        {%- endif -%}
-                      </div>
-                    </td>
-                    {%- liquid
-                      assign has_qty_rules = false
-                      if item.variant.quantity_rule.increment > 1 or item.variant.quantity_rule.min > 1 or item.variant.quantity_rule.max != null
-                        assign has_qty_rules = true
-                      endif
-
-                      assign has_vol_pricing = false
-                      if item.variant.quantity_price_breaks.size > 0
-                        assign has_vol_pricing = true
-                      endif
-                    -%}
-                    <td class="cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
-                      <quantity-popover>
-                        <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
+                        <td class="ayira-item__qty-cell">
                           <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
                             {{ 'products.product.quantity.label' | t }}
                           </label>
-                          <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
-                            {%- if has_qty_rules or has_vol_pricing -%}
-                              <button
-                                type="button"
-                                aria-expanded="false"
-                                class="quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide"
-                              >
-                                {{- 'icon-info.svg' | inline_asset_content -}}
-                              </button>
-                            {%- endif -%}
-                            <quantity-input class="quantity cart-quantity">
-                              {% assign can_update_quantity = item.instructions.can_update_quantity | default: true %}
-                              <button
-                                class="quantity__button"
-                                name="minus"
-                                type="button"
-                                {% if can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                                <span class="visually-hidden">
-                                  {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
-                                </span>
-                                <span class="svg-wrapper">
-                                  {{- 'icon-minus.svg' | inline_asset_content -}}
-                                </span>
-                              </button>
-                              <input
-                                class="quantity__input"
-                                data-quantity-variant-id="{{ item.variant.id }}"
-                                type="number"
-                                name="updates[]"
-                                value="{{ item.quantity }}"
-                                {% # theme-check-disable %}
-                                data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
-                                min="0"
-                                data-min="{{ item.variant.quantity_rule.min }}"
-                                {% if item.variant.quantity_rule.max != null %}
-                                  max="{{ item.variant.quantity_rule.max }}"
-                                {% endif %}
-                                step="{{ item.variant.quantity_rule.increment }}"
-                                {% # theme-check-enable %}
-                                aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
-                                id="Quantity-{{ item.index | plus: 1 }}"
-                                data-index="{{ item.index | plus: 1 }}"
-                                {% if can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                              <button
-                                class="quantity__button"
-                                name="plus"
-                                type="button"
-                                {% if can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                                <span class="visually-hidden">
-                                  {{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}
-                                </span>
-                                <span class="svg-wrapper">
-                                  {{- 'icon-plus.svg' | inline_asset_content -}}
-                                </span>
-                              </button>
-                            </quantity-input>
-                          </div>
-                          <cart-remove-button
-                            id="Remove-{{ item.index | plus: 1 }}"
-                            data-index="{{ item.index | plus: 1 }}"
-                            {% assign can_remove = item.instructions.can_remove | default: true %}
-                            {% if can_remove == false %}
-                              class="hidden"
-                            {% endif %}
-                          >
-                            <a
-                              href="{{ item.url_to_remove }}"
-                              class="button button--tertiary"
-                              aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
-                            >
-                              <span class="svg-wrapper">
-                                {{- 'icon-remove.svg' | inline_asset_content -}}
-                              </span>
-                            </a>
-                          </cart-remove-button>
-                        </div>
-                        {%- if has_qty_rules or has_vol_pricing -%}
-                          <button
-                            type="button"
-                            class="quantity-popover__info-button quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide"
-                            aria-expanded="false"
-                          >
-                            {{- 'icon-info.svg' | inline_asset_content -}}
-                            <span>
-                              {%- if has_vol_pricing -%}
-                                {{ 'products.product.volume_pricing.note' | t }}
-                              {%- elsif has_qty_rules -%}
-                                {{ 'products.product.quantity.note' | t }}
-                              {%- endif -%}
-                            </span>
-                          </button>
-                        {%- endif -%}
-                        {%- if has_vol_pricing or has_qty_rules -%}
-                          <div
-                            class="cart-items__info global-settings-popup quantity-popover__info"
-                            tabindex="-1"
-                            hidden
-                          >
-                            {%- if has_qty_rules == false -%}
-                              <span class="volume-pricing-label caption">
-                                {{- 'products.product.volume_pricing.title' | t -}}
-                              </span>
-                            {%- endif -%}
-                            <div class="quantity__rules caption">
-                              {%- if item.variant.quantity_rule.increment > 1 -%}
-                                <span class="divider">
-                                  {{-
-                                    'products.product.quantity.multiples_of'
-                                    | t: quantity: item.variant.quantity_rule.increment
-                                  -}}
-                                </span>
-                              {%- endif -%}
-                              {%- if item.variant.quantity_rule.min > 1 -%}
-                                <span class="divider">
-                                  {{-
-                                    'products.product.quantity.min_of'
-                                    | t: quantity: item.variant.quantity_rule.min
-                                  -}}
-                                </span>
-                              {%- endif -%}
-                              {%- if item.variant.quantity_rule.max != null -%}
-                                <span class="divider">
-                                  {{-
-                                    'products.product.quantity.max_of'
-                                    | t: quantity: item.variant.quantity_rule.max
-                                  -}}
-                                </span>
-                              {%- endif -%}
-                            </div>
-                            <button
-                              class="button-close button button--tertiary large-up-hide"
-                              type="button"
-                              aria-label="{{ 'accessibility.close' | t }}"
-                            >
-                              <span class="svg-wrapper">
-                                {{- 'icon-close.svg' | inline_asset_content -}}
-                              </span>
+                          {%- assign can_update = item.instructions.can_update_quantity | default: true -%}
+                          <quantity-input class="ayira-qty">
+                            <button class="ayira-qty__btn" name="minus" type="button"{% if can_update == false %} disabled{% endif %}>
+                              <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                              <span aria-hidden="true">−</span>
                             </button>
-                            {%- if item.variant.quantity_price_breaks.size > 0 -%}
-                              <volume-pricing class="parent-display">
-                                <ul class="list-unstyled">
-                                  <li>
-                                    <span>{{ item.variant.quantity_rule.min }}+</span>
-                                    {%- assign price = item.variant.price | money_with_currency -%}
-                                    <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
-                                  </li>
-                                  {%- for price_break in item.variant.quantity_price_breaks -%}
-                                    <li>
-                                      <span>
-                                        {{- price_break.minimum_quantity -}}
-                                        <span aria-hidden="true">+</span></span
-                                      >
-                                      {%- assign price = price_break.price | money_with_currency -%}
-                                      <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
-                                    </li>
-                                  {%- endfor -%}
-                                </ul>
-                              </volume-pricing>
-                            {%- endif -%}
-                          </div>
-                        {%- endif -%}
-                        <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
-                          <small class="cart-item__error-text"></small>
-                          <span class="svg-wrapper">
-                            {{- 'icon-error.svg' | inline_asset_content -}}
-                          </span>
-                        </div>
-                      </quantity-popover>
-                    </td>
+                            <input
+                              class="ayira-qty__input quantity__input"
+                              type="number"
+                              name="updates[]"
+                              value="{{ item.quantity }}"
+                              {%- comment -%}theme-check-disable{%- endcomment -%}
+                              data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                              min="0"
+                              data-min="{{ item.variant.quantity_rule.min }}"
+                              {%- if item.variant.quantity_rule.max != null -%}
+                                max="{{ item.variant.quantity_rule.max }}"
+                              {%- endif -%}
+                              {%- comment -%}theme-check-enable{%- endcomment -%}
+                              step="{{ item.variant.quantity_rule.increment }}"
+                              id="Quantity-{{ item.index | plus: 1 }}"
+                              data-index="{{ item.index | plus: 1 }}"
+                              data-quantity-variant-id="{{ item.variant.id }}"
+                              aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                              {% if can_update == false %}disabled{% endif %}
+                            >
+                            <button class="ayira-qty__btn" name="plus" type="button"{% if can_update == false %} disabled{% endif %}>
+                              <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                              <span aria-hidden="true">+</span>
+                            </button>
+                          </quantity-input>
+                        </td>
 
-                    <td class="cart-item__totals right small-hide">
-                      {%- render 'loading-spinner' -%}
-                      <div class="cart-item__price-wrapper">
-                        {%- if item.original_line_price != item.final_line_price -%}
-                          <dl class="cart-item__discounted-prices">
-                            <dt class="visually-hidden">
-                              {{ 'products.product.price.regular_price' | t }}
-                            </dt>
-                            <dd>
-                              <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
-                              </s>
-                            </dd>
-                            <dt class="visually-hidden">
-                              {{ 'products.product.price.sale_price' | t }}
-                            </dt>
-                            <dd class="price price--end">
-                              {{ item.final_line_price | money }}
-                            </dd>
-                          </dl>
-                        {%- else -%}
-                          <span class="price price--end">
-                            {{ item.original_line_price | money }}
-                          </span>
-                        {%- endif -%}
+                        <td class="ayira-item__price-cell">
+                          <span class="ayira-item__line-price">{{ item.original_line_price | money }}</span>
+                        </td>
 
-                        {%- if item.variant.available and item.unit_price_measurement -%}
-                          {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
-                        {%- endif -%}
+                        <td class="ayira-item__remove-cell">
+                          {%- assign can_remove = item.instructions.can_remove | default: true -%}
+                          {%- if can_remove -%}
+                            <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                              <a href="{{ item.url_to_remove }}" class="ayira-item__remove-btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                  <line x1="18" y1="6" x2="6" y2="18"/>
+                                  <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                              </a>
+                            </cart-remove-button>
+                          {%- endif -%}
+                        </td>
+
+                      </tr>
+                    {%- endfor -%}
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div class="ayira-summary-col">
+                <div class="ayira-summary">
+                  <h2 class="ayira-summary__title">{{ 'sections.cart.estimated_total' | t }}</h2>
+
+                  <div class="ayira-summary__rows">
+                    <div class="ayira-summary__row">
+                      <span>{{ 'sections.cart.headings.total' | t }}</span>
+                      <span>{{ cart.items_subtotal_price | money_with_currency }}</span>
+                    </div>
+
+                    {%- for discount in cart.cart_level_discount_applications -%}
+                      <div class="ayira-summary__row ayira-summary__row--discount">
+                        <span>{{ discount.title | escape }}</span>
+                        <span>&minus;{{ discount.total_allocated_amount | money }}</span>
                       </div>
-                    </td>
-                  </tr>
-                {%- endfor -%}
-              </tbody>
-            </table>
+                    {%- endfor -%}
+
+                    <div class="ayira-summary__row ayira-summary__row--total">
+                      <span>{{ 'sections.cart.estimated_total' | t }}</span>
+                      <span>{{ cart.total_price | money_with_currency }}</span>
+                    </div>
+                  </div>
+
+                  <small class="ayira-summary__tax-note">
+                    {%- if cart.taxes_included -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{ 'sections.cart.taxes_included_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    {%- endif -%}
+                  </small>
+
+                  <button type="submit" id="checkout" class="ayira-checkout-btn" name="checkout">
+                    {{ 'sections.cart.checkout' | t }}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </button>
+
+                  {%- if additional_checkout_buttons -%}
+                    <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {%- endif -%}
+
+                  {%- unless shop.enabled_payment_types == empty -%}
+                    <div class="ayira-payment-icons">
+                      {%- for type in shop.enabled_payment_types -%}
+                        <span class="ayira-payment-badge">{{ type | replace: '_', ' ' | capitalize }}</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endunless -%}
+
+                  <div id="cart-errors"></div>
+
+                </div>
+              </div>
+
+            </div>
           {%- endif -%}
         </div>
       </div>
 
       <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
-      <p
-        class="visually-hidden"
-        id="shopping-cart-line-item-status"
-        aria-live="polite"
-        aria-hidden="true"
-        role="status"
-      >
+      <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">
         {{ 'accessibility.loading' | t }}
       </p>
     </form>
+
   </div>
 </cart-items>
+
+{% stylesheet %}
+  .ayira-cart {
+    display: block;
+  }
+
+  .ayira-cart .page-width {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .ayira-cart__empty-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .ayira-cart.is-empty .ayira-cart__empty-state {
+    display: flex;
+  }
+
+  .ayira-cart.is-empty .cart__contents {
+    display: none;
+  }
+
+  .ayira-cart__empty-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #EBF1EF;
+    color: #0D4F47;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart__empty-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0D4F47;
+    letter-spacing: -0.02em;
+  }
+
+  .ayira-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: #0D4F47;
+    color: #F6F6EE;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .ayira-btn:hover {
+    background: #062E29;
+  }
+
+  .ayira-cart__login-note {
+    font-size: 14px;
+    color: #667085;
+  }
+
+  .ayira-cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  @media (max-width: 989px) {
+    .ayira-cart-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ayira-cart-items-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ayira-cart-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ayira-cart-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0D4F47;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 749px) {
+    .ayira-cart-title {
+      font-size: 28px;
+    }
+  }
+
+  .ayira-continue-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0D4F47;
+    text-decoration: none;
+  }
+
+  .ayira-continue-link:hover {
+    text-decoration: underline;
+  }
+
+  .ayira-items-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ayira-items-table__th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #667085;
+    font-weight: 600;
+    padding: 0 12px 12px;
+    text-align: left;
+    border-bottom: 1px solid #E4E7EC;
+  }
+
+  .ayira-item {
+    border-bottom: 1px solid #E4E7EC;
+  }
+
+  .ayira-item td {
+    padding: 20px 12px;
+    vertical-align: middle;
+  }
+
+  .ayira-item__img-cell {
+    width: 88px;
+    padding-right: 0 !important;
+  }
+
+  .ayira-item__img-link {
+    display: block;
+  }
+
+  .ayira-item__img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #E4E7EC;
+    padding: 4px;
+  }
+
+  .ayira-item__details {
+    padding-left: 16px !important;
+  }
+
+  .ayira-item__vendor {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #667085;
+    margin-bottom: 2px;
+  }
+
+  .ayira-item__name {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #101828;
+    text-decoration: none;
+    margin-bottom: 4px;
+  }
+
+  .ayira-item__name:hover {
+    color: #0D4F47;
+  }
+
+  .ayira-item__options {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ayira-item__option {
+    font-size: 12px;
+    color: #667085;
+    display: flex;
+    gap: 3px;
+  }
+
+  .ayira-item__option dt,
+  .ayira-item__option dd {
+    margin: 0;
+  }
+
+  .ayira-item__property {
+    font-size: 12px;
+    color: #667085;
+  }
+
+  .ayira-item__unit-price {
+    font-size: 13px;
+    color: #667085;
+    margin-top: 6px;
+  }
+
+  .ayira-item__qty-cell {
+    white-space: nowrap;
+  }
+
+  .ayira-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #D0D5DD;
+    border-radius: 999px;
+    background: #ffffff;
+    height: 38px;
+    padding: 2px;
+  }
+
+  .ayira-qty__btn {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #344054;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .ayira-qty__btn:hover:not(:disabled) {
+    background: #F6F6EE;
+  }
+
+  .ayira-qty__btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .ayira-qty__btn > * {
+    pointer-events: none;
+  }
+
+  .ayira-qty__input {
+    width: 36px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #101828;
+    border: none;
+    background: transparent;
+    -moz-appearance: textfield;
+    padding: 0;
+  }
+
+  .ayira-qty__input::-webkit-outer-spin-button,
+  .ayira-qty__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .ayira-item__line-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #101828;
+  }
+
+  .ayira-item__remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #667085;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .ayira-item__remove-btn:hover {
+    background: #FBEDED;
+    color: #B42318;
+  }
+
+  .cart__items--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .ayira-summary-col {
+    position: sticky;
+    top: 24px;
+  }
+
+  @media (max-width: 989px) {
+    .ayira-summary-col {
+      position: static;
+    }
+  }
+
+  .ayira-summary {
+    background: #FBFBF6;
+    border: 1px solid #E4E7EC;
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .ayira-summary__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D4F47;
+    margin-bottom: 20px;
+  }
+
+  .ayira-summary__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ayira-summary__row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    color: #344054;
+  }
+
+  .ayira-summary__row--discount {
+    color: #2E7C72;
+  }
+
+  .ayira-summary__row--total {
+    border-top: 1px solid #E4E7EC;
+    padding-top: 16px;
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #101828;
+  }
+
+  .ayira-summary__free {
+    color: #2E7C72;
+    font-weight: 600;
+  }
+
+  .ayira-summary__muted {
+    color: #667085;
+  }
+
+  .ayira-summary__tax-note {
+    display: block;
+    font-size: 12px;
+    color: #667085;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .ayira-checkout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    background: #0D4F47;
+    color: #F6F6EE;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    margin-bottom: 16px;
+  }
+
+  .ayira-checkout-btn:hover {
+    background: #062E29;
+  }
+
+  .ayira-checkout-btn:active {
+    transform: scale(0.98);
+  }
+
+  .ayira-payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  .ayira-payment-badge {
+    background: #ECECDF;
+    color: #344054;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  #cart-errors {
+    color: #B42318;
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 749px) {
+    .ayira-cart .page-width {
+      padding-top: 24px;
+      padding-bottom: 48px;
+    }
+
+    .ayira-items-table thead {
+      display: none;
+    }
+
+    .ayira-items-table,
+    .ayira-items-table tbody {
+      display: block;
+    }
+
+    .ayira-item {
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 8px 12px;
+      padding: 16px 0;
+    }
+
+    .ayira-item td {
+      padding: 0 !important;
+      border-bottom: none;
+      vertical-align: top;
+    }
+
+    .ayira-item__img-cell {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      width: auto;
+    }
+
+    .ayira-item__details {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .ayira-item__qty-cell {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+    }
+
+    .ayira-item__price-cell {
+      grid-column: 3;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .ayira-item__remove-cell {
+      grid-column: 3;
+      grid-row: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

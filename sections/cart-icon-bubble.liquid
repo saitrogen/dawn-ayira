@@ -1,15 +1,8 @@
-{% if cart == empty %}
-  <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-{% else %}
-  <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-{% endif %}
-
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M3 6H17L18.5 18H1.5L3 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M7 9V5C7 3.34315 8.34315 2 10 2C11.6569 2 13 3.34315 13 5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
 <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
 {%- if cart != empty -%}
-  <div class="cart-count-bubble">
-    {%- if cart.item_count < 100 -%}
-      <span aria-hidden="true">{{ cart.item_count }}</span>
-    {%- endif -%}
-    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-  </div>
+  <span class="ayira-header__cart-badge">{{ cart.item_count }}</span>
 {%- endif -%}
