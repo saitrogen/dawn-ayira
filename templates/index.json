@@ -241,7 +241,7 @@
         "banner_1": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ice-cream-banner.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_9_2026_04_20_22_PM.png",
             "title": "Grocery Essentials",
             "link": "",
             "background_color": "#d4a737",
@@ -251,18 +251,18 @@
         "banner_mtwGwc": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/soft-drinks.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_9_2026_04_23_14_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
-            "text_color": "#ffffff"
+            "text_color": "#101828"
           }
         },
         "banner_YgB48A": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/fruits-and-vegitables.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_9_2026_04_26_57_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
@@ -271,8 +271,8 @@
         "banner_zEbiCF": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/toys.png",
-            "title": "Grocery Essentials",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_9_2026_07_14_48_PM.png",
+            "title": "",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
