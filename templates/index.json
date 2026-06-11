@@ -235,77 +235,6 @@
         "padding_bottom": 8
       }
     },
-    "ayira_vertical_banners": {
-      "type": "ayira-vertical-banners",
-      "blocks": {
-        "banner_1": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_22_47_PM.png",
-            "title": "chips",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_mtwGwc": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_32_06_PM.png",
-            "title": "Ice cream",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_YgB48A": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_37_10_PM.png",
-            "title": "Noodles",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_zEbiCF": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_39_55_PM.png",
-            "title": "Chocolates ",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_3": {
-          "type": "banner",
-          "settings": {
-            "title": "Snacks & Chocolates",
-            "link": "",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "banner_1",
-        "banner_mtwGwc",
-        "banner_YgB48A",
-        "banner_zEbiCF",
-        "banner_3"
-      ],
-      "settings": {
-        "title": "Shop by Category",
-        "eyebrow": "Browse",
-        "show_view_all": true,
-        "view_all_label": "All Categories",
-        "view_all_link": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "ayira_vertical_banners_i6h748": {
       "type": "ayira-vertical-banners",
       "blocks": {
@@ -376,6 +305,77 @@
         "color_scheme": "scheme-5",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "ayira_vertical_banners": {
+      "type": "ayira-vertical-banners",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_22_47_PM.png",
+            "title": "chips",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_mtwGwc": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_32_06_PM.png",
+            "title": "Ice cream",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_YgB48A": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_37_10_PM.png",
+            "title": "Noodles",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_zEbiCF": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_39_55_PM.png",
+            "title": "Chocolates ",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_3": {
+          "type": "banner",
+          "settings": {
+            "title": "Snacks & Chocolates",
+            "link": "",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_mtwGwc",
+        "banner_YgB48A",
+        "banner_zEbiCF",
+        "banner_3"
+      ],
+      "settings": {
+        "title": "Shop by Category",
+        "eyebrow": "Browse",
+        "show_view_all": true,
+        "view_all_label": "All Categories",
+        "view_all_link": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_collection": {
@@ -530,8 +530,8 @@
     "image_banner",
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
-    "ayira_vertical_banners",
     "ayira_vertical_banners_i6h748",
+    "ayira_vertical_banners",
     "featured_collection",
     "featured_collection_bCGXWp",
     "featured_collection_TRJ48d",
