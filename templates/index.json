@@ -342,8 +342,8 @@
         "banner_86RADA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_24_23_PM.png",
-            "title": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_57_55_PM.png",
+            "title": "Carbonated Soft Drinks",
             "link": "",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
@@ -352,7 +352,8 @@
         "banner_tBEH7z": {
           "type": "banner",
           "settings": {
-            "title": "Snacks & Chocolates",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_01_09_PM.png",
+            "title": "Water ",
             "link": "",
             "background_color": "#0d4f47",
             "text_color": "#ffffff"
