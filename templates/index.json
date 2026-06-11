@@ -364,7 +364,8 @@
         "banner_3": {
           "type": "banner",
           "settings": {
-            "title": "Snacks & Chocolates",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_06_59_31_PM.png",
+            "title": "Dairy Beverages",
             "link": "",
             "background_color": "#0d4f47",
             "text_color": "#ffffff"
