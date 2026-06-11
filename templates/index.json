@@ -271,6 +271,16 @@
         "banner_LqCKAT": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_18_16_PM.png",
+            "title": "Candy",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_arXbbB": {
+          "type": "banner",
+          "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_47_34_PM.png",
             "title": "Candy",
             "link": "",
@@ -294,6 +304,7 @@
         "banner_86RADA",
         "banner_tBEH7z",
         "banner_LqCKAT",
+        "banner_arXbbB",
         "banner_jnw6DH"
       ],
       "settings": {
