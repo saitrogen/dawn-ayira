@@ -337,7 +337,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_22_47_PM.png",
             "title": "chips",
-            "link": "",
+            "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
