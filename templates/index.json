@@ -264,7 +264,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_59_09_PM.png",
             "title": "Water ",
-            "link": "",
+            "link": "shopify://collections/water",
             "background_color": "#0d4f47",
             "text_color": "#ffffff"
           }
