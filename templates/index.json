@@ -244,7 +244,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_10_58_PM.png",
             "title": "Energy & Sports Drinks",
-            "link": "",
+            "link": "shopify://collections/energy-sports-drinks",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -254,7 +254,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_14_56_PM.png",
             "title": "Carbonated Soft Drinks",
-            "link": "",
+            "link": "shopify://collections/carbonated-soft-drinks",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -274,7 +274,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_19_51_PM.png",
             "title": "Juice",
-            "link": "",
+            "link": "shopify://collections/juices-fruit-drinks",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
