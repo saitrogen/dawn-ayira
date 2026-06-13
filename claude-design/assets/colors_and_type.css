@@ -1,0 +1,175 @@
+/* =========================================================
+   Ayira Minimart — Colors & Type
+   The single source of truth for foundational tokens.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* -----------------------------------------------------------
+     COLOR — Primary brand
+     ----------------------------------------------------------- */
+  --color-forest-900: #062E29;   /* deepest, for hover on forest */
+  --color-forest-800: #093E37;
+  --color-forest-700: #0D4F47;   /* PRIMARY — headers, buttons, active */
+  --color-forest-600: #1B6259;
+  --color-forest-500: #2E7C72;
+  --color-forest-100: #D7E4E1;   /* tint, for soft fills */
+  --color-forest-50:  #EBF1EF;
+
+  /* Accent — Warm Mustard */
+  --color-mustard-700: #A87F1B;
+  --color-mustard-600: #BC9226;
+  --color-mustard-500: #D4A737;   /* ACCENT — badges, sale tags, alerts */
+  --color-mustard-300: #E8C97C;
+  --color-mustard-100: #F7EBC4;
+  --color-mustard-50:  #FBF5E2;
+
+  /* Surfaces */
+  --color-cream-50:  #FBFBF6;
+  --color-cream-100: #F6F6EE;     /* APP BACKGROUND */
+  --color-cream-200: #ECECDF;
+  --color-cream-300: #DCDCC8;
+
+  /* Neutrals — text & UI */
+  --color-ink-900: #101828;       /* headlines */
+  --color-ink-700: #344054;       /* body emphasized */
+  --color-ink-500: #667085;       /* SLATE GRAY — body, secondary */
+  --color-ink-400: #98A2B3;
+  --color-ink-300: #D0D5DD;
+  --color-ink-200: #E4E7EC;
+  --color-ink-100: #F2F4F7;
+  --color-white:   #FFFFFF;
+
+  /* Semantic */
+  --color-success: #2E7C72;
+  --color-warning: #D4A737;
+  --color-danger:  #B42318;
+  --color-info:    #175CD3;
+
+  /* Semantic aliases (use these in components) */
+  --bg-app:        var(--color-cream-100);
+  --bg-surface:    var(--color-white);
+  --bg-raised:     var(--color-cream-50);
+  --bg-sunken:     var(--color-cream-200);
+
+  --fg-default:    var(--color-ink-700);
+  --fg-muted:      var(--color-ink-500);
+  --fg-subtle:     var(--color-ink-400);
+  --fg-heading:    var(--color-forest-700);
+  --fg-on-forest:  var(--color-cream-50);
+  --fg-on-mustard: var(--color-forest-900);
+
+  --border-subtle: var(--color-ink-200);
+  --border-default:var(--color-ink-300);
+  --border-strong: var(--color-forest-700);
+
+  --accent:        var(--color-mustard-500);
+  --primary:       var(--color-forest-700);
+
+  /* -----------------------------------------------------------
+     TYPE — Hanken Grotesk for everything
+     ----------------------------------------------------------- */
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Type scale */
+  --fs-display: 64px;     --lh-display: 1.05;   --ls-display: -0.025em;
+  --fs-h1: 48px;          --lh-h1: 1.1;         --ls-h1: -0.022em;
+  --fs-h2: 36px;          --lh-h2: 1.15;        --ls-h2: -0.018em;
+  --fs-h3: 28px;          --lh-h3: 1.2;         --ls-h3: -0.014em;
+  --fs-h4: 22px;          --lh-h4: 1.3;         --ls-h4: -0.01em;
+  --fs-h5: 18px;          --lh-h5: 1.35;        --ls-h5: -0.005em;
+  --fs-body-lg: 18px;     --lh-body-lg: 1.55;
+  --fs-body: 16px;        --lh-body: 1.55;
+  --fs-body-sm: 14px;     --lh-body-sm: 1.5;
+  --fs-caption: 13px;     --lh-caption: 1.45;
+  --fs-micro: 11px;       --lh-micro: 1.4;      --ls-micro: 0.08em;
+
+  /* -----------------------------------------------------------
+     SHAPE — Border radii (rounded, organic)
+     ----------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Elevation — soft, ground-feeling shadows */
+  --shadow-xs: 0 1px 2px rgba(13, 79, 71, 0.04);
+  --shadow-sm: 0 1px 3px rgba(13, 79, 71, 0.06), 0 1px 2px rgba(13, 79, 71, 0.04);
+  --shadow-md: 0 6px 16px -4px rgba(13, 79, 71, 0.08), 0 2px 4px rgba(13, 79, 71, 0.04);
+  --shadow-lg: 0 16px 32px -12px rgba(13, 79, 71, 0.14), 0 4px 8px rgba(13, 79, 71, 0.04);
+  --shadow-xl: 0 28px 56px -16px rgba(13, 79, 71, 0.18), 0 8px 16px rgba(13, 79, 71, 0.05);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 360ms;
+}
+
+/* =========================================================
+   Semantic typography classes
+   Apply these directly OR use them as a reference when
+   styling elements within scoped components.
+   ========================================================= */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--fg-heading);
+}
+.t-h1 { font-family: var(--font-display); font-weight: var(--fw-bold);     font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: var(--ls-h1); color: var(--fg-heading); }
+.t-h2 { font-family: var(--font-display); font-weight: var(--fw-bold);     font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: var(--ls-h2); color: var(--fg-heading); }
+.t-h3 { font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--ls-h3); color: var(--fg-heading); }
+.t-h4 { font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: var(--ls-h4); color: var(--fg-heading); }
+.t-h5 { font-family: var(--font-sans);    font-weight: var(--fw-semibold); font-size: var(--fs-h5); line-height: var(--lh-h5); letter-spacing: var(--ls-h5); color: var(--fg-heading); }
+
+.t-body-lg { font-family: var(--font-sans); font-weight: var(--fw-regular); font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); color: var(--fg-default); }
+.t-body    { font-family: var(--font-sans); font-weight: var(--fw-regular); font-size: var(--fs-body);    line-height: var(--lh-body);    color: var(--fg-default); }
+.t-body-sm { font-family: var(--font-sans); font-weight: var(--fw-regular); font-size: var(--fs-body-sm); line-height: var(--lh-body-sm); color: var(--fg-default); }
+.t-caption { font-family: var(--font-sans); font-weight: var(--fw-medium);  font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--fg-muted); }
+.t-eyebrow { font-family: var(--font-sans); font-weight: var(--fw-semibold); font-size: var(--fs-micro);  line-height: var(--lh-micro);   letter-spacing: var(--ls-micro); text-transform: uppercase; color: var(--color-forest-600); }
+
+.t-price    { font-family: var(--font-sans); font-weight: var(--fw-bold);    font-size: 20px; color: var(--fg-heading); letter-spacing: -0.01em; }
+.t-price-sm { font-family: var(--font-sans); font-weight: var(--fw-semibold); font-size: 15px; color: var(--fg-heading); }
+
+/* Base element resets when this file is the only stylesheet */
+.ayira-base {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-default);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

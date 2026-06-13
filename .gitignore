@@ -9,12 +9,13 @@ ehthumbs.db
 Thumbs.db
 .shopify
 
+**/node_modules/**
 # working directory files #
 ###########################
-.claude
-claude-design
-.antigravitycli
-.agents
-.tmp
-.plans
-ayira-prototype
+# .claude
+# claude-design
+# .antigravitycli
+# .agents
+# .tmp
+# .plans
+# ayira-prototype

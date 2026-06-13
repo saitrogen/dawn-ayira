@@ -1,0 +1,631 @@
+{
+  "_readme": "Ayira × Dawn handoff format — produced alongside each design output. RGB values are Dawn-format integer triplets (no wrapper), for use as: rgba(var(--color-*), alpha). Every color reference inside sections and components is inlined as: token-name (hex / R,G,B) so you never need to cross-reference the colors block during implementation.",
+
+  "meta": {
+    "design": "Ayira Storefront — Home Page",
+    "version": "v2",
+    "date": "2026-05-28",
+    "source_file": "Ayira Storefront Prototype.html",
+    "css_file": "styles.css"
+  },
+
+  "breakpoints": {
+    "mobile": "375px",
+    "tablet": "768px",
+    "desktop": "1280px",
+    "content_max_width": "1280px",
+    "container_gutter_desktop": "48px",
+    "container_gutter_mobile": "16px",
+    "sticky_header_activates": "any scroll > 0px — backdrop-filter blur(12px) + opacity 92%"
+  },
+
+  "colors": {
+    "_note": "Complete palette. Copy rgb values into Dawn's settings_data.json or settings_schema.json color fields. Dawn wraps them as rgba(var(--color-*), alpha) internally.",
+    "forest": {
+      "900": { "hex": "#062E29", "rgb": "6,46,41",    "role": "deepest hover, overlay bg, modal scrim" },
+      "800": { "hex": "#093E37", "rgb": "9,62,55",    "role": "primary button pressed state" },
+      "700": { "hex": "#0D4F47", "rgb": "13,79,71",   "role": "PRIMARY — header bg, primary buttons, section headings" },
+      "600": { "hex": "#1B6259", "rgb": "27,98,89",   "role": "eyebrow text, active nav indicator border" },
+      "500": { "hex": "#2E7C72", "rgb": "46,124,114", "role": "success state (also = color-success)" },
+      "100": { "hex": "#D7E4E1", "rgb": "215,228,225","role": "soft tint fills, focus rings, secondary button border" },
+      "50":  { "hex": "#EBF1EF", "rgb": "235,241,239","role": "ghost button hover bg, input focus ring, variant active bg" }
+    },
+    "mustard": {
+      "700": { "hex": "#A87F1B", "rgb": "168,127,27",  "role": "mustard hover" },
+      "600": { "hex": "#BC9226", "rgb": "188,146,38",  "role": "mustard active / pressed" },
+      "500": { "hex": "#D4A737", "rgb": "212,167,55",  "role": "ACCENT — sale badges, cart bubble, announcement CTA" },
+      "300": { "hex": "#E8C97C", "rgb": "232,201,124", "role": "hero eyebrow text on forest bg" },
+      "100": { "hex": "#F7EBC4", "rgb": "247,235,196", "role": "mustard soft fill" },
+      "50":  { "hex": "#FBF5E2", "rgb": "251,245,226", "role": "mustard wash bg, active filter chip bg" }
+    },
+    "cream": {
+      "50":  { "hex": "#FBFBF6", "rgb": "251,251,246", "role": "raised surfaces — cards, header bg (scrolled), footer-brand inputs" },
+      "100": { "hex": "#F6F6EE", "rgb": "246,246,238", "role": "APP BACKGROUND — page canvas, cart drawer bg" },
+      "200": { "hex": "#ECECDF", "rgb": "236,236,223", "role": "sunken sections, secondary button hover, icon button hover" },
+      "300": { "hex": "#DCDCC8", "rgb": "220,220,200", "role": "deeper dividers, pressed secondary button" }
+    },
+    "ink": {
+      "900": { "hex": "#101828", "rgb": "16,24,40",    "role": "headlines on cream (avoids green-on-green with forest-700)" },
+      "700": { "hex": "#344054", "rgb": "52,64,84",    "role": "body text — fg-default" },
+      "500": { "hex": "#667085", "rgb": "102,112,133", "role": "secondary / muted text — captions, meta, nav resting" },
+      "400": { "hex": "#98A2B3", "rgb": "152,162,179", "role": "placeholder text, compare-at price strikethrough" },
+      "300": { "hex": "#D0D5DD", "rgb": "208,213,221", "role": "disabled text, unavailable variant" },
+      "200": { "hex": "#E4E7EC", "rgb": "228,231,236", "role": "card borders, input borders, divider lines" },
+      "100": { "hex": "#F2F4F7", "rgb": "242,244,247", "role": "disabled chip bg, sold-out badge bg" }
+    },
+    "semantic": {
+      "white":   { "hex": "#FFFFFF", "rgb": "255,255,255", "role": "card surface, modal bg, product image tile bg" },
+      "success": { "hex": "#2E7C72", "rgb": "46,124,114",  "role": "in-stock indicator dot and label, confirmation states" },
+      "warning": { "hex": "#D4A737", "rgb": "212,167,55",  "role": "warning state (same as mustard-500)" },
+      "danger":  { "hex": "#B42318", "rgb": "180,35,24",   "role": "error text, limited badge, out-of-stock dot, remove button hover" },
+      "info":    { "hex": "#175CD3", "rgb": "23,92,211",   "role": "informational state" }
+    }
+  },
+
+  "typography": {
+    "_note": "Single typeface system — Hanken Grotesk for everything. Weight, size, and color do the work of differentiation.",
+    "typeface": "Hanken Grotesk",
+    "source": "Google Fonts — family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap",
+    "weights": {
+      "light": 300, "regular": 400, "medium": 500,
+      "semibold": 600, "bold": 700, "extrabold": 800
+    },
+    "scale": {
+      "display": { "size": "64px", "line_height": 1.05,  "letter_spacing": "-0.025em", "weight": 800 },
+      "h1":      { "size": "48px", "line_height": 1.1,   "letter_spacing": "-0.022em", "weight": 700 },
+      "h2":      { "size": "36px", "line_height": 1.15,  "letter_spacing": "-0.018em", "weight": 700 },
+      "h3":      { "size": "28px", "line_height": 1.2,   "letter_spacing": "-0.014em", "weight": 600 },
+      "h4":      { "size": "22px", "line_height": 1.3,   "letter_spacing": "-0.010em", "weight": 600 },
+      "h5":      { "size": "18px", "line_height": 1.35,  "letter_spacing": "-0.005em", "weight": 600 },
+      "body_lg": { "size": "18px", "line_height": 1.55 },
+      "body":    { "size": "16px", "line_height": 1.55 },
+      "body_sm": { "size": "14px", "line_height": 1.50 },
+      "caption": { "size": "13px", "line_height": 1.45, "weight": 500 },
+      "eyebrow": { "size": "11px", "line_height": 1.40, "letter_spacing": "0.08em", "weight": 600, "transform": "uppercase" },
+      "price":   { "size": "20px", "weight": 700, "letter_spacing": "-0.01em" },
+      "price_sm":{ "size": "15px", "weight": 600 }
+    }
+  },
+
+  "spacing": {
+    "_note": "4px base unit. Layouts breathe — section padding is generous on desktop.",
+    "scale": {
+      "1": "4px",  "2": "8px",  "3": "12px", "4": "16px",
+      "5": "20px", "6": "24px", "8": "32px", "10": "40px",
+      "12": "48px","16": "64px","20": "80px","24": "96px"
+    },
+    "section_padding_desktop": "64px 0",
+    "section_padding_mobile":  "36px 0",
+    "grid_gap_desktop": "24px",
+    "grid_gap_mobile":  "12px"
+  },
+
+  "shape": {
+    "radius_xs":  "4px",
+    "radius_sm":  "8px",
+    "radius_md":  "12px",
+    "radius_lg":  "16px",
+    "radius_xl":  "20px",
+    "radius_2xl": "28px",
+    "radius_pill":"999px"
+  },
+
+  "elevation": {
+    "_note": "All shadows tinted with forest-700 (13,79,71) — never neutral gray. Results in cards that feel set on cream paper, not floating in space.",
+    "xs": "0 1px 2px rgba(13,79,71,0.04)",
+    "sm": "0 1px 3px rgba(13,79,71,0.06), 0 1px 2px rgba(13,79,71,0.04)",
+    "md": "0 6px 16px -4px rgba(13,79,71,0.08), 0 2px 4px rgba(13,79,71,0.04)",
+    "lg": "0 16px 32px -12px rgba(13,79,71,0.14), 0 4px 8px rgba(13,79,71,0.04)",
+    "xl": "0 28px 56px -16px rgba(13,79,71,0.18), 0 8px 16px rgba(13,79,71,0.05)"
+  },
+
+  "sections": {
+
+    "announcement_bar": {
+      "background": "forest-900 (#062E29 / 6,46,41)",
+      "text_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "font_size": "13px",
+      "font_weight": 500,
+      "padding": "9px 16px",
+      "cta_color": "mustard-500 (#D4A737 / 212,167,55)",
+      "cta_style": "underline, 1.5px thickness, 3px offset"
+    },
+
+    "header": {
+      "background_resting": "cream-100 solid (#F6F6EE / 246,246,238)",
+      "background_scrolled": "cream-100 at 92% opacity (#F6F6EE / 246,246,238) + backdrop-filter blur(12px)",
+      "border_bottom": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "logo_height_desktop": "32px",
+      "logo_height_mobile":  "26px",
+      "nav_font_size": "14px",
+      "nav_font_weight": 500,
+      "nav_color_resting": "ink-700 (#344054 / 52,64,84)",
+      "nav_color_hover": "forest-700 (#0D4F47 / 13,79,71)",
+      "nav_active_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "nav_active_indicator": "2px bottom border, forest-700 (#0D4F47 / 13,79,71), inset 22px from bottom of header row",
+      "icon_button_size": "40px",
+      "icon_button_radius": "12px",
+      "icon_button_hover_bg": "cream-200 (#ECECDF / 236,236,223)",
+      "cart_badge_bg": "mustard-500 (#D4A737 / 212,167,55)",
+      "cart_badge_color": "forest-900 (#062E29 / 6,46,41)",
+      "cart_badge_size": "18px",
+      "layout_variant": "logo-left (default) | logo-center | two-row"
+    },
+
+    "hero": {
+      "border_radius_desktop": "24px",
+      "border_radius_mobile":  "18px",
+      "min_height_desktop": "480px",
+      "min_height_mobile":  "480px",
+      "content_position": "left, vertically centered (align-items: center on flex parent)",
+      "content_max_width": "640px",
+      "inner_padding_desktop": "64px 56px",
+      "inner_padding_mobile":  "32px 24px",
+      "background_fallback": "forest-700 (#0D4F47 / 13,79,71) — visible if image fails to load",
+      "image_opacity": 0.55,
+      "overlay_gradient": "135deg, rgba(6,46,41,0.85) 0%, rgba(6,46,41,0.30) 60%, rgba(6,46,41,0.60) 100%",
+      "eyebrow_color": "mustard-300 (#E8C97C / 232,201,124)",
+      "heading_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "heading_size_desktop": "60px",
+      "heading_size_mobile":  "38px",
+      "heading_weight": 800,
+      "heading_letter_spacing": "-0.025em",
+      "body_color": "cream-50 at 88% opacity (#FBFBF6 / 251,251,246)",
+      "body_size_desktop": "18px",
+      "body_size_mobile": "15px",
+      "section_padding_desktop": "32px 0 56px",
+      "section_padding_mobile":  "16px 0 32px"
+    },
+
+    "multi_column": {
+      "columns_desktop": 4,
+      "columns_mobile":  2,
+      "gap_desktop": "20px",
+      "gap_mobile":  "12px",
+      "card_background": "cream-50 (#FBFBF6 / 251,251,246)",
+      "card_border_radius": "16px",
+      "card_padding": "24px",
+      "icon_container_size": "44px",
+      "icon_container_radius": "12px",
+      "icon_container_bg": "forest-50 (#EBF1EF / 235,241,239)",
+      "icon_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "heading_size": "16px",
+      "heading_weight": 700,
+      "heading_color": "ink-900 (#101828 / 16,24,40)",
+      "body_size": "13.5px",
+      "body_color": "ink-500 (#667085 / 102,112,133)",
+      "body_line_height": 1.5
+    },
+
+    "featured_collection": {
+      "columns_desktop": 4,
+      "columns_mobile":  2,
+      "gap_desktop": "24px",
+      "gap_mobile":  "12px",
+      "section_head_h2_size": "32px",
+      "section_head_h2_weight": 700,
+      "section_head_h2_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "eyebrow_color": "forest-700 at 70% opacity (#0D4F47 / 13,79,71)",
+      "view_all_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "view_all_hover": "underline, 1.5px, 3px offset"
+    },
+
+    "collection_list": {
+      "columns_desktop": 5,
+      "columns_mobile":  2,
+      "gap_desktop": "20px",
+      "gap_mobile":  "12px",
+      "card_aspect_ratio": "4 / 5",
+      "card_border_radius": "18px",
+      "card_placeholder_bg_from": "cream-200 (#ECECDF / 236,236,223)",
+      "card_placeholder_bg_to": "cream-300 (#DCDCC8 / 220,220,200)",
+      "overlay_gradient": "0deg, rgba(6,46,41,0.70) 0%, rgba(6,46,41,0.05) 60%",
+      "card_label_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "card_label_size": "22px",
+      "card_label_weight": 700,
+      "card_count_color": "cream-50 at 80% opacity (#FBFBF6 / 251,251,246)",
+      "card_arrow_bg": "cream-50 (#FBFBF6 / 251,251,246)",
+      "card_arrow_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "card_arrow_size": "32px",
+      "card_hover_translate_y": "-3px",
+      "card_hover_image_scale": 1.04,
+      "card_hover_transition": "200ms ease-out"
+    },
+
+    "rich_text": {
+      "max_width": "680px",
+      "text_align": "center",
+      "eyebrow_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "heading_size_desktop": "36px",
+      "heading_size_mobile": "26px",
+      "heading_weight": 700,
+      "heading_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "body_size": "16px",
+      "body_line_height": 1.65,
+      "body_color": "ink-700 (#344054 / 52,64,84)"
+    },
+
+    "pdp": {
+      "layout_desktop": "1.05fr 1fr grid, gap 48px",
+      "layout_mobile": "single column, gap 24px",
+      "section_padding_desktop": "28px 0 56px",
+      "section_padding_mobile":  "16px 0 32px",
+      "gallery_main_radius": "20px",
+      "gallery_main_bg": "white (#FFFFFF / 255,255,255)",
+      "gallery_main_border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "gallery_main_aspect": "1 / 1",
+      "gallery_main_image_size": "75% of container (padding 12.5% each side)",
+      "gallery_thumb_count": 4,
+      "gallery_thumb_radius": "12px",
+      "gallery_thumb_border_inactive": "2px solid transparent",
+      "gallery_thumb_border_active": "2px solid forest-700 (#0D4F47 / 13,79,71)",
+      "gallery_thumb_opacity_inactive": 0.6,
+      "gallery_thumb_opacity_active": 1.0,
+      "gallery_thumb_bg": "white (#FFFFFF / 255,255,255)",
+      "vendor_color": "ink-500 (#667085 / 102,112,133)",
+      "vendor_size": "13px",
+      "title_size_desktop": "38px",
+      "title_size_mobile": "28px",
+      "title_weight": 700,
+      "title_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "title_letter_spacing": "-0.022em",
+      "price_size": "32px",
+      "price_weight": 700,
+      "price_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "price_letter_spacing": "-0.018em",
+      "compare_price_size": "18px",
+      "compare_price_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "in_stock_color": "success (#2E7C72 / 46,124,114)",
+      "in_stock_dot_size": "8px",
+      "out_of_stock_color": "ink-500 (#667085 / 102,112,133)",
+      "variant_option_radius": "10px",
+      "variant_option_border_inactive": "1.5px solid ink-200 (#E4E7EC / 228,231,236)",
+      "variant_option_border_hover": "1.5px solid forest-700 (#0D4F47 / 13,79,71)",
+      "variant_option_bg_active": "forest-50 (#EBF1EF / 235,241,239)",
+      "variant_option_border_active": "1.5px solid forest-700 (#0D4F47 / 13,79,71)",
+      "variant_option_color_active": "forest-700 (#0D4F47 / 13,79,71)",
+      "variant_unavailable_color": "ink-300 (#D0D5DD / 208,213,221)",
+      "meta_card_bg": "cream-50 (#FBFBF6 / 251,251,246)",
+      "meta_card_radius": "12px",
+      "meta_card_padding": "12px 14px",
+      "meta_icon_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "accordion_border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "accordion_summary_padding": "16px 0",
+      "accordion_summary_size": "15px",
+      "accordion_summary_weight": 600,
+      "accordion_summary_color": "ink-900 (#101828 / 16,24,40)",
+      "accordion_icon_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "accordion_body_size": "14px",
+      "accordion_body_color": "ink-700 (#344054 / 52,64,84)",
+      "sticky_atc_bar_bg": "white (#FFFFFF / 255,255,255)",
+      "sticky_atc_bar_border_top": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "sticky_atc_bar_shadow": "0 -4px 16px -8px rgba(13,79,71,0.18)",
+      "sticky_atc_bar_padding": "12px 16px"
+    },
+
+    "collection_page": {
+      "layout_desktop": "240px sidebar + 1fr content, gap 32px",
+      "layout_mobile": "single column",
+      "breadcrumb_color": "ink-500 (#667085 / 102,112,133)",
+      "breadcrumb_separator_color": "ink-300 (#D0D5DD / 208,213,221)",
+      "breadcrumb_current_color": "ink-900 (#101828 / 16,24,40)",
+      "breadcrumb_size": "13px",
+      "collection_title_size": "38px",
+      "collection_title_weight": 700,
+      "collection_title_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "collection_title_letter_spacing": "-0.022em",
+      "results_bar_border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "results_count_color": "ink-500 (#667085 / 102,112,133)",
+      "results_count_size": "14px",
+      "columns_desktop": 3,
+      "columns_mobile":  2,
+      "filter_sidebar_width": "240px",
+      "filter_heading_size": "13px",
+      "filter_heading_weight": 700,
+      "filter_heading_color": "ink-900 (#101828 / 16,24,40)",
+      "filter_heading_transform": "uppercase",
+      "filter_label_size": "13.5px",
+      "filter_label_color": "ink-700 (#344054 / 52,64,84)",
+      "filter_checkbox_size": "18px",
+      "filter_checkbox_radius": "5px",
+      "filter_checkbox_border": "1.5px solid ink-300 (#D0D5DD / 208,213,221)",
+      "filter_checkbox_active_bg": "forest-700 (#0D4F47 / 13,79,71)",
+      "filter_checkbox_active_border": "forest-700 (#0D4F47 / 13,79,71)",
+      "filter_count_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "active_filter_chip_bg": "forest-50 (#EBF1EF / 235,241,239)",
+      "active_filter_chip_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "active_filter_chip_radius": "999px",
+      "active_filter_chip_size": "12.5px",
+      "pagination_page_size": "36px",
+      "pagination_page_radius": "10px",
+      "pagination_active_bg": "forest-700 (#0D4F47 / 13,79,71)",
+      "pagination_active_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "pagination_inactive_hover_bg": "cream-200 (#ECECDF / 236,236,223)"
+    },
+
+    "cart_drawer": {
+      "width_desktop": "420px",
+      "background": "cream-100 (#F6F6EE / 246,246,238)",
+      "shadow": "elevation.xl — 0 28px 56px -16px rgba(13,79,71,0.18), 0 8px 16px rgba(13,79,71,0.05)",
+      "border_left": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "header_bg": "cream-50 (#FBFBF6 / 251,251,246)",
+      "header_border_bottom": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "header_padding": "20px 22px",
+      "header_title_size": "20px",
+      "header_title_weight": 700,
+      "header_title_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "header_close_btn_size": "36px",
+      "header_close_btn_radius": "10px",
+      "header_close_btn_hover_bg": "cream-200 (#ECECDF / 236,236,223)",
+      "line_item_bg": "white (#FFFFFF / 255,255,255)",
+      "line_item_border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "line_item_radius": "12px",
+      "line_item_padding": "12px",
+      "line_item_image_size": "64px",
+      "line_item_image_radius": "8px",
+      "line_item_image_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "line_item_name_size": "13.5px",
+      "line_item_name_weight": 600,
+      "line_item_name_color": "ink-900 (#101828 / 16,24,40)",
+      "line_item_meta_color": "ink-500 (#667085 / 102,112,133)",
+      "line_item_price_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "line_item_price_weight": 700,
+      "remove_color": "ink-500 (#667085 / 102,112,133)",
+      "remove_hover_color": "danger (#B42318 / 180,35,24)",
+      "footer_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "footer_border_top": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "footer_padding": "18px 22px 22px",
+      "subtotal_size": "13.5px",
+      "subtotal_color": "ink-700 (#344054 / 52,64,84)",
+      "total_size": "17px",
+      "total_weight": 700,
+      "total_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "tax_note_color": "ink-500 (#667085 / 102,112,133)",
+      "page_overlay_color": "rgba(6,46,41,0.40)"
+    },
+
+    "search_results": {
+      "predictive_bg": "white (#FFFFFF / 255,255,255)",
+      "predictive_border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "predictive_radius": "14px",
+      "predictive_shadow": "elevation.lg",
+      "predictive_padding": "12px",
+      "predictive_max_width": "520px",
+      "predictive_section_divider": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "predictive_section_head_color": "ink-500 (#667085 / 102,112,133)",
+      "predictive_section_head_size": "11px",
+      "predictive_row_hover_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "predictive_row_radius": "8px",
+      "predictive_product_image_size": "40px",
+      "predictive_product_image_radius": "8px",
+      "predictive_product_image_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "predictive_product_name_size": "14px",
+      "predictive_product_name_weight": 600,
+      "predictive_product_name_color": "ink-900 (#101828 / 16,24,40)",
+      "predictive_price_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "predictive_price_weight": 700,
+      "results_heading_size": "32px",
+      "results_heading_weight": 700,
+      "results_heading_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "results_count_color": "ink-500 (#667085 / 102,112,133)",
+      "tab_size": "14px",
+      "tab_weight": 600,
+      "tab_inactive_color": "ink-500 (#667085 / 102,112,133)",
+      "tab_active_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "tab_active_indicator": "2px bottom border, forest-700 (#0D4F47 / 13,79,71)",
+      "tab_count_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "columns_desktop": 4
+    },
+
+    "footer": {
+      "background": "forest-700 (#0D4F47 / 13,79,71)",
+      "text_color": "forest-100 (#D7E4E1 / 215,228,225)",
+      "columns_desktop": "2fr 1fr 1fr 1fr 1.5fr",
+      "columns_mobile":  "1fr 1fr",
+      "padding_desktop": "56px 0 28px",
+      "padding_mobile":  "36px 0 16px",
+      "link_size": "14px",
+      "link_color": "forest-100 (#D7E4E1 / 215,228,225)",
+      "link_hover_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "column_heading_size": "12px",
+      "column_heading_weight": 700,
+      "column_heading_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "column_heading_transform": "uppercase",
+      "column_heading_tracking": "0.08em",
+      "social_icon_size": "34px",
+      "social_icon_radius": "999px",
+      "social_icon_bg": "white at 8% opacity (#FFFFFF / 255,255,255)",
+      "social_icon_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "social_icon_hover_bg": "mustard-500 (#D4A737 / 212,167,55)",
+      "social_icon_hover_color": "forest-900 (#062E29 / 6,46,41)",
+      "newsletter_input_border": "forest-600 (#1B6259 / 27,98,89)",
+      "newsletter_input_bg": "forest-800 (#093E37 / 9,62,55)",
+      "newsletter_input_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "newsletter_input_placeholder": "white at 50% opacity (#FFFFFF / 255,255,255)",
+      "newsletter_btn_bg": "mustard-500 (#D4A737 / 212,167,55)",
+      "newsletter_btn_color": "forest-900 (#062E29 / 6,46,41)",
+      "newsletter_btn_weight": 700,
+      "bottom_bar_border": "white at 10% opacity (#FFFFFF / 255,255,255)",
+      "bottom_bar_color": "white at 55% opacity (#FFFFFF / 255,255,255)",
+      "bottom_bar_size": "12.5px"
+    }
+  },
+
+  "components": {
+
+    "product_card": {
+      "background": "white (#FFFFFF / 255,255,255)",
+      "border": "1px solid ink-200 (#E4E7EC / 228,231,236)",
+      "border_radius": "16px",
+      "padding": "12px",
+      "internal_gap": "12px",
+      "shadow_resting": "elevation.sm",
+      "shadow_hover": "elevation.md",
+      "hover_translate_y": "-2px",
+      "hover_transition": "200ms ease-out",
+      "image_container_radius": "12px",
+      "image_aspect_ratio": "1 / 1",
+      "image_object_fit": "contain",
+      "image_inner_padding": "12% on all sides — product floats in the tile, not edge-to-edge",
+      "image_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "image_hover_scale": 1.03,
+      "image_hover_transition": "300ms ease-out",
+      "badge_position": "absolute, top-left of image, 10px inset",
+      "fav_position": "absolute, top-right of image, 10px inset",
+      "fav_size": "32px",
+      "fav_radius": "999px",
+      "fav_bg": "white (#FFFFFF / 255,255,255)",
+      "fav_color_inactive": "ink-500 (#667085 / 102,112,133)",
+      "fav_color_active": "danger (#B42318 / 180,35,24)",
+      "fav_shadow": "elevation.xs",
+      "product_meta_color": "ink-500 (#667085 / 102,112,133)",
+      "product_meta_size": "11px",
+      "product_meta_weight": 600,
+      "product_meta_transform": "uppercase",
+      "product_title_size": "14.5px",
+      "product_title_weight": 600,
+      "product_title_color": "ink-900 (#101828 / 16,24,40)",
+      "price_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "price_size": "17px",
+      "price_weight": 700,
+      "price_letter_spacing": "-0.01em",
+      "compare_price_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "compare_price_size": "13px",
+      "compare_price_decoration": "line-through",
+      "sold_out_price_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "add_button_size": "36×36px",
+      "add_button_radius": "10px",
+      "add_button_bg": "forest-700 (#0D4F47 / 13,79,71)",
+      "add_button_color": "cream-50 (#FBFBF6 / 251,251,246)",
+      "add_button_hover_bg": "forest-800 (#093E37 / 9,62,55)",
+      "add_button_disabled_bg": "ink-200 (#E4E7EC / 228,231,236)",
+      "add_button_disabled_color": "ink-400 (#98A2B3 / 152,162,179)"
+    },
+
+    "badges": {
+      "font_size": "10px",
+      "font_weight": 700,
+      "letter_spacing": "0.08em",
+      "transform": "uppercase",
+      "padding": "4px 9px",
+      "border_radius": "999px",
+      "line_height": 1,
+      "sale":     { "bg": "mustard-500 (#D4A737 / 212,167,55)", "color": "forest-900 (#062E29 / 6,46,41)" },
+      "new":      { "bg": "forest-700 (#0D4F47 / 13,79,71)", "color": "cream-50 (#FBFBF6 / 251,251,246)" },
+      "sold_out": { "bg": "ink-100 (#F2F4F7 / 242,244,247)", "color": "ink-500 (#667085 / 102,112,133)", "border": "1px solid ink-200 (#E4E7EC / 228,231,236)" },
+      "limited":  { "bg": "danger (#B42318 / 180,35,24)", "color": "cream-50 (#FBFBF6 / 251,251,246)" }
+    },
+
+    "buttons": {
+      "font_size": "15px",
+      "font_weight": 600,
+      "padding_default": "12px 22px",
+      "padding_lg": "16px 28px",
+      "padding_sm": "8px 14px",
+      "border_radius": "12px",
+      "border_radius_sm": "10px",
+      "active_scale": 0.98,
+      "transition": "150ms",
+      "primary":   { "bg": "forest-700 (#0D4F47 / 13,79,71)", "color": "cream-50 (#FBFBF6 / 251,251,246)", "hover_bg": "forest-800 (#093E37 / 9,62,55)", "pressed_bg": "forest-900 (#062E29 / 6,46,41)" },
+      "secondary": { "bg": "cream-50 (#FBFBF6 / 251,251,246)", "color": "forest-700 (#0D4F47 / 13,79,71)", "border": "1.5px solid forest-100 (#D7E4E1 / 215,228,225)", "hover_bg": "cream-200 (#ECECDF / 236,236,223)" },
+      "accent":    { "bg": "mustard-500 (#D4A737 / 212,167,55)", "color": "forest-900 (#062E29 / 6,46,41)", "hover_bg": "mustard-600 (#BC9226 / 188,146,38)" },
+      "ghost":     { "bg": "transparent", "color": "forest-700 (#0D4F47 / 13,79,71)", "hover_bg": "forest-50 (#EBF1EF / 235,241,239)", "padding": "10px 14px" }
+    },
+
+    "inputs": {
+      "border": "1.5px solid ink-200 (#E4E7EC / 228,231,236)",
+      "border_focus": "1.5px solid forest-700 (#0D4F47 / 13,79,71)",
+      "border_radius": "12px",
+      "padding_with_icon": "10px 14px 10px 40px",
+      "padding_plain": "10px 14px",
+      "bg": "white (#FFFFFF / 255,255,255)",
+      "color": "ink-900 (#101828 / 16,24,40)",
+      "placeholder_color": "ink-400 (#98A2B3 / 152,162,179)",
+      "focus_ring": "0 0 0 4px forest-50 (#EBF1EF / 235,241,239)"
+    },
+
+    "quantity_selector": {
+      "border": "1.5px solid ink-200 (#E4E7EC / 228,231,236)",
+      "border_radius": "12px",
+      "bg": "white (#FFFFFF / 255,255,255)",
+      "button_width": "44px",
+      "button_height": "48px",
+      "button_color": "forest-700 (#0D4F47 / 13,79,71)",
+      "button_hover_bg": "cream-100 (#F6F6EE / 246,246,238)",
+      "value_width": "36px",
+      "value_color": "ink-900 (#101828 / 16,24,40)",
+      "value_size": "15px",
+      "value_weight": 700
+    },
+
+    "eyebrow": {
+      "font_size": "11px",
+      "font_weight": 600,
+      "letter_spacing": "0.08em",
+      "transform": "uppercase",
+      "color_on_cream": "forest-600 (#1B6259 / 27,98,89)",
+      "color_on_forest": "mustard-300 (#E8C97C / 232,201,124)"
+    }
+  },
+
+  "pattern_intent": {
+    "_note": "STRUCTURAL PATTERN = always present as a structural element, regardless of copy. CONDITIONAL = present only when a data condition is met. OPTIONAL SLOT = schema field — present when merchant fills it in, absent otherwise.",
+
+    "hero_eyebrow_pip": {
+      "type": "STRUCTURAL PATTERN",
+      "description": "The filled 6px circle before hero eyebrow text is part of the design system — always present on hero eyebrows. It is not part of copywriting and should not vary by content.",
+      "color": "mustard-500 (#D4A737 / 212,167,55)",
+      "size": "6px",
+      "dawn_implementation_note": "Render as a <span class='pip'></span> as the first child inside the eyebrow element — not a CSS ::before pseudo-element, which Dawn Liquid cannot easily target from schema settings. CSS: .pip { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); margin-right: 8px; vertical-align: middle; flex-shrink: 0; }. Place the span before any text node. If the eyebrow field is blank, the pip must not render — wrap both inside {% if section.settings.eyebrow != blank %}."
+    },
+
+    "eyebrow_dot_separator": {
+      "type": "STRUCTURAL PATTERN",
+      "description": "The · character between eyebrow segments (e.g. 'Store hours · Al Khor') is a design-pattern separator, not copy. Present whenever an eyebrow has two text segments. The segments either side are merchant-configurable.",
+      "dawn_implementation_note": "Hard-code the · as a literal character between two schema text outputs: {{ section.settings.eyebrow_segment_1 }} · {{ section.settings.eyebrow_segment_2 }}. Do NOT use a CSS ::before or ::after — the separator must be a real text node so it wraps naturally with the copy on narrow viewports. Conditional render: {% if section.settings.eyebrow_segment_1 != blank and section.settings.eyebrow_segment_2 != blank %} — only show the separator if both parts are populated. If only one segment is present, render it alone with no separator."
+    },
+
+    "product_card_fav_icon": {
+      "type": "STRUCTURAL PATTERN",
+      "description": "The heart icon (top-right of product card image container) is always present on all product cards — a structural UI slot, not a decoration. Active state shows danger (#B42318 / 180,35,24) fill.",
+      "dawn_implementation_note": "Dawn's card-product.liquid does not include a wishlist/fav button by default — this is a custom addition. Add a <button class='card__fav-btn' aria-label='Save {{ card_product.title }}'> element absolutely positioned inside .card__media (top: 10px; right: 10px). Use Lucide heart icon (stroke-width 1.75, 16px) inside a 32×32px button with border-radius: 999px; background: white; box-shadow: var(--shadow-xs). Toggle .is-active via JS; apply color: var(--color-danger) on .card__fav-btn.is-active. Persist wishlist state to localStorage keyed on product.id. If a third-party wishlist app is used, replace with its button — same position and size constraints apply."
+    },
+
+    "sale_badge": {
+      "type": "CONDITIONAL STRUCTURAL PATTERN",
+      "description": "SALE badge renders only when product.compare_at_price > product.price and the product is available. Never hard-coded or decorative.",
+      "dawn_implementation_note": "Dawn renders this automatically in snippets/card-product.liquid when show_badges is true in theme settings. No custom code needed for the condition — Dawn handles: {% if card_product.compare_at_price > card_product.price %}. Configure the badge text via the sale_badge_text theme setting; the design uses 'SALE' or 'Save {percent}%'. The badge sits in a .card__badges container positioned absolute top-left 10px inside .card__media, stacking vertically when multiple badges coexist."
+    },
+
+    "section_eyebrow": {
+      "type": "OPTIONAL SLOT",
+      "description": "The small uppercase label above section headings is a schema text field — present only when the merchant fills it in. When empty, the heading moves up and the gap collapses cleanly. No fallback string.",
+      "dawn_implementation_note": "Add to section schema: { 'type': 'text', 'id': 'eyebrow', 'label': 'Eyebrow label', 'info': 'Short uppercase label shown above the heading. Leave blank to hide.' }. Render conditionally: {% if section.settings.eyebrow != blank %}<p class='section-eyebrow'>{{ section.settings.eyebrow | escape }}</p>{% endif %}. Never insert a default or placeholder value — an empty setting should produce exactly zero rendered HTML."
+    },
+
+    "announcement_bar_cta": {
+      "type": "OPTIONAL SLOT",
+      "description": "The underlined CTA link at the end of announcement bar messages is a separate schema field from the message text. Optional — renders nothing if left blank.",
+      "dawn_implementation_note": "Dawn's announcement bar block already includes button_label and button_link block settings. The CTA renders as <a class='announcement-bar__link'> when button_label is non-blank. Style the underline in your CSS override: .announcement-bar__link { color: var(--color-mustard-500); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: 700; }. The color must be set explicitly because Dawn's default announcement bar uses an inverse scheme where link color inherits from the text color token."
+    },
+
+    "collection_card_count": {
+      "type": "STRUCTURAL PATTERN",
+      "description": "The small product count label below a collection title is always present. Populated from collection.products_count — never hard-coded.",
+      "dawn_implementation_note": "Output as: <p class='collection-card__count'>{{ collection.products_count }} {{ 'general.accessibility.product_count' | t: count: collection.products_count }}</p>. Use Dawn's translation key for correct pluralization (1 item / 24 items). Style: font-size 12px; color: cream-50 at 80% opacity when rendered over a dark overlay (opacity: 0.8 on the element). The count is always present — if a collection has zero products it shows '0 items', not a hidden element."
+    },
+
+    "footer_nav_columns": {
+      "type": "STRUCTURAL PATTERN",
+      "description": "Footer renders 4 link-list menu columns (columns 2–5 of the 5-column desktop grid). Column 1 is always the brand/newsletter block. Each column is a separate Shopify menu.",
+      "dawn_implementation_note": "Each link-list column is a Dawn footer section block of type 'link_list'. Add 4 blocks in the customizer, each pointing to a separate navigation menu handle (e.g. footer-shop, footer-help, footer-company, footer-legal). In the liquid: {% for block in section.blocks %}{% if block.type == 'link_list' %}<div class='footer-col'>{% for link in linklists[block.settings.menu].links %}<a href='{{ link.url }}'>{{ link.title }}</a>{% endfor %}</div>{% endif %}{% endfor %}. The brand column (newsletter + social + logo) is a separate block type rendered first, occupying the 2fr column slot."
+    }
+  },
+
+  "css_annotation_key": {
+    "_note": "Every CSS block in styles.css output is marked at its opening comment with one of these three labels. Use this to decide what to carry into Dawn.",
+    "KEEP — Design token": "Map to Dawn theme settings, section schema, or a CSS custom property override in your theme.css. These are real design decisions.",
+    "KEEP — Component style": "Mirrors the visual design of a Dawn section or snippet. Adapt class names to Dawn's BEM conventions before using.",
+    "DISCARD — Prototype scaffold": "Layout and chrome written to make the browser/phone prototype display correctly. Not needed in a real Shopify theme."
+  }
+}
