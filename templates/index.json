@@ -55,7 +55,7 @@
         "slide_nKnCyR": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_29_02_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -97,7 +97,7 @@
         "slide_JTQjHh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_04_44_AM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_31_33_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -118,7 +118,7 @@
         "slide_XfzY7E": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_13_25_AM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_35_34_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -215,118 +215,28 @@
         "collection_FMhBic",
         "collection_fw7mae"
       ],
+      "disabled": true,
       "name": "Ayira Collection Icons",
       "settings": {
-        "eyebrow": "Shop by Aisle",
-        "title": "Browse our collections",
+        "eyebrow": "",
+        "title": "",
         "show_view_all": true,
-        "view_all_label": "All collections",
+        "view_all_label": "",
         "show_product_count": false,
         "color_scheme": "",
-        "padding_top": 16,
-        "padding_bottom": 8
-      }
-    },
-    "ayira_vertical_banners": {
-      "type": "ayira-vertical-banners",
-      "blocks": {
-        "banner_1": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ice-cream-banner.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_mtwGwc": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/soft-drinks.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_YgB48A": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/fruits-and-vegitables.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_zEbiCF": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/toys.png",
-            "title": "Grocery Essentials",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_3": {
-          "type": "banner",
-          "settings": {
-            "title": "Snacks & Chocolates",
-            "link": "",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "banner_1",
-        "banner_mtwGwc",
-        "banner_YgB48A",
-        "banner_zEbiCF",
-        "banner_3"
-      ],
-      "settings": {
-        "title": "Shop by Category",
-        "eyebrow": "Browse",
-        "show_view_all": true,
-        "view_all_label": "All Categories",
-        "view_all_link": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "ayira_vertical_banners_i6h748": {
       "type": "ayira-vertical-banners",
       "blocks": {
-        "banner_jnw6DH": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_17_52_PM.png",
-            "title": "",
-            "link": "shopify://collections/chocolates-1",
-            "background_color": "#d4a737",
-            "text_color": "#0d4f47"
-          }
-        },
-        "banner_LqCKAT": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_21_04_PM.png",
-            "title": "",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
         "banner_67hQgN": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_22_51_PM.png",
-            "title": "",
-            "link": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_10_58_PM.png",
+            "title": "Energy & Sports Drinks",
+            "link": "shopify://collections/energy-sports-drinks",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -334,9 +244,9 @@
         "banner_86RADA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_12_24_23_PM.png",
-            "title": "",
-            "link": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_14_56_PM.png",
+            "title": "Carbonated Soft Drinks",
+            "link": "shopify://collections/carbonated-soft-drinks",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -344,19 +254,51 @@
         "banner_tBEH7z": {
           "type": "banner",
           "settings": {
-            "title": "Snacks & Chocolates",
-            "link": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_59_09_PM.png",
+            "title": "Water ",
+            "link": "shopify://collections/water",
             "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_LqCKAT": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_19_51_PM.png",
+            "title": "Juice",
+            "link": "shopify://collections/juices-fruit-drinks",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_arXbbB": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_47_34_PM.png",
+            "title": "Candy",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_jnw6DH": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_42_34_PM.png",
+            "title": "Gums ",
+            "link": "shopify://collections/chocolates-1",
+            "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         }
       },
       "block_order": [
-        "banner_jnw6DH",
-        "banner_LqCKAT",
         "banner_67hQgN",
         "banner_86RADA",
-        "banner_tBEH7z"
+        "banner_tBEH7z",
+        "banner_LqCKAT",
+        "banner_arXbbB",
+        "banner_jnw6DH"
       ],
       "settings": {
         "title": "",
@@ -365,6 +307,78 @@
         "view_all_label": "",
         "view_all_link": "",
         "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ayira_vertical_banners": {
+      "type": "ayira-vertical-banners",
+      "blocks": {
+        "banner_zEbiCF": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_39_55_PM.png",
+            "title": "Chocolates ",
+            "link": "shopify://collections/chocolates",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_22_47_PM.png",
+            "title": "chips",
+            "link": "shopify://collections/chips-crisps",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_mtwGwc": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_32_06_PM.png",
+            "title": "Ice cream",
+            "link": "shopify://collections/ice-cream",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_YgB48A": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_37_10_PM.png",
+            "title": "Noodles",
+            "link": "",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_3": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_06_59_31_PM.png",
+            "title": "Dairy Beverages",
+            "link": "",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "banner_zEbiCF",
+        "banner_1",
+        "banner_mtwGwc",
+        "banner_YgB48A",
+        "banner_3"
+      ],
+      "settings": {
+        "title": "",
+        "eyebrow": "",
+        "show_view_all": true,
+        "view_all_label": "All Categories",
+        "view_all_link": "",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -521,8 +535,8 @@
     "image_banner",
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
-    "ayira_vertical_banners",
     "ayira_vertical_banners_i6h748",
+    "ayira_vertical_banners",
     "featured_collection",
     "featured_collection_bCGXWp",
     "featured_collection_TRJ48d",
