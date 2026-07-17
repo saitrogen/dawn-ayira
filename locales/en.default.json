@@ -303,6 +303,8 @@
       "note": "Order special instructions",
       "checkout": "Check out",
       "empty": "Your cart is empty",
+      "product_disclosure": "Product disclosure",
+      "product_disclosures": "Product disclosures",
       "cart_error": "There was an error while updating your cart. Please try again.",
       "free_shipping_progress": "Add {{ amount }} more for free delivery",
       "free_shipping_unlocked": "You've unlocked free delivery!",

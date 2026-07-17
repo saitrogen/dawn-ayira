@@ -6,7 +6,10 @@
 {%- endunless -%}
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
-<cart-items class="ayira-cart{% if cart == empty %} is-empty{% endif %}">
+<cart-items
+  class="ayira-cart gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}"
+  view-event-payload="{{ cart | standard_event_data: 'view', context: 'page' | escape }}"
+>
   <div class="page-width">
 
     <div class="cart__warnings ayira-cart__empty-state">
@@ -80,7 +83,14 @@
                           {%- if settings.show_vendor -%}
                             <p class="ayira-item__vendor">{{ item.product.vendor }}</p>
                           {%- endif -%}
-                          <a href="{{ item.url }}" class="ayira-item__name">{{ item.product.title | escape }}</a>
+                          <div class="cart-item__title">
+                            <a href="{{ item.url }}" class="ayira-item__name">{{ item.product.title | escape }}</a>
+                            {%- assign cart_disclosure_modal_id = 'CartDisclosureModal-cart-' | append: item.key | replace: ':', '-' -%}
+                            {%- render 'cart-disclosure-indicator',
+                              product: item.product,
+                              modal_id: cart_disclosure_modal_id
+                            -%}
+                          </div>
                           {%- unless item.product.has_only_default_variant -%}
                             <dl class="ayira-item__options">
                               {%- for option in item.options_with_values -%}
