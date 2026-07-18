@@ -96,19 +96,25 @@
 
   .ayira-cart-title {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
     font-size: 36px;
     font-weight: 800;
+    line-height: 1.1;
     color: #0D4F47;
     letter-spacing: -0.02em;
   }
 
   .ayira-cart-title__count {
+    display: inline-flex;
+    align-items: center;
     color: #667085;
-    font-size: 0.48em;
+    font-size: 14px;
     font-weight: 600;
+    line-height: 1;
     letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
   }
 
   @media (max-width: 749px) {
@@ -154,6 +160,10 @@
   .ayira-item td {
     padding: 20px 12px;
     vertical-align: middle;
+  }
+
+  .ayira-item > td + td {
+    padding-left: 12px;
   }
 
   .ayira-item__img-cell {
@@ -202,7 +212,7 @@
   }
 
   .ayira-item__options {
-    margin: 0;
+    margin: 4px 0 0;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
@@ -225,10 +235,62 @@
     color: #667085;
   }
 
+  .ayira-item__property-link {
+    color: inherit;
+    text-underline-offset: 2px;
+  }
+
+  .ayira-item__selling-plan {
+    margin: 4px 0 0;
+    color: #667085;
+    font-size: 12px;
+  }
+
   .ayira-item__unit-price {
     font-size: 13px;
     color: #667085;
-    margin-top: 6px;
+    margin: 6px 0 0;
+  }
+
+  .ayira-item__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .ayira-item__prices .ayira-item__unit-price {
+    margin: 0;
+  }
+
+  .ayira-item__old-price,
+  .ayira-item__old-line-price {
+    color: #667085;
+    font-size: 12px;
+  }
+
+  .ayira-item__unit-price--final {
+    color: #0D4F47;
+  }
+
+  .ayira-item__discounts {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 6px 0 0;
+    padding: 0;
+  }
+
+  .ayira-item__discount {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #2E7C72;
+    font-size: 12px;
+  }
+
+  .ayira-item__discount .icon {
+    width: 13px;
+    height: 13px;
   }
 
   .ayira-item__qty-cell {
@@ -266,9 +328,11 @@
     background: #F6F6EE;
   }
 
-  .ayira-qty__btn:disabled {
+  .ayira-qty__btn:disabled,
+  .ayira-qty__btn.disabled {
     opacity: 0.4;
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   .ayira-qty__btn > * {
@@ -298,6 +362,40 @@
     color: #101828;
   }
 
+  .ayira-item__line-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .ayira-item__price-cell .loading__spinner {
+    position: static;
+    width: 18px;
+    padding: 0;
+  }
+
+  .ayira-item__price-cell .loading__spinner:not(.hidden) + .ayira-item__line-price-wrapper {
+    display: none;
+  }
+
+  .ayira-item__price-cell .unit-price {
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .ayira-qty-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 6px;
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
   .ayira-item__remove-btn {
     display: flex;
     align-items: center;
@@ -308,6 +406,11 @@
     color: #667085;
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
+  }
+
+  .ayira-item cart-remove-button {
+    display: block;
+    margin: 0;
   }
 
   .ayira-item__remove-btn:hover {
