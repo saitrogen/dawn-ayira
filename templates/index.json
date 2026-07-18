@@ -190,53 +190,49 @@
         "banner_67hQgN": {
           "type": "banner",
           "settings": {
-            "title": "Energy & Sports Drinks",
-            "link": "shopify://collections/energy-sports-drinks",
+            "image": "shopify://shop_images/candy-sweets-category.png",
+            "title": "Candy & Sweets",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
-        "banner_86RADA": {
+        "banner_L3CTCA": {
           "type": "banner",
           "settings": {
-            "title": "Carbonated Soft Drinks",
-            "link": "shopify://collections/carbonated-soft-drinks",
+            "image": "shopify://shop_images/candy-sweets-category.png",
+            "title": "Candy & Sweets",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
-        "banner_tBEH7z": {
+        "banner_qLzUfQ": {
           "type": "banner",
           "settings": {
-            "title": "Water ",
-            "link": "shopify://collections/water",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_LqCKAT": {
-          "type": "banner",
-          "settings": {
-            "title": "Juice",
-            "link": "shopify://collections/juices-fruit-drinks",
+            "image": "shopify://shop_images/candy-sweets-category.png",
+            "title": "Candy & Sweets",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
-        "banner_arXbbB": {
+        "banner_UFf97P": {
           "type": "banner",
           "settings": {
-            "title": "Candy",
-            "link": "",
+            "image": "shopify://shop_images/candy-sweets-category.png",
+            "title": "Candy & Sweets",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
-        "banner_jnw6DH": {
+        "banner_3igzaw": {
           "type": "banner",
           "settings": {
-            "title": "Gums ",
-            "link": "shopify://collections/chocolates-1",
+            "image": "shopify://shop_images/candy-sweets-category.png",
+            "title": "Candy & Sweets",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -244,11 +240,10 @@
       },
       "block_order": [
         "banner_67hQgN",
-        "banner_86RADA",
-        "banner_tBEH7z",
-        "banner_LqCKAT",
-        "banner_arXbbB",
-        "banner_jnw6DH"
+        "banner_L3CTCA",
+        "banner_qLzUfQ",
+        "banner_UFf97P",
+        "banner_3igzaw"
       ],
       "settings": {
         "title": "",
@@ -261,71 +256,77 @@
         "padding_bottom": 0
       }
     },
-    "ayira_vertical_banners": {
+    "ayira_vertical_banners_837MYD": {
       "type": "ayira-vertical-banners",
       "blocks": {
-        "banner_zEbiCF": {
+        "banner_MrX7hb": {
           "type": "banner",
           "settings": {
-            "title": "Chocolates ",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_1": {
-          "type": "banner",
-          "settings": {
-            "title": "chips",
+            "image": "shopify://shop_images/chips-crisps-category.png",
+            "title": "Chips & Crisps",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
         },
-        "banner_mtwGwc": {
+        "banner_wK4T84": {
           "type": "banner",
           "settings": {
-            "title": "Ice cream",
-            "link": "shopify://collections/ice-cream",
-            "background_color": "#d4a737",
+            "image": "shopify://shop_images/chocolate-confectionery-category.png",
+            "title": "Chocolate",
+            "link": "shopify://collections/chocolate-confectionery",
+            "background_color": "#b42318",
             "text_color": "#ffffff"
           }
         },
-        "banner_YgB48A": {
+        "banner_qMB9bm": {
           "type": "banner",
           "settings": {
-            "title": "Noodles",
-            "link": "",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_3": {
-          "type": "banner",
-          "settings": {
-            "title": "Dairy Beverages",
-            "link": "",
+            "image": "shopify://shop_images/chewing-gum-mints-category.png",
+            "title": "Gum & Mints",
+            "link": "shopify://collections/chewing-gum-mints",
             "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_pHqHAQ": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/chips-crisps-category.png",
+            "title": "Chips & Crisps",
+            "link": "shopify://collections/chips-crisps",
+            "background_color": "#d4a737",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_rWcnbA": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/chocolate-confectionery-category.png",
+            "title": "Chocolate",
+            "link": "shopify://collections/chocolate-confectionery",
+            "background_color": "#b42318",
             "text_color": "#ffffff"
           }
         }
       },
       "block_order": [
-        "banner_zEbiCF",
-        "banner_1",
-        "banner_mtwGwc",
-        "banner_YgB48A",
-        "banner_3"
+        "banner_MrX7hb",
+        "banner_wK4T84",
+        "banner_qMB9bm",
+        "banner_pHqHAQ",
+        "banner_rWcnbA"
       ],
+      "name": "Ayira Vertical Banners",
       "settings": {
-        "title": "",
-        "eyebrow": "",
+        "title": "Shop by Category",
+        "eyebrow": "Browse",
         "show_view_all": true,
         "view_all_label": "All Categories",
         "view_all_link": "",
         "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_collection_TRJ48d": {
@@ -420,7 +421,7 @@
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners_i6h748",
-    "ayira_vertical_banners",
+    "ayira_vertical_banners_837MYD",
     "featured_collection_TRJ48d",
     "ayira_hero_banner_Ry3KJH"
   ]
