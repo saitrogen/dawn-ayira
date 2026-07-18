@@ -95,7 +95,7 @@
                       widths: '200, 300, 400, 500, 600, 700, 800'
                   }}
                 {%- else -%}
-                  {%- assign placeholder_index = forloop.index0 | modulo: 6 | plus: 1 -%}
+                  {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                   {{ 'product-apparel-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg ayira-vertical-banner__img' }}
                 {%- endif -%}
               </div>
@@ -134,7 +134,8 @@
                 {{ title }}
               </h3>
               <div class="ayira-vertical-banner__media">
-                {{ 'product-apparel-' | append: i | placeholder_svg_tag: 'placeholder-svg ayira-vertical-banner__img' }}
+                {%- assign placeholder_index = i | minus: 1 | modulo: 4 | plus: 1 -%}
+                {{ 'product-apparel-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg ayira-vertical-banner__img' }}
               </div>
               <div class="ayira-vertical-banner__overlay"></div>
             </div>

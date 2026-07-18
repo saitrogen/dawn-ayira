@@ -9,53 +9,12 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
-      "disabled": true,
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
     "ayira_hero_banner_nLAPLr": {
       "type": "ayira-hero-banner",
       "blocks": {
         "slide_nKnCyR": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_29_02_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -76,7 +35,6 @@
         "slide_yQtfMN": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_11_03_02_AM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -97,7 +55,6 @@
         "slide_JTQjHh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_31_33_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -118,7 +75,6 @@
         "slide_XfzY7E": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_35_34_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -234,7 +190,6 @@
         "banner_67hQgN": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_10_58_PM.png",
             "title": "Energy & Sports Drinks",
             "link": "shopify://collections/energy-sports-drinks",
             "background_color": "#d4a737",
@@ -244,7 +199,6 @@
         "banner_86RADA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_14_56_PM.png",
             "title": "Carbonated Soft Drinks",
             "link": "shopify://collections/carbonated-soft-drinks",
             "background_color": "#d4a737",
@@ -254,7 +208,6 @@
         "banner_tBEH7z": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_59_09_PM.png",
             "title": "Water ",
             "link": "shopify://collections/water",
             "background_color": "#0d4f47",
@@ -264,7 +217,6 @@
         "banner_LqCKAT": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_03_19_51_PM.png",
             "title": "Juice",
             "link": "shopify://collections/juices-fruit-drinks",
             "background_color": "#d4a737",
@@ -274,7 +226,6 @@
         "banner_arXbbB": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_47_34_PM.png",
             "title": "Candy",
             "link": "",
             "background_color": "#d4a737",
@@ -284,7 +235,6 @@
         "banner_jnw6DH": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_42_34_PM.png",
             "title": "Gums ",
             "link": "shopify://collections/chocolates-1",
             "background_color": "#d4a737",
@@ -317,9 +267,8 @@
         "banner_zEbiCF": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_39_55_PM.png",
             "title": "Chocolates ",
-            "link": "shopify://collections/chocolates",
+            "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
             "text_color": "#ffffff"
           }
@@ -327,7 +276,6 @@
         "banner_1": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_22_47_PM.png",
             "title": "chips",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
@@ -337,7 +285,6 @@
         "banner_mtwGwc": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_32_06_PM.png",
             "title": "Ice cream",
             "link": "shopify://collections/ice-cream",
             "background_color": "#d4a737",
@@ -347,7 +294,6 @@
         "banner_YgB48A": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_01_37_10_PM.png",
             "title": "Noodles",
             "link": "",
             "background_color": "#d4a737",
@@ -357,7 +303,6 @@
         "banner_3": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_06_59_31_PM.png",
             "title": "Dairy Beverages",
             "link": "",
             "background_color": "#0d4f47",
@@ -381,64 +326,6 @@
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "chocolates-1",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "ayira_card_style": "compact",
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 8,
-        "padding_bottom": 16
-      }
-    },
-    "featured_collection_bCGXWp": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "gums",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "ayira_card_style": "compact",
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 8,
-        "padding_bottom": 16
       }
     },
     "featured_collection_TRJ48d": {
@@ -476,7 +363,6 @@
         "slide_L8grnV": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_4_2026_10_23_49_AM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -497,7 +383,6 @@
         "slide_rtUrCY": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_3_2026_12_57_17_AM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -532,13 +417,10 @@
     }
   },
   "order": [
-    "image_banner",
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
     "ayira_vertical_banners_i6h748",
     "ayira_vertical_banners",
-    "featured_collection",
-    "featured_collection_bCGXWp",
     "featured_collection_TRJ48d",
     "ayira_hero_banner_Ry3KJH"
   ]
