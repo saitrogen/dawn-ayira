@@ -458,15 +458,16 @@ class CollectionLoadMore {
       if (textSpan) textSpan.classList.add('hidden');
       if (spinnerSpan) spinnerSpan.classList.remove('hidden');
       button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
 
       try {
         const response = await fetch(nextUrl);
         if (!response.ok) throw new Error('Network response was not ok');
         const responseText = await response.text();
-        
+
         const parser = new DOMParser();
         const doc = parser.parseFromString(responseText, 'text/html');
-        
+
         // Extract new products and append to grid
         const newProducts = doc.querySelectorAll('#product-grid > li');
         newProducts.forEach((item) => {
@@ -498,6 +499,7 @@ class CollectionLoadMore {
           if (textSpan) textSpan.classList.remove('hidden');
           if (spinnerSpan) spinnerSpan.classList.add('hidden');
           button.disabled = false;
+          button.removeAttribute('aria-busy');
         }
       }
     });
@@ -505,4 +507,3 @@ class CollectionLoadMore {
 }
 
 CollectionLoadMore.init();
-

@@ -588,6 +588,9 @@ a.pagination__item:hover {
 .collection-load-more-wrapper .loading-spinner {
   width: 2rem !important;
   height: 2rem !important;
+}
+
+.collection-load-more-wrapper .loading-spinner:not(.hidden) {
   display: inline-block !important;
 }
 
@@ -605,5 +608,4 @@ a.pagination__item:hover {
     transform: rotate(360deg);
   }
 }
-
 
