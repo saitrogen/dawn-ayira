@@ -12,69 +12,30 @@
     "ayira_hero_banner_nLAPLr": {
       "type": "ayira-hero-banner",
       "blocks": {
+        "slide_JVF4Wh": {
+          "type": "slide",
+          "settings": {
+            "image_behavior": "none",
+            "eyebrow_label": "",
+            "heading": "Fresh basics, delivered the same day.",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "text": "Groceries, drinks and snacks — at your door in under two hours.",
+            "content_position_vertical": "middle",
+            "content_position_horizontal": "center",
+            "content_alignment": "center",
+            "button_label_1": "Shop weekly specials",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Browse all",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
         "slide_nKnCyR": {
           "type": "slide",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
-        "slide_yQtfMN": {
-          "type": "slide",
-          "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
-        "slide_JTQjHh": {
-          "type": "slide",
-          "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        },
-        "slide_XfzY7E": {
-          "type": "slide",
-          "settings": {
+            "image": "shopify://shop_images/file_0000000030e481fba6461599da80de21.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -94,10 +55,8 @@
         }
       },
       "block_order": [
-        "slide_nKnCyR",
-        "slide_yQtfMN",
-        "slide_JTQjHh",
-        "slide_XfzY7E"
+        "slide_JVF4Wh",
+        "slide_nKnCyR"
       ],
       "name": "Ayira Hero Banner",
       "settings": {
@@ -262,7 +221,7 @@
         "banner_MrX7hb": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chips-crisps-category.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_18_2026_07_31_23_PM.png",
             "title": "Chips & Crisps",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
