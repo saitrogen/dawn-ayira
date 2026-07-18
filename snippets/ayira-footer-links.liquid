@@ -1,0 +1,17 @@
+{% doc %}
+  Renders a footer navigation menu.
+
+  @param {linklist} menu - Menu selected in the footer block.
+{% enddoc %}
+
+{%- if menu != blank -%}
+  <ul class="ayira-footer__links list-unstyled" role="list">
+    {%- for link in menu.links -%}
+      <li>
+        <a href="{{ link.url }}" class="ayira-footer__link{% if link.active %} ayira-footer__link--active{% endif %}">
+          {{- link.title | escape -}}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
