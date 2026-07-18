@@ -1,0 +1,308 @@
+{{ 'section-ayira-main-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+
+{%- unless settings.cart_type == 'drawer' -%}
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<cart-items
+  class="ayira-cart gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}"
+  view-event-payload="{{ cart | standard_event_data: 'view', context: 'page' | escape }}"
+>
+  <div class="page-width">
+
+    <div class="cart__warnings ayira-cart__empty-state">
+      <div class="ayira-cart__empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </div>
+      <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="ayira-btn">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <p class="ayira-cart__login-note">
+          {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+      <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
+        <div class="js-contents">
+          {%- if cart != empty -%}
+
+            <div class="ayira-cart-layout">
+
+              <div class="ayira-cart-items-col">
+
+                <div class="ayira-cart-title-row">
+                  <h1 class="ayira-cart-title">
+                    {{- 'sections.cart.title' | t -}}
+                    <span class="ayira-cart-title__count" aria-hidden="true">{{ cart.item_count }}</span>
+                    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                  </h1>
+                  <a href="{{ routes.all_products_collection_url }}" class="ayira-continue-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <line x1="19" y1="12" x2="5" y2="12"/>
+                      <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                    {{ 'general.continue_shopping' | t }}
+                  </a>
+                </div>
+
+                <table class="ayira-items-table">
+                  <thead>
+                    <tr>
+                      <th class="ayira-items-table__th" colspan="2">{{ 'sections.cart.headings.product' | t }}</th>
+                      <th class="ayira-items-table__th small-hide">{{ 'sections.cart.headings.quantity' | t }}</th>
+                      <th class="ayira-items-table__th small-hide">{{ 'sections.cart.headings.total' | t }}</th>
+                      <th class="ayira-items-table__th"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%- for item in cart.items -%}
+                      <tr class="ayira-item{% if item.parent_relationship.parent != null %} ayira-item--nested{% endif %}" id="CartItem-{{ item.index | plus: 1 }}">
+
+                        <td class="ayira-item__img-cell">
+                          {%- if item.image -%}
+                            <a href="{{ item.url }}" class="ayira-item__img-link" tabindex="-1" aria-hidden="true">
+                              <img
+                                src="{{ item.image | image_url: width: 160 }}"
+                                class="ayira-item__img"
+                                alt="{{ item.image.alt | escape }}"
+                                loading="lazy"
+                                width="72"
+                                height="{{ 72 | divided_by: item.image.aspect_ratio | ceil }}"
+                              >
+                            </a>
+                          {%- endif -%}
+                        </td>
+
+                        <td class="ayira-item__details">
+                          {%- if settings.show_vendor -%}
+                            <p class="ayira-item__vendor">{{ item.product.vendor }}</p>
+                          {%- endif -%}
+                          <div class="cart-item__title">
+                            <a href="{{ item.url }}" class="ayira-item__name">{{ item.product.title | escape }}</a>
+                            {%- assign cart_disclosure_modal_id = 'CartDisclosureModal-cart-' | append: item.key | replace: ':', '-' -%}
+                            {%- render 'cart-disclosure-indicator',
+                              product: item.product,
+                              modal_id: cart_disclosure_modal_id
+                            -%}
+                          </div>
+                          {%- unless item.product.has_only_default_variant -%}
+                            <dl class="ayira-item__options">
+                              {%- for option in item.options_with_values -%}
+                                <div class="ayira-item__option">
+                                  <dt>{{ option.name }}:</dt>
+                                  <dd>{{ option.value }}</dd>
+                                </div>
+                              {%- endfor -%}
+                            </dl>
+                          {%- endunless -%}
+                          {%- for property in item.properties -%}
+                            {%- assign property_first_char = property.first | slice: 0 -%}
+                            {%- if property.last != blank and property_first_char != '_' -%}
+                              <p class="ayira-item__property">{{ property.first }}: {{ property.last }}</p>
+                            {%- endif -%}
+                          {%- endfor -%}
+                          <p class="ayira-item__unit-price">{{ item.original_price | money }}</p>
+                          <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                            <small class="cart-item__error-text"></small>
+                          </div>
+                        </td>
+
+                        <td class="ayira-item__qty-cell">
+                          <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                            {{ 'products.product.quantity.label' | t }}
+                          </label>
+                          {%- assign can_update = item.instructions.can_update_quantity | default: true -%}
+                          <quantity-input class="ayira-qty">
+                            <button class="ayira-qty__btn" name="minus" type="button"{% if can_update == false %} disabled{% endif %}>
+                              <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                              <span aria-hidden="true">−</span>
+                            </button>
+                            <input
+                              class="ayira-qty__input quantity__input"
+                              type="number"
+                              name="updates[]"
+                              value="{{ item.quantity }}"
+                              {%- comment -%}theme-check-disable{%- endcomment -%}
+                              data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                              min="0"
+                              data-min="{{ item.variant.quantity_rule.min }}"
+                              {%- if item.variant.quantity_rule.max != null -%}
+                                max="{{ item.variant.quantity_rule.max }}"
+                              {%- endif -%}
+                              {%- comment -%}theme-check-enable{%- endcomment -%}
+                              step="{{ item.variant.quantity_rule.increment }}"
+                              id="Quantity-{{ item.index | plus: 1 }}"
+                              data-index="{{ item.index | plus: 1 }}"
+                              data-quantity-variant-id="{{ item.variant.id }}"
+                              aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                              {% if can_update == false %}disabled{% endif %}
+                            >
+                            <button class="ayira-qty__btn" name="plus" type="button"{% if can_update == false %} disabled{% endif %}>
+                              <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                              <span aria-hidden="true">+</span>
+                            </button>
+                          </quantity-input>
+                        </td>
+
+                        <td class="ayira-item__price-cell">
+                          <span class="ayira-item__line-price">{{ item.original_line_price | money }}</span>
+                        </td>
+
+                        <td class="ayira-item__remove-cell">
+                          {%- assign can_remove = item.instructions.can_remove | default: true -%}
+                          {%- if can_remove -%}
+                            <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                              <a href="{{ item.url_to_remove }}" class="ayira-item__remove-btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                  <line x1="18" y1="6" x2="6" y2="18"/>
+                                  <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                              </a>
+                            </cart-remove-button>
+                          {%- endif -%}
+                        </td>
+
+                      </tr>
+                    {%- endfor -%}
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div class="ayira-summary-col">
+                <div class="ayira-summary">
+                  <h2 class="ayira-summary__title">{{ 'sections.cart.estimated_total' | t }}</h2>
+
+                  <div class="ayira-summary__rows">
+                    <div class="ayira-summary__row">
+                      <span>{{ 'sections.cart.headings.total' | t }}</span>
+                      <span>{{ cart.items_subtotal_price | money_with_currency }}</span>
+                    </div>
+
+                    {%- for discount in cart.cart_level_discount_applications -%}
+                      <div class="ayira-summary__row ayira-summary__row--discount">
+                        <span>{{ discount.title | escape }}</span>
+                        <span>&minus;{{ discount.total_allocated_amount | money }}</span>
+                      </div>
+                    {%- endfor -%}
+
+                    <div class="ayira-summary__row ayira-summary__row--total">
+                      <span>{{ 'sections.cart.estimated_total' | t }}</span>
+                      <span>{{ cart.total_price | money_with_currency }}</span>
+                    </div>
+                  </div>
+
+                  <small class="ayira-summary__tax-note">
+                    {%- if cart.taxes_included -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{ 'sections.cart.taxes_included_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if shop.shipping_policy.body == blank -%}
+                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {%- else -%}
+                        {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    {%- endif -%}
+                  </small>
+
+                  <button type="submit" id="checkout" class="ayira-checkout-btn" name="checkout">
+                    {{ 'sections.cart.checkout' | t }}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </button>
+
+                  {%- if additional_checkout_buttons -%}
+                    <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {%- endif -%}
+
+                  {%- unless shop.enabled_payment_types == empty -%}
+                    <div class="ayira-payment-icons">
+                      <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                      <ul class="ayira-payment-icons__list list-unstyled" role="list">
+                      {%- for type in shop.enabled_payment_types -%}
+                        <li class="ayira-payment-icons__item">
+                          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                        </li>
+                      {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endunless -%}
+
+                  <div id="cart-errors"></div>
+
+                </div>
+              </div>
+
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+      <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">
+        {{ 'accessibility.loading' | t }}
+      </p>
+    </form>
+
+  </div>
+</cart-items>
+
+
+{% schema %}
+{
+  "name": "Ayira cart items",
+  "enabled_on": {
+    "templates": ["cart"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
