@@ -1,6 +1,12 @@
 <!-- sections/ayira-header.liquid -->
 {{ 'section-ayira-header.css' | asset_url | stylesheet_tag }}
+{%- if settings.cart_type == 'notification' -%}
+  {{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 <script src="{{ 'ayira-header.js' | asset_url }}" defer="defer"></script>
+{%- if settings.cart_type == 'notification' -%}
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- liquid
   assign menu = section.settings.menu
@@ -246,6 +252,10 @@
     </div>
   </div>
 </ayira-sticky-header>
+
+{%- if settings.cart_type == 'notification' -%}
+  {%- render 'cart-notification', color_scheme: color_scheme -%}
+{%- endif -%}
 
 {% schema %}
 {
