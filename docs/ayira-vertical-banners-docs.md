@@ -1,5 +1,7 @@
 # Ayira Vertical Banners Component Documentation
 
+> Image production dimensions and safe zones are defined in [Homepage Image Dimensions](image-dimensions.md).
+
 The **Ayira Vertical Banners** section is a premium, high-end vertical category banner component designed to mimic the interactive look and feel of modern video "Reels". It displays vertical tiles arranged in a horizontal scroll track that allows users to drag/swipe horizontally on both desktop and mobile viewports. The component features a tall 9:16 aspect ratio, full-bleed background images (with solid color fallbacks), a dark top-down gradient overlay for heading legibility, and modern CSS elevation hover states.
 
 ---

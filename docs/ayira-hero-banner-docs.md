@@ -1,5 +1,7 @@
 # Ayira Hero Banner Component Documentation
 
+> Image production dimensions and safe zones are defined in [Homepage Image Dimensions](image-dimensions.md).
+
 The **Ayira Hero Banner** is a premium, fully customisable hero carousel section for the Ayira storefront. It features an infinite looping horizontal carousel layout with 100% full-width slides, simple circular dot pagination aligned below the cards, touch/swipe support, and scoped hero-specific button styles — all implemented as a native Shopify OS 2.0 custom element with no external dependencies.
 
 ---
