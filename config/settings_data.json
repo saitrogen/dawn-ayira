@@ -121,6 +121,7 @@
     "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
+    "whatsapp_order_phone": "+974 5583 9251",
     "cart_drawer_collection": "",
     "sections": {
       "main-password-header": {

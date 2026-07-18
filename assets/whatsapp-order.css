@@ -1,0 +1,15 @@
+[data-whatsapp-order][aria-busy='true'] {
+  cursor: wait;
+  opacity: 0.75;
+}
+
+.whatsapp-order-error {
+  margin: 0.8rem 0 0;
+  color: #b42318;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.whatsapp-order-error[hidden] {
+  display: none;
+}

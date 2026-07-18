@@ -1,0 +1,27 @@
+{% doc %}
+  Renders the WhatsApp ordering action for the current cart.
+
+  @param {string} id - Unique button ID.
+  @param {string} button_class - CSS classes applied to the button.
+{% enddoc %}
+
+<button
+  type="button"
+  id="{{ id }}"
+  class="{{ button_class }}"
+  data-whatsapp-order
+  data-phone="{{ settings.whatsapp_order_phone | escape }}"
+  data-shop-name="{{ shop.name | escape }}"
+  data-message-prefix="{{ settings.whatsapp_order_message | escape }}"
+  data-instructions="{{ settings.whatsapp_order_instructions | escape }}"
+  data-cart-url="{{ routes.cart_url }}"
+  data-loading-label="{{ 'sections.cart.whatsapp_preparing' | t | escape }}"
+  data-phone-error="{{ 'sections.cart.whatsapp_phone_error' | t | escape }}"
+  data-empty-error="{{ 'sections.cart.whatsapp_empty_error' | t | escape }}"
+  data-request-error="{{ 'sections.cart.whatsapp_request_error' | t | escape }}"
+>
+  <span data-whatsapp-order-label>
+    {{ settings.whatsapp_order_button_label | default: 'Order via WhatsApp' | escape }}
+  </span>
+</button>
+<p class="whatsapp-order-error" data-whatsapp-order-error role="alert" hidden></p>
