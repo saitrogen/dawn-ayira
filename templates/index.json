@@ -15,27 +15,27 @@
         "slide_JVF4Wh": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_29_02_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
-            "heading": "Fresh basics, delivered the same day.",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h2",
-            "text": "Groceries, drinks and snacks — at your door in under two hours.",
+            "text": "",
             "content_position_vertical": "middle",
             "content_position_horizontal": "center",
             "content_alignment": "center",
-            "button_label_1": "Shop weekly specials",
+            "button_label_1": "",
             "button_link_1": "",
             "button_style_secondary_1": false,
-            "button_label_2": "Browse all",
+            "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": true
+            "button_style_secondary_2": false
           }
         },
         "slide_nKnCyR": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/file_0000000030e481fba6461599da80de21.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -149,7 +149,6 @@
         "banner_67hQgN": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
@@ -159,7 +158,6 @@
         "banner_L3CTCA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
@@ -169,7 +167,6 @@
         "banner_qLzUfQ": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
@@ -179,7 +176,6 @@
         "banner_UFf97P": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
@@ -189,7 +185,6 @@
         "banner_3igzaw": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#d4a737",
@@ -221,7 +216,6 @@
         "banner_MrX7hb": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jul_18_2026_07_31_23_PM.png",
             "title": "Chips & Crisps",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
@@ -231,7 +225,6 @@
         "banner_wK4T84": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chocolate-confectionery-category.png",
             "title": "Chocolate",
             "link": "shopify://collections/chocolate-confectionery",
             "background_color": "#b42318",
@@ -241,7 +234,6 @@
         "banner_qMB9bm": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chewing-gum-mints-category.png",
             "title": "Gum & Mints",
             "link": "shopify://collections/chewing-gum-mints",
             "background_color": "#0d4f47",
@@ -251,7 +243,6 @@
         "banner_pHqHAQ": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chips-crisps-category.png",
             "title": "Chips & Crisps",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
@@ -261,7 +252,6 @@
         "banner_rWcnbA": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chocolate-confectionery-category.png",
             "title": "Chocolate",
             "link": "shopify://collections/chocolate-confectionery",
             "background_color": "#b42318",
