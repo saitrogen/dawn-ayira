@@ -281,9 +281,7 @@
                   </div>
 
                   <small class="ayira-summary__tax-note">
-                    {%- if settings.whatsapp_ordering_enabled and settings.enable_shopify_checkout == false -%}
-                      {{ 'sections.cart.whatsapp_total_note' | t }}
-                    {%- elsif cart.taxes_included -%}
+                    {%- if cart.taxes_included -%}
                       {%- if shop.shipping_policy.body == blank -%}
                         {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
                       {%- else -%}
@@ -298,41 +296,32 @@
                     {%- endif -%}
                   </small>
 
-                  {%- if settings.whatsapp_ordering_enabled -%}
-                    {% render 'whatsapp-order-button',
-                      id: 'AyiraWhatsAppOrder',
-                      button_class: 'ayira-checkout-btn ayira-whatsapp-order-btn'
-                    %}
+                  <button type="submit" id="checkout" class="ayira-checkout-btn" name="checkout">
+                    {{ 'sections.cart.checkout' | t }}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </button>
+
+                  {%- if additional_checkout_buttons -%}
+                    <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
                   {%- endif -%}
 
-                  {%- if settings.enable_shopify_checkout -%}
-                    <button type="submit" id="checkout" class="ayira-checkout-btn" name="checkout">
-                      {{ 'sections.cart.checkout' | t }}
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                        <polyline points="12 5 19 12 12 19"/>
-                      </svg>
-                    </button>
-
-                    {%- if additional_checkout_buttons -%}
-                      <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
-                        {{ content_for_additional_checkout_buttons }}
-                      </div>
-                    {%- endif -%}
-
-                    {%- unless shop.enabled_payment_types == empty -%}
-                      <div class="ayira-payment-icons">
-                        <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-                        <ul class="ayira-payment-icons__list list-unstyled" role="list">
-                        {%- for type in shop.enabled_payment_types -%}
-                          <li class="ayira-payment-icons__item">
-                            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                          </li>
-                        {%- endfor -%}
-                        </ul>
-                      </div>
-                    {%- endunless -%}
-                  {%- endif -%}
+                  {%- unless shop.enabled_payment_types == empty -%}
+                    <div class="ayira-payment-icons">
+                      <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                      <ul class="ayira-payment-icons__list list-unstyled" role="list">
+                      {%- for type in shop.enabled_payment_types -%}
+                        <li class="ayira-payment-icons__item">
+                          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                        </li>
+                      {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endunless -%}
 
                   <div id="cart-errors"></div>
 
