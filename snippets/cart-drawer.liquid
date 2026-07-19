@@ -575,26 +575,18 @@
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
-          {%- if settings.whatsapp_ordering_enabled -%}
-            {% render 'whatsapp-order-button',
-              id: 'CartDrawer-WhatsAppOrder',
-              button_class: 'cart__checkout-button button'
-            %}
-          {%- endif -%}
-          {%- if settings.enable_shopify_checkout -%}
-            <button
-              type="submit"
-              id="CartDrawer-Checkout"
-              class="cart__checkout-button button"
-              name="checkout"
-              form="CartDrawer-Form"
-              {% if cart == empty %}
-                disabled
-              {% endif %}
-            >
-              {{ 'sections.cart.checkout' | t }}
-            </button>
-          {%- endif -%}
+          <button
+            type="submit"
+            id="CartDrawer-Checkout"
+            class="cart__checkout-button button"
+            name="checkout"
+            form="CartDrawer-Form"
+            {% if cart == empty %}
+              disabled
+            {% endif %}
+          >
+            {{ 'sections.cart.checkout' | t }}
+          </button>
         </div>
       </div>
     </div>

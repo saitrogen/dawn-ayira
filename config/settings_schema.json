@@ -1460,53 +1460,6 @@
       },
       {
         "type": "header",
-        "content": "t:settings_schema.cart.settings.whatsapp_ordering.header"
-      },
-      {
-        "type": "checkbox",
-        "id": "whatsapp_ordering_enabled",
-        "label": "t:settings_schema.cart.settings.whatsapp_ordering.enabled.label",
-        "info": "t:settings_schema.cart.settings.whatsapp_ordering.enabled.info",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "whatsapp_order_phone",
-        "label": "t:settings_schema.cart.settings.whatsapp_ordering.phone.label",
-        "info": "t:settings_schema.cart.settings.whatsapp_ordering.phone.info"
-      },
-      {
-        "type": "text",
-        "id": "whatsapp_order_button_label",
-        "label": "t:settings_schema.cart.settings.whatsapp_ordering.button_label.label",
-        "default": "Order via WhatsApp"
-      },
-      {
-        "type": "textarea",
-        "id": "whatsapp_order_message",
-        "label": "t:settings_schema.cart.settings.whatsapp_ordering.message.label",
-        "info": "t:settings_schema.cart.settings.whatsapp_ordering.message.info",
-        "default": "Hello Ayira, I would like to place this order:"
-      },
-      {
-        "type": "textarea",
-        "id": "whatsapp_order_instructions",
-        "label": "t:settings_schema.cart.settings.whatsapp_ordering.instructions.label",
-        "default": "Please confirm availability, delivery charges, and the final total."
-      },
-      {
-        "type": "header",
-        "content": "t:settings_schema.cart.settings.shopify_checkout.header"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_shopify_checkout",
-        "label": "t:settings_schema.cart.settings.shopify_checkout.enabled.label",
-        "info": "t:settings_schema.cart.settings.shopify_checkout.enabled.info",
-        "default": false
-      },
-      {
-        "type": "header",
         "content": "t:settings_schema.cart.settings.cart_drawer.header"
       },
       {

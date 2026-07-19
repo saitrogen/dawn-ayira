@@ -339,34 +339,6 @@
         "show_cart_note": {
           "label": "Cart note"
         },
-        "whatsapp_ordering": {
-          "header": "WhatsApp ordering",
-          "enabled": {
-            "label": "Use WhatsApp ordering",
-            "info": "Makes WhatsApp the primary storefront ordering action."
-          },
-          "phone": {
-            "label": "WhatsApp phone number",
-            "info": "Include the country code, for example +97412345678."
-          },
-          "button_label": {
-            "label": "Button label"
-          },
-          "message": {
-            "label": "Message introduction",
-            "info": "Product lines and the estimated total are added automatically."
-          },
-          "instructions": {
-            "label": "Message closing instructions"
-          }
-        },
-        "shopify_checkout": {
-          "header": "Shopify checkout recovery",
-          "enabled": {
-            "label": "Show Shopify checkout",
-            "info": "Keep disabled for WhatsApp-only ordering. Enable to restore Shopify and accelerated checkout controls."
-          }
-        },
         "cart_drawer": {
           "header": "Cart drawer",
           "collection": {
