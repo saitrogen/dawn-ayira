@@ -15,7 +15,7 @@
         "slide_JVF4Wh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_02_29_02_PM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_20_2026_12_20_17_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -36,6 +36,7 @@
         "slide_nKnCyR": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_20_2026_12_49_03_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -61,7 +62,7 @@
       "name": "Ayira Hero Banner",
       "settings": {
         "autoplay": true,
-        "autoplay_speed": 5,
+        "autoplay_speed": 3,
         "image_height": "medium",
         "color_scheme": "",
         "padding_top": 16,
