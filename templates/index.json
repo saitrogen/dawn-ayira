@@ -142,149 +142,43 @@
         "padding_bottom": 0
       }
     },
-    "ayira_vertical_banners_i6h748": {
-      "type": "ayira-vertical-banners",
+    "ayira_collection_list_shop": {
+      "type": "ayira-collection-list",
       "blocks": {
-        "banner_67hQgN": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
+        "collection_candy": {
+          "type": "collection",
+          "settings": { "collection": "candy-sweets" }
         },
-        "banner_L3CTCA": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
+        "collection_chips": {
+          "type": "collection",
+          "settings": { "collection": "chips-crisps" }
         },
-        "banner_qLzUfQ": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
+        "collection_chocolate": {
+          "type": "collection",
+          "settings": { "collection": "chocolate-confectionery" }
         },
-        "banner_UFf97P": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_3igzaw": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/candy-sweets-category.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
+        "collection_gum": {
+          "type": "collection",
+          "settings": { "collection": "chewing-gum-mints" }
         }
       },
       "block_order": [
-        "banner_67hQgN",
-        "banner_L3CTCA",
-        "banner_qLzUfQ",
-        "banner_UFf97P",
-        "banner_3igzaw"
+        "collection_candy",
+        "collection_chips",
+        "collection_chocolate",
+        "collection_gum"
       ],
+      "name": "Ayira Collection List",
       "settings": {
-        "title": "Shop",
-        "eyebrow": "browse",
-        "show_view_all": false,
-        "view_all_label": "view",
-        "view_all_link": "",
-        "color_scheme": "scheme-5",
-        "padding_top": 28,
-        "padding_bottom": 0
-      }
-    },
-    "ayira_vertical_banners_837MYD": {
-      "type": "ayira-vertical-banners",
-      "blocks": {
-        "banner_MrX7hb": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Jul_18_2026_07_31_23_PM.png",
-            "title": "Chips & Crisps",
-            "link": "shopify://collections/chips-crisps",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_wK4T84": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/chocolate-confectionery-category.png",
-            "title": "Chocolate",
-            "link": "shopify://collections/chocolate-confectionery",
-            "background_color": "#b42318",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_qMB9bm": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/chewing-gum-mints-category.png",
-            "title": "Gum & Mints",
-            "link": "shopify://collections/chewing-gum-mints",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_pHqHAQ": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/chips-crisps-category.png",
-            "title": "Chips & Crisps",
-            "link": "shopify://collections/chips-crisps",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "banner_rWcnbA": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/chocolate-confectionery-category.png",
-            "title": "Chocolate",
-            "link": "shopify://collections/chocolate-confectionery",
-            "background_color": "#b42318",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "banner_MrX7hb",
-        "banner_wK4T84",
-        "banner_qMB9bm",
-        "banner_pHqHAQ",
-        "banner_rWcnbA"
-      ],
-      "name": "Ayira Vertical Banners",
-      "settings": {
-        "title": "Shop by Category",
-        "eyebrow": "Browse",
+        "eyebrow": "Shop by aisle",
+        "title": "Browse our collections",
         "show_view_all": true,
-        "view_all_label": "All Categories",
-        "view_all_link": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "view_all_label": "All collections",
+        "show_collection_title": true,
+        "show_product_count": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "featured_collection_TRJ48d": {
@@ -378,8 +272,7 @@
   "order": [
     "ayira_hero_banner_nLAPLr",
     "ayira_collection_icon_list_y9zUpF",
-    "ayira_vertical_banners_i6h748",
-    "ayira_vertical_banners_837MYD",
+    "ayira_collection_list_shop",
     "featured_collection_TRJ48d",
     "ayira_hero_banner_Ry3KJH"
   ]
