@@ -77,7 +77,7 @@
             {% endif %}
           >
             {%- comment -%} Circular image / placeholder {%- endcomment -%}
-            <div class="ayira-collection-icon-item__circle">
+            <div class="ayira-collection-icon-item__media">
               {%- if col != blank and col.featured_image != nil -%}
                 <img
                   srcset="
@@ -108,7 +108,7 @@
             </div>
 
             {%- comment -%} Collection Name / Label {%- endcomment -%}
-            <p class="ayira-collection-icon-item__label">
+            <p class="ayira-collection-icon-item__label{% if section.settings.show_collection_title == false %} visually-hidden{% endif %}">
               {%- if col != blank -%}
                 {{- col.title | escape -}}
               {%- else -%}
@@ -136,14 +136,14 @@
             role="listitem"
             aria-hidden="true"
           >
-            <div class="ayira-collection-icon-item__circle">
+            <div class="ayira-collection-icon-item__media">
               {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
               {%- assign placeholder_svg = 'collection-apparel-' | append: placeholder_index -%}
               <div class="ayira-collection-icon-item__placeholder-svg">
                 {{ placeholder_svg | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
             </div>
-            <p class="ayira-collection-icon-item__label">
+            <p class="ayira-collection-icon-item__label{% if section.settings.show_collection_title == false %} visually-hidden{% endif %}">
               {{- 'onboarding.collection_title' | t -}}
             </p>
             {%- if section.settings.show_product_count -%}
@@ -205,6 +205,13 @@
     {
       "type": "header",
       "content": "Card Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Show collection title",
+      "default": true,
+      "info": "Turn off when the artwork already names the collection. The title stays available to screen readers."
     },
     {
       "type": "checkbox",

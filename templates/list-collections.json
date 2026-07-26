@@ -3,11 +3,12 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
+        "eyebrow": "Shop by aisle",
         "title": "Collections",
         "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "show_product_count": true,
+        "columns_desktop": 4,
+        "columns_mobile": "3"
       }
     }
   },

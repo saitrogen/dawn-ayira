@@ -2,6 +2,12 @@
    Ayira Structural Overrides
    ========================================================= */
 
+/* One crop for every collection image tile, so the same
+   featured_image is framed identically wherever it appears. */
+:root {
+  --ayira-collection-ratio: 4 / 5;
+}
+
 /* Overriding structural borders cleanly by targeting Dawn's specific components */
 .card, 
 .card-wrapper .card--card,

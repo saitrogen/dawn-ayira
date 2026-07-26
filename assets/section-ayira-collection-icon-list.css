@@ -1,7 +1,7 @@
 /* ==========================================================
    section-ayira-collection-icon-list.css
    Ayira Collection Icon List — Horizontal native scroll row
-   with circle icon tiles and labels directly underneath
+   with rounded-square icon tiles and labels directly underneath
    ========================================================== */
 
 /* ── Section wrapper ──────────────────────────────────────── */
@@ -117,12 +117,12 @@
   }
 }
 
-/* ── Circle wrap ──────────────────────────────────────────── */
-.ayira-collection-icon-item__circle {
+/* ── Icon wrap (rounded square: shows the full 1:1 crop) ──── */
+.ayira-collection-icon-item__media {
   width: min(8rem, 100%);
   height: auto;
   aspect-ratio: 1;
-  border-radius: 50%;
+  border-radius: 16px;
   overflow: hidden;
   background-color: rgba(var(--color-foreground), 0.03);
   border: 2px solid rgba(var(--color-foreground), 0.06);
@@ -138,7 +138,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .ayira-collection-icon-item__circle {
+  .ayira-collection-icon-item__media {
     width: 11rem;
     height: 11rem;
     margin-bottom: 1.2rem;
@@ -146,7 +146,7 @@
 }
 
 /* Hover & Focus state */
-.ayira-collection-icon-item:hover .ayira-collection-icon-item__circle {
+.ayira-collection-icon-item:hover .ayira-collection-icon-item__media {
   transform: translateY(-3px);
   border-color: rgb(var(--color-button));
   box-shadow: 0 8px 20px rgba(var(--color-button), 0.18);
@@ -156,7 +156,7 @@
   outline: none;
 }
 
-.ayira-collection-icon-item:focus-visible .ayira-collection-icon-item__circle {
+.ayira-collection-icon-item:focus-visible .ayira-collection-icon-item__media {
   border-color: rgb(var(--color-button));
   box-shadow: 0 0 0 3px rgba(var(--color-button), 0.3);
 }

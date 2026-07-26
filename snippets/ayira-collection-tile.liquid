@@ -1,0 +1,83 @@
+{% comment %}
+  Renders an Ayira collection tile: full-bleed image, gradient overlay,
+  name, optional product count, circle arrow.
+
+  Accepts:
+  - col: {Object} Collection. Blank renders a placeholder tile.
+  - show_title: {Boolean} Show the collection name. Default true; pass false to
+    keep it for screen readers only (optional)
+  - show_count: {Boolean} Show product count (optional)
+  - animation_order: {Number} Cascade order for scroll reveal (optional)
+  - block_attributes: {String} block.shopify_attributes (optional)
+
+  Usage:
+  {% render 'ayira-collection-tile', col: collection, show_count: true %}
+{% endcomment %}
+
+<a
+  href="{% if col != blank %}{{ col.url }}{% else %}{{ routes.collections_url }}{% endif %}"
+  class="ayira-collection-tile{% if col == blank or col.featured_image == nil %} ayira-collection-tile--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  {{ block_attributes }}
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+    style="--animation-order: {{ animation_order | default: 1 }};"
+  {% endif %}
+>
+  {%- if col != blank and col.featured_image != nil -%}
+    <img
+      srcset="
+        {%- if col.featured_image.width >= 330 -%}{{ col.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+        {%- if col.featured_image.width >= 500 -%}{{ col.featured_image | image_url: width: 500 }} 500w,{%- endif -%}
+        {%- if col.featured_image.width >= 750 -%}{{ col.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+        {{ col.featured_image | image_url }} {{ col.featured_image.width }}w
+      "
+      src="{{ col.featured_image | image_url: width: 500 }}"
+      alt=""
+      width="{{ col.featured_image.width }}"
+      height="{{ col.featured_image.height }}"
+      loading="lazy"
+      class="ayira-collection-tile__img motion-reduce"
+    >
+  {%- else -%}
+    <div class="ayira-collection-tile__placeholder-icon" aria-hidden="true">
+      {%- if col != blank -%}
+        {{- col.title | slice: 0, 1 | upcase -}}
+      {%- else -%}
+        {%- assign placeholder_index = animation_order | default: 1 | modulo: 4 | plus: 1 -%}
+        {{ 'collection-apparel-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if show_title != false or show_count -%}
+    <div class="ayira-collection-tile__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="ayira-collection-tile__content">
+    {%- comment -%}
+      Hidden titles still name the link for screen readers.
+    {%- endcomment -%}
+    <p class="ayira-collection-tile__name{% if show_title == false %} visually-hidden{% endif %}">
+      {%- if col != blank -%}
+        {{- col.title | escape -}}
+      {%- else -%}
+        {{- 'onboarding.collection_title' | t -}}
+      {%- endif -%}
+    </p>
+    {%- if show_count -%}
+      <p class="ayira-collection-tile__count">
+        {%- if col != blank -%}
+          {{- col.all_products_count }} {{ 'sections.ayira_collection_list.items' | t -}}
+        {%- else -%}
+          {{- 'sections.ayira_collection_list.items_placeholder' | t -}}
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+  </div>
+
+  <span class="ayira-collection-tile__arrow" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</a>
