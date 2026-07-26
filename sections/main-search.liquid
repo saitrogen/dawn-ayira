@@ -3,6 +3,10 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-search.css' | asset_url | stylesheet_tag }}
 
+{%- unless section.settings.ayira_card_style == 'none' -%}
+  {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
   {{ 'component-facets.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>

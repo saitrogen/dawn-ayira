@@ -4,6 +4,10 @@
 {{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
+{%- unless section.settings.ayira_card_style == 'none' -%}
+  {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -100,6 +104,7 @@
                 extend_height: true,
                 placeholder_image: placeholder_image,
                 skip_styles: skip_card_product_styles,
+                section_id: section.id,
                 ayira_card_style: section.settings.ayira_card_style
               %}
               {% assign skip_card_product_styles = true %}
