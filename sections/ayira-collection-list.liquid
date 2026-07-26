@@ -20,34 +20,12 @@
 >
   <div class="ayira-collection-list page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
 
-    {%- comment -%} ── Section Header ────────────────────────────────────── {%- endcomment -%}
-    <div class="ayira-collection-list__header">
-      <div class="ayira-collection-list__header-left">
-        {%- if section.settings.eyebrow != blank -%}
-          <span class="ayira-collection-list__eyebrow">
-            {{- section.settings.eyebrow | escape -}}
-          </span>
-        {%- endif -%}
-        {%- if section.settings.title != blank -%}
-          <h2 class="ayira-collection-list__title">
-            {{- section.settings.title -}}
-          </h2>
-        {%- endif -%}
-      </div>
-
-      {%- if section.settings.show_view_all -%}
-        <a
-          href="{{ routes.collections_url }}"
-          class="ayira-collection-list__view-all"
-          aria-label="{{ 'sections.collection_list.view_all' | t }}"
-        >
-          {{- section.settings.view_all_label | default: 'All collections' | escape -}}
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      {%- endif -%}
-    </div>
+    {% render 'ayira-section-header',
+      eyebrow: section.settings.eyebrow,
+      title: section.settings.title,
+      show_view_all: section.settings.show_view_all,
+      view_all_label: section.settings.view_all_label
+    %}
 
     {%- comment -%} ── Collection Tiles Track ─────────────────────────── {%- endcomment -%}
     <div class="ayira-collection-list__track">

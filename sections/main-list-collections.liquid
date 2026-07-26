@@ -17,12 +17,15 @@
 -%}
 
 <div class="page-width ayira-collections-index">
-  <div class="ayira-collection-list__header">
-    <div class="ayira-collection-list__header-left">
+  {%- comment -%}
+    Same look as the shared section header, but the page title is an h1.
+  {%- endcomment -%}
+  <div class="ayira-section-header">
+    <div class="ayira-section-header__text">
       {%- if section.settings.eyebrow != blank -%}
-        <span class="ayira-collection-list__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+        <span class="ayira-section-header__eyebrow">{{ section.settings.eyebrow | escape }}</span>
       {%- endif -%}
-      <h1 class="ayira-collection-list__title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <h1 class="ayira-section-header__title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         {{ section.settings.title }}
       </h1>
     </div>

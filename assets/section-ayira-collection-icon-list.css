@@ -9,64 +9,6 @@
   overflow: hidden; /* clip horizontal scroll overflow */
 }
 
-/* ── Section header ───────────────────────────────────────── */
-.ayira-collection-icon-list__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.6rem;
-  margin-bottom: 2.4rem;
-}
-
-.ayira-collection-icon-list__header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.ayira-collection-icon-list__eyebrow {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgb(var(--color-button));
-  line-height: 1;
-}
-
-.ayira-collection-icon-list__title {
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: rgb(var(--color-foreground));
-  margin: 0;
-  font-family: var(--font-heading-family, inherit);
-}
-
-.ayira-collection-icon-list__view-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: rgb(var(--color-foreground));
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-bottom: 0.4rem;
-  transition: color 0.2s ease;
-}
-
-.ayira-collection-icon-list__view-all:hover {
-  color: rgb(var(--color-button));
-}
-
-.ayira-collection-icon-list__view-all svg {
-  transition: transform 0.2s ease;
-}
-
-.ayira-collection-icon-list__view-all:hover svg {
-  transform: translateX(3px);
-}
 
 /* ── Scroll track (horizontal swipable) ──────────────────── */
 .ayira-collection-icon-list__track {
