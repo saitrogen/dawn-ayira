@@ -75,6 +75,14 @@
             endif
           -%}
           <div class="ay-atc-row">
+            {%- comment -%}
+              Keeps Dawn's product-info.js hooks (#Quantity-Form-, .product-form__quantity)
+              on the quantity the customer actually sees.
+            {%- endcomment -%}
+            <div id="Quantity-Form-{{ section_id }}" class="product-form__quantity">
+            <label class="visually-hidden" for="Quantity-{{ section_id }}">
+              {{- 'products.product.quantity.input_label' | t: product: product.title | escape -}}
+            </label>
             <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
               <button class="quantity__button" name="minus" type="button">
                 <span class="visually-hidden">
@@ -109,6 +117,7 @@
                 </span>
               </button>
             </quantity-input>
+            </div>
 
             <button
               id="ProductSubmitButton-{{ section_id }}"

@@ -111,9 +111,10 @@
   cursor: not-allowed;
 }
 
-/* Hide standalone quantity selector block on PDP */
-.product-form__quantity {
-  display: none !important;
+/* Quantity lives inside the buy row, next to Add to cart */
+.ay-atc-row .product-form__quantity {
+  margin: 0 !important;
+  flex-shrink: 0 !important;
 }
 
 /* Quantity selector override */
