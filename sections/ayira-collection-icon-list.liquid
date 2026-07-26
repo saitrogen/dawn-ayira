@@ -51,20 +51,9 @@
     {%- comment -%} ── Collection Icon Track ─────────────────────────── {%- endcomment -%}
     {%- liquid
       assign block_count = section.blocks.size
-      assign row_count = 1
-      if block_count > 24
-        assign row_count = 5
-      elsif block_count > 18
-        assign row_count = 4
-      elsif block_count > 12
-        assign row_count = 3
-      elsif block_count > 6
-        assign row_count = 2
-      endif
     -%}
     <div
       class="ayira-collection-icon-list__track"
-      style="--row-count: {{ row_count }};"
       role="list"
       aria-label="{{ section.settings.title | default: 'Collections' | escape }}"
     >

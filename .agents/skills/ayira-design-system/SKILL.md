@@ -96,6 +96,15 @@ Do no design harm.
 - Exact durations by component remain undefined; do not create a new motion
   convention without confirmation.
 
+### Collection icons
+
+- On mobile, present collection icons as three columns by two rows per
+  viewport.
+- On larger viewports, present collection icons in one horizontal row.
+- Keep the collection track horizontally swipeable or scrollable at every
+  viewport size. Continue overflowing collections horizontally without
+  shrinking the confirmed layout.
+
 ## Non-negotiable safety
 
 - Preserve Dawn custom elements, IDs, classes, `data-*` attributes, live
