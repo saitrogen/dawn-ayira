@@ -14,15 +14,7 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_UXTmY8": {
-          "type": "announcement",
-          "settings": {
-            "text": "Gumes,",
-            "link": "shopify://collections/gums",
-            "link_label": "shop now"
-          }
-        },
-        "announcement-bar-0": {
+        "announcement_c33nHJ": {
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
@@ -32,12 +24,11 @@
         }
       },
       "block_order": [
-        "announcement_UXTmY8",
-        "announcement-bar-0"
+        "announcement_c33nHJ"
       ],
       "settings": {
-        "layout_mode": "marquee",
-        "marquee_speed": 20,
+        "layout_mode": "carousel",
+        "marquee_speed": 12,
         "auto_rotate": true,
         "change_slides_speed": 3,
         "color_scheme": "scheme-3",
