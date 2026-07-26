@@ -21,7 +21,10 @@
   }
 </style>
 
-<ayira-sticky-header data-sticky-type="{{ sticky_type }}" class="ayira-header-wrapper color-{{ color_scheme }} gradient">
+<ayira-sticky-header
+  data-sticky-type="{{ sticky_type }}"
+  class="ayira-header-wrapper color-{{ color_scheme }} gradient{% if section.settings.logo_light != blank %} has-light-logo{% endif %}"
+>
   <header class="ayira-header">
     
     <!-- DESKTOP ROW 1 -->

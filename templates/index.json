@@ -130,7 +130,6 @@
         "collection_FMhBic",
         "collection_fw7mae"
       ],
-      "disabled": true,
       "name": "Ayira Collection Icons",
       "settings": {
         "eyebrow": "",
@@ -205,13 +204,13 @@
         "banner_3igzaw"
       ],
       "settings": {
-        "title": "",
-        "eyebrow": "",
+        "title": "Shop",
+        "eyebrow": "browse",
         "show_view_all": false,
-        "view_all_label": "",
+        "view_all_label": "view",
         "view_all_link": "",
         "color_scheme": "scheme-5",
-        "padding_top": 0,
+        "padding_top": 28,
         "padding_bottom": 0
       }
     },

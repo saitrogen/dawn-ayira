@@ -9,7 +9,7 @@
 .footer, 
 .quantity__input,
 .cart-drawer {
-  border-color: rgb(var(--color-border-subtle));
+  border-color: var(--color-border-subtle);
 }
 
 /* Map Dawn's layout rules to our custom forest-tinted shadows */

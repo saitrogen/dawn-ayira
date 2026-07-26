@@ -113,7 +113,7 @@
                 assign title = 'Grocery'
               when 2
                 assign bg_color = '#B42318'
-                assign title = 'Fresh'
+                assign title = 'Household'
               when 3
                 assign bg_color = '#0D4F47'
                 assign title = 'Snacks'
@@ -122,7 +122,7 @@
                 assign title = 'Beverages'
               else
                 assign bg_color = '#0D4F47'
-                assign title = 'Frozen'
+                assign title = 'Personal care'
             endcase
           -%}
           <li class="ayira-vertical-banners__track-item">
@@ -170,7 +170,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent, #D4A737);
+  color: var(--ayira-color-accent);
   line-height: 1;
 }
 
@@ -178,7 +178,7 @@
   font-size: clamp(1.75rem, 3.5vw, 2.6rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--color-ink-900, #101828);
+  color: var(--ayira-color-heading);
   margin: 0;
   font-family: var(--font-heading-family, inherit);
 }
@@ -189,7 +189,7 @@
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-ink-900, #101828);
+  color: var(--ayira-color-text);
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
@@ -198,7 +198,7 @@
 }
 
 .ayira-vertical-banners__view-all:hover {
-  color: var(--accent, #D4A737);
+  color: var(--ayira-color-accent);
 }
 
 .ayira-vertical-banners__view-all svg {
