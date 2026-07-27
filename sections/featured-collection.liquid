@@ -4,10 +4,6 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
-{%- unless section.settings.ayira_card_style == 'none' -%}
-  {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
-
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -43,11 +39,16 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign products_to_display = section.settings.collection.all_products_count
+  assign featured_collection = section.settings.collection
+  assign collection_products = featured_collection.products
+  assign collection_products_count = featured_collection.products_count
+  assign products_to_display = section.settings.products_to_show
+  assign more_in_collection = false
 
-  if section.settings.collection.all_products_count > section.settings.products_to_show
-    assign products_to_display = section.settings.products_to_show
+  if collection_products_count > products_to_display
     assign more_in_collection = true
+  else
+    assign products_to_display = collection_products_count
   endif
 
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
@@ -106,39 +107,39 @@
       >
         {% assign skip_card_product_styles = false %}
 
-        {%- if section.settings.collection.products.size > 0 -%}
+        {%- if collection_products.size > 0 -%}
           {% assign lazy_load = false %}
-          {% paginate section.settings.collection.products by section.settings.products_to_show %}
-            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-              {% if lazy_load == false and forloop.index > max_columns_to_show %}
-                {% assign lazy_load = true %}
+          {%- for product in collection_products limit: products_to_display -%}
+            {% if lazy_load == false and forloop.index > max_columns_to_show %}
+              {% assign lazy_load = true %}
+            {% endif %}
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
               {% endif %}
-              <li
-                id="Slide-{{ section.id }}-{{ forloop.index }}"
-                class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {% render 'card-product',
-                  card_product: product,
-                  media_aspect_ratio: section.settings.image_ratio,
-                  image_shape: section.settings.image_shape,
-                  lazy_load: lazy_load,
-                  show_secondary_image: section.settings.show_secondary_image,
-                  show_vendor: section.settings.show_vendor,
-                  show_rating: section.settings.show_rating,
-                  skip_styles: skip_card_product_styles,
-                  section_id: section.id,
-                  quick_add: section.settings.quick_add,
-                  ayira_card_style: section.settings.ayira_card_style,
-                  product_view_context: 'collection'
-                %}
-              </li>
-              {%- assign skip_card_product_styles = true -%}
-            {%- endfor -%}
-          {% endpaginate %}
+            >
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                lazy_load: lazy_load,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: skip_card_product_styles,
+                section_id: section.id,
+                quick_add: section.settings.quick_add,
+                ayira_card_style: section.settings.ayira_card_style,
+                columns_desktop: section.settings.columns_desktop,
+                columns_mobile: columns_mobile_int,
+                product_view_context: 'collection'
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {%- endfor -%}
         {%- else -%}
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li

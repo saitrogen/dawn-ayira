@@ -16,11 +16,25 @@
   - horizontal_class: {Boolean} Add a card--horizontal class (optional)
   - placeholder_image: {String} Placeholder when no product exists (optional)
   - product_view_context: {String} Event tracking context (optional)
+  - skip_styles: {Boolean} Don't include component styles, for cards after the
+    first in a loop. Default: false (optional)
+  - columns_desktop: {Number} Grid columns at desktop, drives the image `sizes`
+    attribute. Default: 4 (optional)
+  - columns_mobile: {Number} Grid columns at mobile, drives the image `sizes`
+    attribute. Default: 2 (optional)
 
   Usage:
   {% render 'ayira-card-product', card_product: product, ayira_card_style: 'compact' %}
 {% endcomment %}
   {%- comment -%} Ayira branded product card branch {%- endcomment -%}
+  {%- unless skip_styles -%}
+    {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
+    {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {%- if quick_add == 'bulk' -%}
+      {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+      {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+  {%- endunless -%}
   {%- liquid
     assign ratio = 1
     if card_product.featured_media and media_aspect_ratio == 'portrait'
@@ -31,7 +45,15 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign cols_desktop = columns_desktop | default: 4
+    assign cols_mobile = columns_mobile | default: 2
+    assign cols_tablet = cols_desktop | at_most: 3
+    assign card_max_width = settings.page_width | minus: 130 | divided_by: cols_desktop
   -%}
+  {%- capture card_sizes -%}
+    (min-width: {{ settings.page_width }}px) {{ card_max_width }}px, (min-width: 990px) calc((100vw - 130px) / {{ cols_desktop }}), (min-width: 750px) calc((100vw - 120px) / {{ cols_tablet }}), calc((100vw - 35px) / {{ cols_mobile }})
+  {%- endcapture -%}
   {%- if card_product and card_product != empty -%}
     <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
     <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }}{% if horizontal_class %} ayira-card--horizontal{% endif %} underline-links-hover">
@@ -53,7 +75,7 @@
                 {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
               "
               src="{{ card_product.featured_media | image_url: width: 360 }}"
-              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              sizes="{{ card_sizes }}"
               alt="{{ card_product.featured_media.alt | escape }}"
               {% unless lazy_load == false %}
                 loading="lazy"
@@ -72,7 +94,7 @@
                   {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w
                 "
                 src="{{ card_product.media[1] | image_url: width: 360 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                sizes="{{ card_sizes }}"
                 alt="{{ card_product.media[1].alt | escape }}"
                 loading="lazy"
                 width="{{ card_product.media[1].width }}"
@@ -90,12 +112,12 @@
               <span class="ay-badge sold-out">{{ 'products.product.sold_out' | t }}</span>
             {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
               {%- assign pct = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
-              <span class="ay-badge sale">Save {{ pct }}%</span>
+              <span class="ay-badge sale">{{ 'ayira.card.save_percent' | t: percent: pct }}</span>
             {%- endif -%}
             
             {%- comment -%} Check for a 'new' tag/metafield {%- endcomment -%}
             {%- if card_product.tags contains 'new' or card_product.tags contains 'New' -%}
-              <span class="ay-badge new">New</span>
+              <span class="ay-badge new">{{ 'ayira.card.new' | t }}</span>
             {%- endif -%}
           </div>
         </a>
@@ -135,7 +157,7 @@
             {%- if quick_add == 'bulk' and card_product.variants_count == 1 -%}
               <quick-add-bulk
                 data-min="{{ card_product.selected_or_first_available_variant.quantity_rule.min }}"
-                id="quick-add-bulk-{{ card_product.selected_or_first_available_variant.id }}-{{ section.id }}"
+                id="quick-add-bulk-{{ card_product.selected_or_first_available_variant.id }}-{{ section_id }}"
                 class="quick-add-bulk ay-prod-bulk"
                 data-index="{{ card_product.selected_or_first_available_variant.id }}"
               >
@@ -189,7 +211,7 @@
                     </div>
                   </quick-add-modal>
                 {%- else -%}
-                  <product-form data-section-id="{{ section.id }}">
+                  <product-form data-section-id="{{ section_id }}">
                     {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                       <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}" class="product-variant-id">
                       <button
@@ -238,7 +260,7 @@
             {%- if quick_add == 'bulk' and card_product.variants_count == 1 -%}
               <quick-add-bulk
                 data-min="{{ card_product.selected_or_first_available_variant.quantity_rule.min }}"
-                id="quick-add-bulk-{{ card_product.selected_or_first_available_variant.id }}-{{ section.id }}"
+                id="quick-add-bulk-{{ card_product.selected_or_first_available_variant.id }}-{{ section_id }}"
                 class="quick-add-bulk ay-prod-bulk"
                 data-index="{{ card_product.selected_or_first_available_variant.id }}"
               >
@@ -281,7 +303,7 @@
                   </div>
                 </quick-add-modal>
               {%- else -%}
-                <product-form data-section-id="{{ section.id }}">
+                <product-form data-section-id="{{ section_id }}">
                   {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                     <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}" class="product-variant-id">
                     <button id="{{ product_form_id }}-submit" type="submit" name="add" class="ay-prod-quickadd button button--full-width" aria-live="polite" data-sold-out-message="true">
@@ -328,36 +350,10 @@
             </a>
           </h3>
         </div>
-        
-        {%- if ayira_card_style == 'compact' -%}
-          <div class="ay-prod-foot">
-            <div class="ay-prod-price">
-              {{ 1999 | money }}
-            </div>
-            <button type="button" class="ay-prod-add" disabled aria-label="{{ 'products.product.sold_out' | t }}">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icon-plus">
-                <path d="M12 5v14M5 12h14"></path>
-              </svg>
-            </button>
-          </div>
-        {%- elsif ayira_card_style == 'bar' -%}
-          <div class="ay-prod-foot text-left">
-            <div class="ay-prod-price">
-              {{ 1999 | money }}
-            </div>
-          </div>
-          <div class="ay-prod-bar-action">
-            <button class="ay-prod-quickadd button button--full-width" disabled>
-              {{ 'products.product.add_to_cart' | t }}
-            </button>
-          </div>
-        {%- elsif ayira_card_style == 'minimal' -%}
-          <div class="ay-prod-foot text-left">
-            <div class="ay-prod-price">
-              {{ 1999 | money }}
-            </div>
-          </div>
-        {%- endif -%}
+        {%- comment -%}
+          No price or add-to-cart on the onboarding card: there is no product
+          behind it, and the design system forbids simulated pricing.
+        {%- endcomment -%}
       </div>
     </div>
   {%- endif -%}

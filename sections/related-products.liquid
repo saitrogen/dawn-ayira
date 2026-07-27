@@ -2,10 +2,6 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
 
-{%- unless section.settings.ayira_card_style == 'none' -%}
-  {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
-
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}

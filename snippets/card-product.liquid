@@ -22,7 +22,15 @@
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-{%- unless skip_styles -%}
+{%- liquid
+  assign product_view_context = product_view_context | default: 'collection'
+  assign quick_add = quick_add | default: 'none'
+  assign ayira_card = false
+  if ayira_card_style != blank and ayira_card_style != 'none'
+    assign ayira_card = true
+  endif
+-%}
+{%- unless skip_styles or ayira_card -%}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
@@ -30,12 +38,8 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
-{%- liquid
-  assign product_view_context = product_view_context | default: 'collection'
-  assign quick_add = quick_add | default: 'none'
--%}
 
-{%- if ayira_card_style != blank and ayira_card_style != 'none' -%}
+{%- if ayira_card -%}
 {% render 'ayira-card-product',
     card_product: card_product,
     ayira_card_style: ayira_card_style,
@@ -46,7 +50,10 @@
     section_id: section_id,
     horizontal_class: horizontal_class,
     placeholder_image: placeholder_image,
-    product_view_context: product_view_context
+    product_view_context: product_view_context,
+    skip_styles: skip_styles,
+    columns_desktop: columns_desktop,
+    columns_mobile: columns_mobile
   %}
 
 {%- else -%}
