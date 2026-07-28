@@ -1,0 +1,144 @@
+{{- 'section-ayira-collection-banners.css' | asset_url | stylesheet_tag -}}
+
+{%- liquid
+  assign visible_banner_count = 0
+
+  for block in section.blocks
+    assign banner_image = block.settings.image | default: block.settings.collection.image
+
+    if block.settings.collection != blank and banner_image != blank
+      assign visible_banner_count = visible_banner_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_banner_count > 0 -%}
+  {%- style -%}
+    #AyiraCollectionBanners-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      #AyiraCollectionBanners-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div
+    id="AyiraCollectionBanners-{{ section.id }}"
+    class="color-{{ section.settings.color_scheme }} gradient"
+  >
+    <div class="page-width">
+      <ul class="ayira-collection-banners" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign banner_image = block.settings.image | default: block.settings.collection.image -%}
+
+          {%- if block.settings.collection != blank and banner_image != blank -%}
+            <li
+              class="ayira-collection-banners__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                style="--animation-order: {{ forloop.index }};"
+                data-cascade
+              {% endif %}
+            >
+              <a
+                class="ayira-collection-banner"
+                href="{{ block.settings.collection.url }}"
+                aria-label="{{ block.settings.collection.title | escape }}"
+              >
+                {{
+                  banner_image
+                  | image_url: width: 1600
+                  | image_tag:
+                    widths: '360, 540, 720, 900, 1200, 1600',
+                    sizes: '(min-width: 750px) 50vw, 100vw',
+                    alt: '',
+                    class: 'ayira-collection-banner__image motion-reduce',
+                    loading: 'lazy'
+                }}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Ayira collection banners",
+  "tag": "section",
+  "class": "section section-ayira-collection-banners",
+  "max_blocks": 20,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Collection banner",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom artwork",
+          "info": "Recommended size: 1600 × 800 px (2:1). Overrides the collection image."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayira collection banners",
+      "blocks": [
+        { "type": "banner" },
+        { "type": "banner" },
+        { "type": "banner" },
+        { "type": "banner" }
+      ]
+    }
+  ]
+}
+{% endschema %}
