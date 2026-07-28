@@ -18,6 +18,7 @@
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "Fresh basics, delivered the same day.",
+            "heading_size": "h1",
             "heading_tag": "h2",
             "text": "Groceries, drinks and snacks — at your door in under two hours.",
             "content_position_vertical": "middle",
@@ -61,7 +62,7 @@
       "settings": {
         "autoplay": true,
         "autoplay_speed": 5,
-        "image_height": "medium",
+        "image_height": "small",
         "color_scheme": "",
         "padding_top": 16,
         "padding_bottom": 0
@@ -292,8 +293,10 @@
       "settings": {
         "collection": "candy-sweets",
         "products_to_show": 14,
+        "eyebrow": "Fresh picks",
         "title": "Featured products",
         "show_view_all": false,
+        "view_all_label": "View all",
         "columns_desktop": 4,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
