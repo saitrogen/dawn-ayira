@@ -123,3 +123,4 @@ For cart or product-form changes, verify at minimum:
 - Shopify theme validation, Theme Check, JavaScript syntax, and `git diff --check`
 
 Keep commits focused by ownership boundary: Ayira presentation/markup changes separately from shared Dawn runtime changes when practical.
+

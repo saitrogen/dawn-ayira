@@ -1,0 +1,43 @@
+{% comment %}
+  Renders the shared Ayira section header: eyebrow, title, and an
+  optional "All collections" link on the right.
+
+  Accepts:
+  - eyebrow: {String} Small uppercase label above the title (optional)
+  - title: {String} Section title, rendered as an h2 (optional)
+  - show_view_all: {Boolean} Show the link on the right (optional)
+  - view_all_label: {String} Link label. Defaults to "All collections" (optional)
+  - view_all_url: {String} Link target. Defaults to the collections index (optional)
+
+  Usage:
+  {% render 'ayira-section-header',
+    eyebrow: section.settings.eyebrow,
+    title: section.settings.title,
+    show_view_all: section.settings.show_view_all
+  %}
+{% endcomment %}
+
+{%- if eyebrow != blank or title != blank or show_view_all -%}
+  <div class="ayira-section-header">
+    <div class="ayira-section-header__text">
+      {%- if eyebrow != blank -%}
+        <span class="ayira-section-header__eyebrow">{{ eyebrow | escape }}</span>
+      {%- endif -%}
+      {%- if title != blank -%}
+        <h2 class="ayira-section-header__title">{{ title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if show_view_all -%}
+      <a
+        href="{{ view_all_url | default: routes.collections_url }}"
+        class="ayira-section-header__view-all"
+      >
+        {{- view_all_label | default: 'All collections' | escape -}}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

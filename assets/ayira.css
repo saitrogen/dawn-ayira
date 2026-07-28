@@ -2,6 +2,12 @@
    Ayira Structural Overrides
    ========================================================= */
 
+/* One crop for every collection image tile, so the same
+   featured_image is framed identically wherever it appears. */
+:root {
+  --ayira-collection-ratio: 4 / 5;
+}
+
 /* Overriding structural borders cleanly by targeting Dawn's specific components */
 .card, 
 .card-wrapper .card--card,
@@ -9,7 +15,7 @@
 .footer, 
 .quantity__input,
 .cart-drawer {
-  border-color: rgb(var(--color-border-subtle));
+  border-color: var(--color-border-subtle);
 }
 
 /* Map Dawn's layout rules to our custom forest-tinted shadows */
@@ -22,4 +28,65 @@
 .modal__toggle,
 .button--secondary {
   box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   Shared section header (snippets/ayira-section-header.liquid)
+   ========================================================= */
+.ayira-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ayira-section-header__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ayira-section-header__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ayira-color-accent);
+  line-height: 1;
+}
+
+.ayira-section-header__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ayira-color-heading);
+  margin: 0;
+  font-family: var(--font-heading-family, inherit);
+}
+
+.ayira-section-header__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ayira-color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.ayira-section-header__view-all:hover {
+  color: var(--ayira-color-accent);
+}
+
+.ayira-section-header__view-all svg {
+  transition: transform 0.2s ease;
+}
+
+.ayira-section-header__view-all:hover svg {
+  transform: translateX(3px);
 }

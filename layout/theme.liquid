@@ -123,38 +123,103 @@
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
         
-        {% # NEW :configuration parameters (text_secondary, accent)  %}
-        
         --color-text-secondary: {{ scheme.settings.text_secondary.red }},{{ scheme.settings.text_secondary.green }},{{ scheme.settings.text_secondary.blue }};
-        --color-badge-background: {{ scheme.settings.accent.red }},{{ scheme.settings.accent.green }},{{ scheme.settings.accent.blue }};
-        --color-badge-foreground: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        --color-badge-border: {{ scheme.settings.accent.red }},{{ scheme.settings.accent.green }},{{ scheme.settings.accent.blue }};
-        
-        {% # NEW :configuration parameters (text_secondary, accent) , Force clean neutral lines to decouple from text color %}
-        
-        --color-border-subtle: 228, 231, 236; 
-        
-        
-        --color-text-secondary: {{ scheme.settings.text_secondary.red }},{{ scheme.settings.text_secondary.green }},{{ scheme.settings.text_secondary.blue }};
-        --color-badge-background: {{ scheme.settings.accent.red }},{{ scheme.settings.accent.green }},{{ scheme.settings.accent.blue }};
-        --color-badge-foreground: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        --color-badge-border: {{ scheme.settings.accent.red }},{{ scheme.settings.accent.green }},{{ scheme.settings.accent.blue }};
-        
+        --color-accent: {{ scheme.settings.accent.red }},{{ scheme.settings.accent.green }},{{ scheme.settings.accent.blue }};
+        --color-border-subtle: rgba(var(--color-foreground), 0.14);
+
+        --ayira-color-bg-page: rgb(var(--color-background));
+        --ayira-color-surface: rgb(var(--color-background));
+        --ayira-color-heading: rgb(var(--color-foreground));
+        --ayira-color-text: rgb(var(--color-foreground));
+        --ayira-color-text-secondary: rgb(var(--color-text-secondary));
+        --ayira-color-action: rgb(var(--color-button));
+        --ayira-color-on-action: rgb(var(--color-button-text));
+        --ayira-color-accent: rgb(var(--color-accent));
+        --ayira-color-border: var(--color-border-subtle);
+        --ayira-color-focus: rgb(var(--color-button));
       }
       {% endfor %}
 
-      {% # NEW :Target headlines directly to preserve Forest Green %}
       h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         color: rgb(var(--color-foreground));
       }
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75); {% # DOC: this is the secondary text color,dawn derive secondary from foreground/primary color %}
-        color: rgb(var(--color-text-secondary)); {% # OVERRIDING  %}
+        color: rgba(var(--color-foreground), 0.75);
         background-color: rgb(var(--color-background));
       }
 
       :root {
+        --ayira-forest-900: #062e29;
+        --ayira-forest-800: #093e37;
+        --ayira-forest-700: #0d4f47;
+        --ayira-forest-500: #2e7c72;
+        --ayira-forest-100: #e6eeed;
+        --ayira-gold-600: #bc9226;
+        --ayira-gold-500: #d4a737;
+        --ayira-gold-100: #fbf5e2;
+        --ayira-cream-100: #f6f6ee;
+        --ayira-cream-50: #fbfbf6;
+        --ayira-white: #ffffff;
+        --ayira-ink-900: #101828;
+        --ayira-ink-700: #344054;
+        --ayira-slate-500: #667085;
+        --ayira-slate-400: #98a2b3;
+        --ayira-gray-300: #d0d5dd;
+        --ayira-gray-200: #e4e7ec;
+        --ayira-red-700: #b42318;
+        --ayira-red-50: #fbeded;
+
+        --ayira-space-1: 4px;
+        --ayira-space-2: 8px;
+        --ayira-space-3: 12px;
+        --ayira-space-4: 16px;
+        --ayira-space-6: 24px;
+        --ayira-space-8: 32px;
+        --ayira-space-12: 48px;
+        --ayira-space-16: 64px;
+        --ayira-space-20: 80px;
+
+        --ayira-radius-micro: 4px;
+        --ayira-radius-control: 8px;
+        --ayira-radius-standard: 12px;
+        --ayira-radius-card: 16px;
+        --ayira-radius-feature: 24px;
+        --ayira-radius-pill: 999px;
+        --ayira-radius-circle: 50%;
+
+        --ayira-shadow-none: none;
+        --ayira-shadow-sm: 0 2px 8px rgba(13, 79, 71, 0.04);
+        --ayira-shadow-md: 0 8px 24px rgba(13, 79, 71, 0.1);
+        --ayira-shadow-overlay: 0 10px 30px rgba(16, 24, 40, 0.08);
+
+        --ayira-motion-fast: 150ms;
+        --ayira-motion-standard: 200ms;
+        --ayira-motion-slow: 300ms;
+        --ayira-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+        --ayira-ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+
+        --ayira-type-micro: 1.1rem;
+        --ayira-type-caption: 1.2rem;
+        --ayira-type-body-sm: 1.4rem;
+        --ayira-type-body: 1.6rem;
+        --ayira-type-card-title: clamp(1.5rem, 1.4rem + 0.15vw, 1.6rem);
+        --ayira-type-button: clamp(1.4rem, 1.3rem + 0.2vw, 1.6rem);
+        --ayira-type-section-title: clamp(2.4rem, 2rem + 1vw, 3.2rem);
+        --ayira-type-page-title: clamp(2.8rem, 2.4rem + 1vw, 3.6rem);
+        --ayira-type-display: clamp(3.6rem, 2.8rem + 2vw, 5.2rem);
+
+        --ayira-color-surface-subtle: var(--ayira-cream-50);
+        --ayira-color-surface-brand-subtle: var(--ayira-forest-100);
+        --ayira-color-text-disabled: var(--ayira-slate-400);
+        --ayira-color-text-inverse: var(--ayira-white);
+        --ayira-color-action-hover: var(--ayira-forest-900);
+        --ayira-color-accent-hover: var(--ayira-gold-600);
+        --ayira-color-accent-subtle: var(--ayira-gold-100);
+        --ayira-color-border-strong: var(--ayira-gray-300);
+        --ayira-color-error: var(--ayira-red-700);
+        --ayira-color-error-surface: var(--ayira-red-50);
+
         --font-body-family: 'Hanken Grotesk', {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};

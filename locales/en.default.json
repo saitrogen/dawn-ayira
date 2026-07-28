@@ -558,5 +558,11 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "ayira": {
+    "card": {
+      "save_percent": "Save {{ percent }}%",
+      "new": "New"
+    }
   }
 }

@@ -1,0 +1,143 @@
+/* ==========================================================
+   section-ayira-vertical-banners.css
+   Ayira Vertical Banners — Horizontal scroll row of tall
+   image cards with a top-anchored label
+   ========================================================== */
+
+.ayira-vertical-banners {
+  overflow: hidden; /* clip the horizontal scroll track */
+}
+
+/* ── Scroll track ─────────────────────────────────────────── */
+.ayira-vertical-banners__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* 6px sides so Dawn's focus ring (0.2rem at 0.3rem offset) isn't clipped */
+  padding: 8px 6px 16px 6px;
+  list-style: none;
+  margin: 0;
+}
+
+.ayira-vertical-banners__track::-webkit-scrollbar {
+  display: none;
+}
+
+.ayira-vertical-banners__track-item {
+  flex: 0 0 160px;
+  scroll-snap-align: start;
+  display: flex;
+}
+
+@media screen and (min-width: 750px) {
+  .ayira-vertical-banners__track-item {
+    flex: 0 0 220px;
+  }
+}
+
+/* ── Banner card ──────────────────────────────────────────── */
+.ayira-vertical-banner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  aspect-ratio: 9 / 16;
+  padding: 16px;
+  background-color: var(--banner-bg, #0D4F47);
+  box-shadow: var(--ayira-shadow-sm, 0 4px 16px rgba(3, 30, 27, 0.12));
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+
+a.ayira-vertical-banner:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ayira-shadow-md, 0 10px 28px rgba(3, 30, 27, 0.22));
+}
+
+.ayira-vertical-banner__title {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--banner-fg, #FFFFFF);
+  margin: 0;
+  font-family: var(--font-heading-family, inherit);
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(3, 30, 27, 0.5);
+  position: relative;
+  z-index: 3;
+  word-wrap: break-word;
+}
+
+.ayira-vertical-banner__media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.ayira-vertical-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+a.ayira-vertical-banner:hover .ayira-vertical-banner__img {
+  transform: scale(1.04);
+}
+
+/* Scrim: keeps the label legible over any artwork */
+.ayira-vertical-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 30, 27, 0.72) 0%,
+    rgba(3, 30, 27, 0.35) 35%,
+    rgba(3, 30, 27, 0) 65%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 749px) {
+  .ayira-vertical-banners__track {
+    gap: 8px;
+    /* .page-width is 1.5rem = 15px each side */
+    margin-right: -15px;
+    padding-right: 15px;
+  }
+
+  .ayira-vertical-banners__track-item {
+    flex: 0 0 calc((100% - 16px) / 2.7);
+  }
+
+  .ayira-vertical-banner {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .ayira-vertical-banner__title {
+    font-size: 1.1rem;
+    line-height: 1.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ayira-vertical-banner,
+  .ayira-vertical-banner__img {
+    transition: none;
+  }
+
+  a.ayira-vertical-banner:hover,
+  a.ayira-vertical-banner:hover .ayira-vertical-banner__img {
+    transform: none;
+  }
+}

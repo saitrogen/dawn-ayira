@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ayira Design System"
+  short_description: "Apply confirmed Ayira design guardrails safely"
+  default_prompt: "Use $ayira-design-system to make the smallest safe Ayira storefront design decision without inventing undefined rules."

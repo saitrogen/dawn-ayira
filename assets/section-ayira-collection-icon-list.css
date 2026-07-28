@@ -1,7 +1,7 @@
 /* ==========================================================
    section-ayira-collection-icon-list.css
    Ayira Collection Icon List — Horizontal native scroll row
-   with circle icon tiles and labels directly underneath
+   with rounded-square icon tiles and labels directly underneath
    ========================================================== */
 
 /* ── Section wrapper ──────────────────────────────────────── */
@@ -9,79 +9,20 @@
   overflow: hidden; /* clip horizontal scroll overflow */
 }
 
-/* ── Section header ───────────────────────────────────────── */
-.ayira-collection-icon-list__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.6rem;
-  margin-bottom: 2.4rem;
-}
-
-.ayira-collection-icon-list__header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.ayira-collection-icon-list__eyebrow {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgb(var(--color-button));
-  line-height: 1;
-}
-
-.ayira-collection-icon-list__title {
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: rgb(var(--color-foreground));
-  margin: 0;
-  font-family: var(--font-heading-family, inherit);
-}
-
-.ayira-collection-icon-list__view-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: rgb(var(--color-foreground));
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-bottom: 0.4rem;
-  transition: color 0.2s ease;
-}
-
-.ayira-collection-icon-list__view-all:hover {
-  color: rgb(var(--color-button));
-}
-
-.ayira-collection-icon-list__view-all svg {
-  transition: transform 0.2s ease;
-}
-
-.ayira-collection-icon-list__view-all:hover svg {
-  transform: translateX(3px);
-}
 
 /* ── Scroll track (horizontal swipable) ──────────────────── */
 .ayira-collection-icon-list__track {
+  --mobile-column-gap: 1.6rem;
   display: grid;
-  grid-template-rows: repeat(var(--row-count, 1), auto);
+  grid-template-rows: repeat(2, auto);
   grid-auto-flow: column;
-  gap: 1.2rem 2rem;
+  grid-auto-columns: calc((100% - (var(--mobile-column-gap) * 2)) / 3);
+  gap: 1.6rem var(--mobile-column-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
-  padding: 0.8rem 2.4rem 1.6rem 0.8rem; /* room for hover lift and shadows */
-  margin-left: -0.8rem;
-  margin-right: -2.4rem;
-  padding-right: 2.4rem;
+  padding: 0.8rem 0 1.6rem;
 }
 
 .ayira-collection-icon-list__track::-webkit-scrollbar {
@@ -90,6 +31,8 @@
 
 @media screen and (min-width: 750px) {
   .ayira-collection-icon-list__track {
+    grid-template-rows: auto;
+    grid-auto-columns: 11rem;
     gap: 1.6rem 3.2rem;
   }
 }
@@ -102,7 +45,8 @@
   text-align: center;
   text-decoration: none;
   flex: 0 0 auto;
-  width: 8rem; /* aligns with circle width */
+  width: 100%;
+  min-width: 0;
   scroll-snap-align: start;
   cursor: pointer;
   position: relative;
@@ -111,15 +55,16 @@
 
 @media screen and (min-width: 750px) {
   .ayira-collection-icon-item {
-    width: 11rem; /* aligns with desktop circle width */
+    width: 11rem;
   }
 }
 
-/* ── Circle wrap ──────────────────────────────────────────── */
-.ayira-collection-icon-item__circle {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
+/* ── Icon wrap (rounded square: shows the full 1:1 crop) ──── */
+.ayira-collection-icon-item__media {
+  width: min(8rem, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 16px;
   overflow: hidden;
   background-color: rgba(var(--color-foreground), 0.03);
   border: 2px solid rgba(var(--color-foreground), 0.06);
@@ -135,7 +80,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .ayira-collection-icon-item__circle {
+  .ayira-collection-icon-item__media {
     width: 11rem;
     height: 11rem;
     margin-bottom: 1.2rem;
@@ -143,7 +88,7 @@
 }
 
 /* Hover & Focus state */
-.ayira-collection-icon-item:hover .ayira-collection-icon-item__circle {
+.ayira-collection-icon-item:hover .ayira-collection-icon-item__media {
   transform: translateY(-3px);
   border-color: rgb(var(--color-button));
   box-shadow: 0 8px 20px rgba(var(--color-button), 0.18);
@@ -153,7 +98,7 @@
   outline: none;
 }
 
-.ayira-collection-icon-item:focus-visible .ayira-collection-icon-item__circle {
+.ayira-collection-icon-item:focus-visible .ayira-collection-icon-item__media {
   border-color: rgb(var(--color-button));
   box-shadow: 0 0 0 3px rgba(var(--color-button), 0.3);
 }
