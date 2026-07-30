@@ -1,0 +1,499 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "shopify": {
+    "checkout": {
+      "general": {
+        "page_title": "إتمام الطلب",
+        "pay_now_button_label": "ادفع الآن",
+        "cart": "سلة التسوق",
+        "close_modal_label": "إغلاق",
+        "close_notice_label": "إغلاق",
+        "continue_to_payment_method": "المتابعة إلى الدفع"
+      },
+      "contact": {
+        "contact_method_title": "اتصل بنا",
+        "email_label": "البريد الإلكتروني",
+        "email_placeholder": "البريد الإلكتروني"
+      },
+      "delivery_options": {
+        "shipping_address": "عنوان الشحن"
+      },
+      "customer_account": {
+        "rollup_label": "الحساب"
+      },
+      "stock": {
+        "title": "غير متوفر في المخزون",
+        "quantity_column_header": "الكمية",
+        "price_column_header": "السعر",
+        "sold_out_label": "نفد المخزون",
+        "remove": "إزالة",
+        "empty_cart_label": "سلة التسوق فارغة"
+      },
+      "contextual_availability": {
+        "unavailable_label": "غير متوفر"
+      },
+      "order_summary": {
+        "more_items_modal": {
+          "search_item": "البحث"
+        },
+        "apply_discount_button_label": "تطبيق",
+        "subtotal_label": "المجموع الفرعي",
+        "shipping_label": "الشحن",
+        "total_label": "الإجمالي",
+        "partial_total_label": "الإجمالي",
+        "price_label": "السعر",
+        "quantity_label": "الكمية",
+        "product_image_quantity_label": "الكمية",
+        "sale_price": "سعر التخفيض"
+      },
+      "shipping": {
+        "title": "الشحن",
+        "duties_and_taxes_options": {
+          "ddp_title": "ادفع الآن"
+        }
+      },
+      "payment": {
+        "apply_gift_card_button_label": "تطبيق",
+        "credit_card_vaulting_sign_in_banner_button_label": "تسجيل الدخول",
+        "billing_address_title": "عنوان الفوترة",
+        "clear": "مسح",
+        "fact_billing_address_label": "عنوان الفوترة",
+        "markets_pro_disclaimer_privacy_policy": "سياسة الخصوصية"
+      },
+      "payment_summary": {
+        "billing_address_title": "عنوان الفوترة"
+      },
+      "post_purchase": {
+        "components": {
+          "close": "إغلاق"
+        }
+      },
+      "processing": {
+        "continue_to_payment_gateway_button_label": "المتابعة إلى الدفع"
+      },
+      "payment_gateway": {
+        "login_prompt": {
+          "no_access": {
+            "link": "تسجيل الدخول"
+          }
+        }
+      },
+      "thank_you": {
+        "return_to_store_link_label": "متابعة التسوق",
+        "billing_address_title": "عنوان الفوترة",
+        "shipping_address_title": "عنوان الشحن",
+        "contact_us": "اتصل بنا",
+        "marker": {
+          "shipping": "عنوان الشحن"
+        },
+        "fulfillment": {
+          "quantity_label": "الكمية"
+        },
+        "track_shipment": "تتبع الشحنة",
+        "missing_shipping_address_banner": {
+          "contact_us": "اتصل بنا"
+        },
+        "announcement": {
+          "close": "إغلاق"
+        }
+      },
+      "review": {
+        "blocks": {
+          "contact_method_title": "اتصل بنا"
+        }
+      },
+      "marketing": {
+        "disclaimer": {
+          "privacy_policy": "سياسة الخصوصية",
+          "terms_of_service": "شروط الخدمة"
+        },
+        "sms": {
+          "disclaimer": {
+            "privacy_policy": "سياسة الخصوصية",
+            "terms_of_service": "شروط الخدمة"
+          }
+        }
+      },
+      "shop_policies": {
+        "shipping_policy": "الشحن",
+        "contact_information": "اتصل بنا"
+      },
+      "order_payment_collection": {
+        "pay_now": "ادفع الآن"
+      },
+      "pickup_point": {
+        "search_button": "البحث"
+      },
+      "notice_banner": {
+        "individual_violations_title": {
+          "DeliveryViolations": "عنوان الشحن",
+          "PaymentViolations": "عنوان الفوترة"
+        },
+        "validation_errors_banner": {
+          "section_label": {
+            "contact": "اتصل بنا"
+          }
+        }
+      },
+      "wallets": {
+        "shipping_line_label": "الشحن"
+      }
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي"
+    },
+    "filters": {
+      "availability": {
+        "value": {
+          "in_stock": "متوفر",
+          "out_of_stock": "غير متوفر في المخزون"
+        }
+      }
+    },
+    "page_titles": {
+      "account": "الحساب",
+      "addresses": "العناوين",
+      "search": "البحث",
+      "collections": "المجموعات"
+    }
+  },
+  "customer_accounts": {
+    "navigation_and_structure": {
+      "account_menu": {
+        "label": "الحساب"
+      },
+      "orders_link_label": "الطلبات",
+      "loading_message": "جارٍ التحميل",
+      "search": "البحث"
+    },
+    "account_information": {
+      "profile_card": {
+        "email": "البريد الإلكتروني",
+        "title": "الملف الشخصي"
+      },
+      "verify_current_email_modal": {
+        "verify_button": "التالي"
+      },
+      "marketing_preferences": {
+        "email_label": "البريد الإلكتروني"
+      },
+      "title": "الملف الشخصي",
+      "people": {
+        "pagination": {
+          "load_more": "عرض المزيد"
+        }
+      }
+    },
+    "orders": {
+      "list_title": "الطلبات",
+      "order_list": {
+        "column_headers": {
+          "order": "الطلب",
+          "total": "الإجمالي"
+        },
+        "carousel": {
+          "previous": "السابق",
+          "next": "التالي"
+        },
+        "pagination": {
+          "next": "التالي",
+          "load_more": "عرض المزيد"
+        },
+        "filter": {
+          "clear_all": "مسح الكل",
+          "apply": "تطبيق"
+        }
+      },
+      "order_status": {
+        "track_shipment": "تتبع الشحنة"
+      }
+    },
+    "order_details": {
+      "billing_address": "عنوان الفوترة",
+      "contact": "اتصل بنا",
+      "payment": {
+        "transactions": {
+          "show_less": "عرض أقل"
+        }
+      },
+      "shipping": {
+        "address": "عنوان الشحن",
+        "address_map_marker": "عنوان الشحن",
+        "summary": "الشحن"
+      },
+      "subtotal": "المجموع الفرعي",
+      "subtotal_label_with_quantity": {
+        "one": "المجموع الفرعي"
+      },
+      "total": "الإجمالي",
+      "pagination": {
+        "load_more": "عرض المزيد"
+      }
+    },
+    "addresses": {
+      "pagination": {
+        "load_more": "عرض المزيد"
+      },
+      "title": "العناوين",
+      "billing_address_dropdown_placeholder": "عنوان الفوترة"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "email_field_label": "البريد الإلكتروني",
+        "orders_button": "الطلبات",
+        "profile_button": "الملف الشخصي"
+      },
+      "signed_in_state": {
+        "greeting_without_name": "الحساب",
+        "orders_button": "الطلبات",
+        "profile_button": "الملف الشخصي"
+      },
+      "location_picker": {
+        "search_field_placeholder": "البحث"
+      },
+      "aria_labels": {
+        "account": "الحساب"
+      }
+    },
+    "B2B": {
+      "locations": {
+        "contact_contact": "اتصل بنا",
+        "contact_email": "البريد الإلكتروني",
+        "contact_name": "الاسم",
+        "contact_phone_number": "رقم الهاتف",
+        "pagination": {
+          "load_more": "عرض المزيد"
+        },
+        "tax_exemptions_modal_close": "إغلاق"
+      },
+      "addresses": {
+        "billing_address_card_title": "عنوان الفوترة",
+        "shipping_address_card_title": "عنوان الشحن"
+      },
+      "orders": {
+        "order_list_column_headers_contact": "اتصل بنا"
+      },
+      "draft_order_details": {
+        "payment_status": {
+          "pay_now": "ادفع الآن"
+        }
+      }
+    },
+    "payment_methods": {
+      "store_credit": {
+        "details_modal": {
+          "pagination": {
+            "load_more_label": "عرض المزيد"
+          }
+        }
+      },
+      "payment_details": {
+        "billing_title": "عنوان الفوترة",
+        "close_payment_modal": "إغلاق"
+      },
+      "edit_payment_method": {
+        "billing_address": "عنوان الفوترة"
+      },
+      "update_payment_method": {
+        "button_title": "تحديث",
+        "billing_address": "عنوان الفوترة",
+        "resources_card_show_more": "عرض المزيد",
+        "resources_card_show_less": "عرض أقل"
+      },
+      "update_success": {
+        "done_button": "متابعة التسوق"
+      },
+      "add_success": {
+        "done_button": "متابعة التسوق"
+      },
+      "add_payment_method": {
+        "billing_address": {
+          "title": "عنوان الفوترة"
+        },
+        "subscription_contracts": {
+          "load_more": "عرض المزيد"
+        }
+      }
+    },
+    "ui_components": {
+      "clear": "مسح",
+      "closeNotification": "إغلاق",
+      "closeModal": "إغلاق",
+      "productThumbnailQuantityLabel": "الكمية"
+    },
+    "active_inspector": {
+      "extension": {
+        "remove_tooltip": "إزالة"
+      }
+    },
+    "shop_ads": {
+      "previous_button": "السابق",
+      "next_button": "التالي"
+    },
+    "intents": {
+      "subscription_replace_payment_method": {
+        "close_button": "إغلاق"
+      }
+    },
+    "sign_in": {
+      "step_one": {
+        "input_field_label": "البريد الإلكتروني"
+      }
+    }
+  },
+  "sections": {
+    "cart": {
+      "estimated_total": "الإجمالي التقديري",
+      "empty": "سلة التسوق فارغة",
+      "headings": {
+        "product": "المنتج",
+        "price": "السعر",
+        "total": "الإجمالي",
+        "quantity": "الكمية"
+      },
+      "update": "تحديث"
+    },
+    "quick_order_list": {
+      "view_cart": "عرض السلة",
+      "product": "المنتج"
+    }
+  },
+  "general": {
+    "password_page": {
+      "login_form_password_label": "كلمة المرور"
+    },
+    "continue_shopping": "متابعة التسوق",
+    "search": {
+      "search": "البحث"
+    },
+    "cart": {
+      "view_empty_cart": "عرض السلة"
+    }
+  },
+  "newsletter": {
+    "label": "البريد الإلكتروني",
+    "button_label": "اشتراك"
+  },
+  "accessibility": {
+    "close": "إغلاق"
+  },
+  "blogs": {
+    "article": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "message": "التعليق"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "أضف إلى السلة",
+      "choose_options": "اختر الخيارات",
+      "inventory_in_stock": "متوفر",
+      "inventory_low_stock": "مخزون منخفض",
+      "inventory_out_of_stock": "غير متوفر في المخزون",
+      "inventory_out_of_stock_continue_selling": "متوفر",
+      "quantity": {
+        "label": "الكمية"
+      },
+      "price": {
+        "regular_price": "السعر العادي",
+        "sale_price": "سعر التخفيض",
+        "unit_price": "سعر الوحدة"
+      },
+      "sold_out": "نفد المخزون",
+      "unavailable": "غير متوفر",
+      "view_full_details": "عرض التفاصيل كاملة"
+    },
+    "facets": {
+      "apply": "تطبيق",
+      "clear": "مسح",
+      "from": "من",
+      "show_more": "عرض المزيد",
+      "show_less": "عرض أقل",
+      "reset": "إعادة تعيين",
+      "to": "إلى"
+    }
+  },
+  "templates": {
+    "search": {
+      "page": "الصفحة"
+    },
+    "cart": {
+      "cart": "سلة التسوق"
+    },
+    "contact": {
+      "form": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "phone": "رقم الهاتف",
+        "comment": "التعليق",
+        "send": "إرسال"
+      }
+    }
+  },
+  "localization": {
+    "country_label": "الدولة/المنطقة",
+    "language_label": "اللغة",
+    "update_language": "تحديث اللغة",
+    "update_country": "تحديث الدولة/المنطقة",
+    "search": "البحث"
+  },
+  "customer": {
+    "account": {
+      "title": "الحساب"
+    },
+    "account_fallback": "الحساب",
+    "activate_account": {
+      "password": "كلمة المرور"
+    },
+    "addresses": {
+      "title": "العناوين",
+      "country": "الدولة/المنطقة"
+    },
+    "log_in": "تسجيل الدخول",
+    "log_out": "تسجيل الخروج",
+    "login_page": {
+      "create_account": "إنشاء حساب",
+      "email": "البريد الإلكتروني",
+      "forgot_password": "هل نسيت كلمة المرور؟",
+      "password": "كلمة المرور"
+    },
+    "order": {
+      "shipping": "الشحن",
+      "tax": "الضريبة",
+      "product": "المنتج",
+      "price": "السعر",
+      "quantity": "الكمية",
+      "total": "الإجمالي",
+      "track_shipment": "تتبع الشحنة",
+      "subtotal": "المجموع الفرعي"
+    },
+    "orders": {
+      "order_number": "الطلب",
+      "total": "الإجمالي"
+    },
+    "register": {
+      "title": "إنشاء حساب",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور"
+    },
+    "reset_password": {
+      "password": "كلمة المرور"
+    }
+  },
+  "recipient": {
+    "form": {
+      "email": "البريد الإلكتروني",
+      "name": "الاسم"
+    }
+  }
+}
