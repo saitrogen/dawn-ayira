@@ -69,6 +69,21 @@
 
       <!-- 3. Icon Buttons Right -->
       <div class="ayira-header__icons-container">
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <div class="ayira-header__localization header-localization desktop-localization-wrapper">
+            <localization-form>
+              {%- form 'localization', id: 'AyiraHeaderLanguageForm', class: 'localization-form' -%}
+                <div>
+                  <h2 class="visually-hidden" id="AyiraHeaderLanguageLabel">
+                    {{ 'localization.language_label' | t }}
+                  </h2>
+                  {%- render 'language-localization', localPosition: 'AyiraHeaderLanguage' -%}
+                </div>
+              {%- endform -%}
+            </localization-form>
+          </div>
+        {%- endif -%}
+
         {%- if shop.customer_accounts_enabled -%}
           <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="ayira-header__icon-btn" aria-label="Account">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,6 +267,21 @@
           {%- endfor -%}
         </nav>
       {%- endif -%}
+
+      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        <div class="ayira-header__drawer-localization menu-drawer__localization header-localization">
+          <localization-form>
+            {%- form 'localization', id: 'AyiraHeaderLanguageMobileForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="AyiraHeaderLanguageMobileLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'AyiraHeaderLanguageMobile' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </ayira-sticky-header>
@@ -334,6 +364,13 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.header.settings.enable_language_selector.label",
+      "info": "t:sections.header.settings.enable_language_selector.info"
     }
   ],
   "presets": [

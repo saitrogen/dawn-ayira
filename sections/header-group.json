@@ -46,7 +46,8 @@
         "logo_height": 50,
         "logo_height_mobile": 42,
         "sticky_header_type": "on-scroll-up",
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "enable_language_selector": true
       }
     }
   },
