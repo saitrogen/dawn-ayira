@@ -41,10 +41,12 @@
         "footer-1",
         "footer-2"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "newsletter_text": "<p>New arrivals, useful ideas, and considered offers. No noise.</p>",
         "show_social": true,
         "payment_enable": true,
         "show_policy": true,
