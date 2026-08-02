@@ -400,10 +400,52 @@
         "padding_top": 44,
         "padding_bottom": 52
       }
+    },
+    "ayira_collection_banners_dWtPnt": {
+      "type": "ayira-collection-banners",
+      "blocks": {
+        "banner_j73A7c": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_AfQTJg": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_Cf4UAb": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_JcNJQJ": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_j73A7c",
+        "banner_AfQTJg",
+        "banner_Cf4UAb",
+        "banner_JcNJQJ"
+      ],
+      "name": "Ayira collection banners",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     }
   },
   "order": [
     "hero",
+    "ayira_collection_banners_dWtPnt",
     "aisles",
     "categories",
     "grid_candy",
