@@ -190,7 +190,6 @@
         "a_coffee",
         "a_water"
       ],
-      "disabled": true,
       "name": "Shop by aisle",
       "settings": {
         "eyebrow": "",
@@ -277,10 +276,10 @@
       ],
       "name": "Shop by category",
       "settings": {
-        "title": "Shop by category",
-        "eyebrow": "Browse",
+        "title": "",
+        "eyebrow": "",
         "show_view_all": true,
-        "view_all_label": "All categories",
+        "view_all_label": "",
         "view_all_link": "",
         "color_scheme": "scheme-5",
         "padding_top": 52,
