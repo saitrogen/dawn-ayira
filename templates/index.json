@@ -184,6 +184,7 @@
         "c_juice": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_5_3b8dc779-6522-411b-a91f-3a53d51f71f0.png",
             "title": "Juices",
             "link": "shopify://collections/juices-fruit-drinks",
             "background_color": "#d4a737",
