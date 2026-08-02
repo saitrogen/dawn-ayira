@@ -144,6 +144,7 @@
         "c_chips": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_55_PM_1.png",
             "title": "Chips & Crisps",
             "link": "shopify://collections/chips-crisps",
             "background_color": "#d4a737",
@@ -153,6 +154,7 @@
         "c_choc": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_56_PM_2.png",
             "title": "Chocolate",
             "link": "shopify://collections/chocolate-confectionery",
             "background_color": "#b42318",
@@ -162,6 +164,7 @@
         "c_candy": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_3.png",
             "title": "Candy & Sweets",
             "link": "shopify://collections/candy-sweets",
             "background_color": "#0d4f47",
@@ -171,6 +174,7 @@
         "c_gum": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_4.png",
             "title": "Gum & Mints",
             "link": "shopify://collections/chewing-gum-mints",
             "background_color": "#0d4f47",
