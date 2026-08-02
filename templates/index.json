@@ -135,6 +135,47 @@
         "padding_bottom": 0
       }
     },
+    "ayira_collection_banners_dWtPnt": {
+      "type": "ayira-collection-banners",
+      "blocks": {
+        "banner_j73A7c": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_AfQTJg": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_Cf4UAb": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "banner_JcNJQJ": {
+          "type": "banner",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_j73A7c",
+        "banner_AfQTJg",
+        "banner_Cf4UAb",
+        "banner_JcNJQJ"
+      ],
+      "name": "Ayira collection banners",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
     "aisles": {
       "type": "ayira-collection-icon-list",
       "blocks": {
@@ -305,8 +346,8 @@
         "show_secondary_image": false,
         "quick_add": "standard",
         "color_scheme": "scheme-2",
-        "padding_top": 44,
-        "padding_bottom": 44
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "ayira_featured_collection_YNEeXJ": {
@@ -328,8 +369,8 @@
         "show_secondary_image": false,
         "quick_add": "standard",
         "color_scheme": "scheme-2",
-        "padding_top": 44,
-        "padding_bottom": 44
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "ayira_featured_collection_XgbXhU": {
@@ -351,8 +392,8 @@
         "show_secondary_image": false,
         "quick_add": "standard",
         "color_scheme": "scheme-2",
-        "padding_top": 44,
-        "padding_bottom": 44
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "ayira_featured_collection_PTn9kc": {
@@ -374,8 +415,8 @@
         "show_secondary_image": false,
         "quick_add": "standard",
         "color_scheme": "scheme-2",
-        "padding_top": 44,
-        "padding_bottom": 44
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "grid_chips": {
@@ -397,49 +438,8 @@
         "show_secondary_image": false,
         "quick_add": "standard",
         "color_scheme": "scheme-1",
-        "padding_top": 44,
-        "padding_bottom": 52
-      }
-    },
-    "ayira_collection_banners_dWtPnt": {
-      "type": "ayira-collection-banners",
-      "blocks": {
-        "banner_j73A7c": {
-          "type": "banner",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "banner_AfQTJg": {
-          "type": "banner",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "banner_Cf4UAb": {
-          "type": "banner",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "banner_JcNJQJ": {
-          "type": "banner",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "banner_j73A7c",
-        "banner_AfQTJg",
-        "banner_Cf4UAb",
-        "banner_JcNJQJ"
-      ],
-      "name": "Ayira collection banners",
-      "settings": {
-        "color_scheme": "",
-        "padding_top": 64,
-        "padding_bottom": 64
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
