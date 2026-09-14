@@ -17,7 +17,7 @@
             <span class="breadcrumbs__sep">/</span>
             <span class="breadcrumbs__current" aria-current="page">{{ product.title }}</span>
           </li>
-        {%- when 'collection' and collection.handle -%}
+        {%- when 'collection' -%}
           {%- if current_tags -%}
             <li class="breadcrumbs__item">
               <span class="breadcrumbs__sep">/</span>
@@ -47,3 +47,13 @@
     </ol>
   </nav>
 {%- endunless -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'collection' and collection.handle -%}"
+  to: "{%- when 'collection' -%}"
+  position: 922..947
+{% endcomment %}
