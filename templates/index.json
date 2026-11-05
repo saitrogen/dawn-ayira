@@ -15,7 +15,6 @@
         "slide_delivery": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_08_21_10_PM_1.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -36,7 +35,6 @@
         "slide_artwork": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_08_07_02_PM.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -57,7 +55,6 @@
         "slide_mz9mi4": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_08_21_10_PM_2.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -78,7 +75,6 @@
         "slide_NUHF7f": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_08_21_11_PM_3.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -99,7 +95,6 @@
         "slide_Cn7cN9": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_08_21_11_PM_4.png",
             "image_behavior": "none",
             "eyebrow_label": "",
             "heading": "",
@@ -135,323 +130,58 @@
         "padding_bottom": 0
       }
     },
-    "ayira_collection_banners_dWtPnt": {
-      "type": "ayira-collection-banners",
+    "ayira_vertical_banners_xKak6d": {
+      "type": "ayira-vertical-banners",
       "blocks": {
-        "banner_j73A7c": {
+        "banner_mKU8bd": {
           "type": "banner",
           "settings": {
-            "collection": ""
+            "image": "shopify://shop_images/80nivf-qbake_20zaatar_20cream_20cheese_20sandwich_20roll_20110g.png",
+            "title": "Category name",
+            "link": "shopify://collections/bakery-pastries",
+            "background_color": "#0D4F47",
+            "text_color": "#FFFFFF"
           }
         },
-        "banner_AfQTJg": {
+        "banner_GWtG4f": {
           "type": "banner",
           "settings": {
-            "collection": ""
+            "title": "Category name",
+            "link": "",
+            "background_color": "#0D4F47",
+            "text_color": "#FFFFFF"
           }
         },
-        "banner_Cf4UAb": {
+        "banner_bVAViA": {
           "type": "banner",
           "settings": {
-            "collection": ""
-          }
-        },
-        "banner_JcNJQJ": {
-          "type": "banner",
-          "settings": {
-            "collection": ""
+            "title": "Category name",
+            "link": "",
+            "background_color": "#0D4F47",
+            "text_color": "#FFFFFF"
           }
         }
       },
       "block_order": [
-        "banner_j73A7c",
-        "banner_AfQTJg",
-        "banner_Cf4UAb",
-        "banner_JcNJQJ"
+        "banner_mKU8bd",
+        "banner_GWtG4f",
+        "banner_bVAViA"
       ],
-      "name": "Ayira collection banners",
+      "name": "Ayira Vertical Banners",
       "settings": {
+        "title": "Shop by category",
+        "eyebrow": "Browse",
+        "show_view_all": true,
+        "view_all_label": "All collections",
+        "view_all_link": "",
         "color_scheme": "",
         "padding_top": 64,
         "padding_bottom": 64
-      }
-    },
-    "aisles": {
-      "type": "ayira-collection-icon-list",
-      "blocks": {
-        "a_chips": {
-          "type": "collection",
-          "settings": {
-            "collection": "chips-crisps"
-          }
-        },
-        "a_candy": {
-          "type": "collection",
-          "settings": {
-            "collection": "candy-sweets"
-          }
-        },
-        "a_choc": {
-          "type": "collection",
-          "settings": {
-            "collection": "chocolate-confectionery"
-          }
-        },
-        "a_gum": {
-          "type": "collection",
-          "settings": {
-            "collection": "chewing-gum-mints"
-          }
-        },
-        "a_juice": {
-          "type": "collection",
-          "settings": {
-            "collection": "juices-fruit-drinks"
-          }
-        },
-        "a_coffee": {
-          "type": "collection",
-          "settings": {
-            "collection": "coffee-coffee-drinks"
-          }
-        },
-        "a_water": {
-          "type": "collection",
-          "settings": {
-            "collection": "water"
-          }
-        }
-      },
-      "block_order": [
-        "a_chips",
-        "a_candy",
-        "a_choc",
-        "a_gum",
-        "a_juice",
-        "a_coffee",
-        "a_water"
-      ],
-      "name": "Shop by aisle",
-      "settings": {
-        "eyebrow": "",
-        "title": "Shop by aisle",
-        "show_view_all": true,
-        "view_all_label": "All aisles",
-        "show_collection_title": true,
-        "show_product_count": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 24,
-        "padding_bottom": 8
-      }
-    },
-    "categories": {
-      "type": "ayira-vertical-banners",
-      "blocks": {
-        "c_chips": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_55_PM_1.png",
-            "title": "Chips & Crisps",
-            "link": "shopify://collections/chips-crisps",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "c_choc": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_56_PM_2.png",
-            "title": "Chocolate",
-            "link": "shopify://collections/chocolate-confectionery",
-            "background_color": "#b42318",
-            "text_color": "#ffffff"
-          }
-        },
-        "c_candy": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_3.png",
-            "title": "Candy & Sweets",
-            "link": "shopify://collections/candy-sweets",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        },
-        "c_gum": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_4.png",
-            "title": "Gum & Mints",
-            "link": "shopify://collections/chewing-gum-mints",
-            "background_color": "#0d4f47",
-            "text_color": "#ffffff"
-          }
-        },
-        "c_juice": {
-          "type": "banner",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_07_57_57_PM_5_3b8dc779-6522-411b-a91f-3a53d51f71f0.png",
-            "title": "Juices",
-            "link": "shopify://collections/juices-fruit-drinks",
-            "background_color": "#d4a737",
-            "text_color": "#ffffff"
-          }
-        },
-        "c_coffee": {
-          "type": "banner",
-          "settings": {
-            "title": "Coffee",
-            "link": "shopify://collections/coffee-coffee-drinks",
-            "background_color": "#093e37",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "c_chips",
-        "c_choc",
-        "c_candy",
-        "c_gum",
-        "c_juice",
-        "c_coffee"
-      ],
-      "name": "Shop by category",
-      "settings": {
-        "title": "",
-        "eyebrow": "",
-        "show_view_all": true,
-        "view_all_label": "",
-        "view_all_link": "",
-        "color_scheme": "scheme-5",
-        "padding_top": 52,
-        "padding_bottom": 52
-      }
-    },
-    "grid_candy": {
-      "type": "ayira-featured-collection",
-      "name": "Sweet picks",
-      "settings": {
-        "collection": "bakery-pastries-1",
-        "products_to_show": 20,
-        "eyebrow": "Fresh picks",
-        "title": "Sweet picks this week",
-        "show_view_all": true,
-        "view_all_label": "",
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "ayira_featured_collection_YNEeXJ": {
-      "type": "ayira-featured-collection",
-      "name": "Sweet picks",
-      "settings": {
-        "collection": "carbonated-soft-drinks",
-        "products_to_show": 20,
-        "eyebrow": "Fresh picks",
-        "title": "Sweet picks this week",
-        "show_view_all": true,
-        "view_all_label": "View all sweets",
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "ayira_featured_collection_XgbXhU": {
-      "type": "ayira-featured-collection",
-      "name": "Sweet picks",
-      "settings": {
-        "collection": "ice-cream",
-        "products_to_show": 20,
-        "eyebrow": "Fresh picks",
-        "title": "Sweet picks this week",
-        "show_view_all": true,
-        "view_all_label": "View all sweets",
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "ayira_featured_collection_PTn9kc": {
-      "type": "ayira-featured-collection",
-      "name": "Sweet picks",
-      "settings": {
-        "collection": "candy",
-        "products_to_show": 20,
-        "eyebrow": "Fresh picks",
-        "title": "Sweet picks this week",
-        "show_view_all": true,
-        "view_all_label": "View all sweets",
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "grid_chips": {
-      "type": "ayira-featured-collection",
-      "name": "Snack picks",
-      "settings": {
-        "collection": "chips-crisps",
-        "products_to_show": 20,
-        "eyebrow": "Crunch time",
-        "title": "Chips & crisps we stock",
-        "show_view_all": true,
-        "view_all_label": "View all snacks",
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     }
   },
   "order": [
     "hero",
-    "ayira_collection_banners_dWtPnt",
-    "aisles",
-    "categories",
-    "grid_candy",
-    "ayira_featured_collection_YNEeXJ",
-    "ayira_featured_collection_XgbXhU",
-    "ayira_featured_collection_PTn9kc",
-    "grid_chips"
+    "ayira_vertical_banners_xKak6d"
   ]
 }

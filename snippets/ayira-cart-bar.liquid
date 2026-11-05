@@ -6,11 +6,30 @@ Provides real-time feedback of items, total, and direct checkout link.
 {% render 'ayira-cart-bar' %}
 {% enddoc %}
 
-<div id="ayira-cart-bar" class="ayira-cart-bar" aria-live="polite" role="region" aria-label="Cart summary">
+{{ 'component-ayira-cart-bar.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="ayira-cart-bar"
+  class="ayira-cart-bar{% if cart.item_count > 0 and template.name != 'cart' %} is-active{% endif %}"
+  aria-live="polite"
+  role="region"
+  aria-label="Cart summary"
+>
   <div class="ayira-cart-bar__container">
     <div class="ayira-cart-bar__info">
       <div class="ayira-cart-bar__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-cart-bag">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon-cart-bag"
+          aria-hidden="true"
+        >
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -31,7 +50,18 @@ Provides real-time feedback of items, total, and direct checkout link.
 
     <a href="{{ routes.cart_url }}" class="ayira-cart-bar__btn" aria-label="{{ 'general.cart.view_empty_cart' | t }}">
       <span>{{ 'general.cart.view_empty_cart' | t }}</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow-right">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon-arrow-right"
+        aria-hidden="true"
+      >
         <line x1="5" y1="12" x2="19" y2="12"></line>
         <polyline points="12 5 19 12 12 19"></polyline>
       </svg>
