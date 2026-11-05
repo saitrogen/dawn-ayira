@@ -30,10 +30,6 @@
   {%- unless skip_styles -%}
     {{ 'component-ayira-card.css' | asset_url | stylesheet_tag }}
     {{ 'component-price.css' | asset_url | stylesheet_tag }}
-    {%- if quick_add == 'bulk' -%}
-      {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-      {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
-    {%- endif -%}
   {%- endunless -%}
   {%- liquid
     assign ratio = 1
@@ -57,7 +53,13 @@
   {%- if card_product and card_product != empty -%}
     <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
     <div class="ayira-card-wrapper ayira-card--{{ ayira_card_style }}{% if horizontal_class %} ayira-card--horizontal{% endif %} underline-links-hover">
-      <article class="ay-prod">
+      <article
+        class="ay-prod"
+        data-product-card
+        data-product-id="{{ card_product.id }}"
+        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+        data-available="{{ card_product.available }}"
+      >
         
         {%- comment -%} Card Image Area {%- endcomment -%}
         <a
@@ -130,6 +132,15 @@
             {%- else -%}
               {{ card_product.vendor | escape }}
             {%- endif -%}
+            {%- if card_product.selected_or_first_available_variant.unit_price_measurement -%}
+              <span class="ay-prod-unit">
+                • {{ card_product.selected_or_first_available_variant.unit_price | money }}/
+                {%- if card_product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                  {{- card_product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+                {%- endif -%}
+                {{ card_product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+              </span>
+            {%- endif -%}
           </div>
           <h3 class="ay-prod-title" id="AyiraCardTitle-{{ section_id }}-{{ card_product.id }}">
             <a href="{{ card_product.url }}" class="full-unstyled-link">
@@ -178,7 +189,7 @@
               </quick-add-bulk>
             {%- else -%}
             {%- if card_product.available -%}
-              <div class="ay-prod-add-container">
+              <div class="ay-prod-add-container ayira-card-action">
                 {%- if card_product.variants_count > 1 or qty_rules -%}
                   <modal-opener data-modal="#QuickAdd-{{ card_product.id }}">
                     <button
@@ -186,6 +197,7 @@
                       type="submit"
                       name="add"
                       class="ay-prod-add"
+                      data-action="add"
                       aria-haspopup="dialog"
                       aria-label="{{ 'products.product.choose_options' | t }}: {{ card_product.title | escape }}"
                       data-product-url="{{ card_product.url }}"
@@ -219,6 +231,7 @@
                         type="submit"
                         name="add"
                         class="ay-prod-add"
+                        data-action="add"
                         aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
                         aria-live="polite"
                         data-sold-out-message="true"
@@ -233,16 +246,18 @@
                 {%- endif -%}
               </div>
             {%- else -%}
-              <button
-                type="button"
-                class="ay-prod-add disabled"
-                disabled
-                aria-label="{{ 'products.product.sold_out' | t }}: {{ card_product.title | escape }}"
-              >
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icon-plus">
-                  <path d="M12 5v14M5 12h14"></path>
-                </svg>
-              </button>
+              <div class="ayira-card-action">
+                <button
+                  type="button"
+                  class="ay-prod-add disabled"
+                  disabled
+                  aria-label="{{ 'products.product.sold_out' | t }}: {{ card_product.title | escape }}"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icon-plus">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </button>
+              </div>
             {%- endif -%}
             {%- endif -%}
             {%- endunless -%}

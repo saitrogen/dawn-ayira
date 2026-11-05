@@ -1,0 +1,40 @@
+{% doc %}
+Renders the Ayira Minimart persistent floating mini-cart bar.
+Appears at bottom of screen when cart contains 1 or more items.
+Provides real-time feedback of items, total, and direct checkout link.
+@example
+{% render 'ayira-cart-bar' %}
+{% enddoc %}
+
+<div id="ayira-cart-bar" class="ayira-cart-bar" aria-live="polite" role="region" aria-label="Cart summary">
+  <div class="ayira-cart-bar__container">
+    <div class="ayira-cart-bar__info">
+      <div class="ayira-cart-bar__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-cart-bag">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+      </div>
+      <div class="ayira-cart-bar__details">
+        <span class="ayira-cart-bar__count" data-cart-bar-count>
+          {%- if cart.item_count == 1 -%}
+            {{ 'sections.header.cart_count.one' | t: count: 1 }}
+          {%- else -%}
+            {{ 'sections.header.cart_count.other' | t: count: cart.item_count }}
+          {%- endif -%}
+        </span>
+        <span class="ayira-cart-bar__dot">•</span>
+        <span class="ayira-cart-bar__total" data-cart-bar-total>{{ cart.total_price | money }}</span>
+      </div>
+    </div>
+
+    <a href="{{ routes.cart_url }}" class="ayira-cart-bar__btn" aria-label="{{ 'general.cart.view_empty_cart' | t }}">
+      <span>{{ 'general.cart.view_empty_cart' | t }}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow-right">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+</div>

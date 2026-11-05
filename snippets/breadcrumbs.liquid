@@ -17,21 +17,23 @@
             <span class="breadcrumbs__sep">/</span>
             <span class="breadcrumbs__current" aria-current="page">{{ product.title }}</span>
           </li>
-        {%- when 'collection' and collection.handle -%}
-          {%- if current_tags -%}
-            <li class="breadcrumbs__item">
-              <span class="breadcrumbs__sep">/</span>
-              {{ collection.title | link_to: collection.url, class: 'breadcrumbs__link' }}
-            </li>
-            <li class="breadcrumbs__item">
-              <span class="breadcrumbs__sep">/</span>
-              <span class="breadcrumbs__current" aria-current="page">{{ current_tags | join: " + " }}</span>
-            </li>
-          {%- else -%}
-            <li class="breadcrumbs__item">
-              <span class="breadcrumbs__sep">/</span>
-              <span class="breadcrumbs__current" aria-current="page">{{ collection.title }}</span>
-            </li>
+        {%- when 'collection' -%}
+          {%- if collection.handle -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item">
+                <span class="breadcrumbs__sep">/</span>
+                {{ collection.title | link_to: collection.url, class: 'breadcrumbs__link' }}
+              </li>
+              <li class="breadcrumbs__item">
+                <span class="breadcrumbs__sep">/</span>
+                <span class="breadcrumbs__current" aria-current="page">{{ current_tags | join: " + " }}</span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item">
+                <span class="breadcrumbs__sep">/</span>
+                <span class="breadcrumbs__current" aria-current="page">{{ collection.title }}</span>
+              </li>
+            {%- endif -%}
           {%- endif -%}
         {%- when 'page' -%}
           <li class="breadcrumbs__item">
