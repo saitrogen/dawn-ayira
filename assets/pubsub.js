@@ -23,3 +23,8 @@ function publish(eventName, data) {
     return Promise.resolve()
   }
 }
+
+window.pubsub = {
+  subscribe,
+  publish
+};

@@ -115,12 +115,28 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
-          const selectors = ['cart-drawer-items', '.cart-drawer__footer'];
-          for (const selector of selectors) {
-            const targetElement = document.querySelector(selector);
-            const sourceElement = html.querySelector(selector);
-            if (targetElement && sourceElement) {
-              targetElement.replaceWith(sourceElement);
+          const cartDrawer = document.querySelector('cart-drawer');
+          const sourceDrawer = html.querySelector('cart-drawer');
+          if (cartDrawer && sourceDrawer) {
+            cartDrawer.classList.toggle('is-empty', sourceDrawer.classList.contains('is-empty'));
+          }
+
+          const targetDrawerInner = document.querySelector('#CartDrawer .drawer__inner');
+          const sourceDrawerInner = html.querySelector('#CartDrawer .drawer__inner');
+          const activeId = document.activeElement ? document.activeElement.id : null;
+          if (targetDrawerInner && sourceDrawerInner) {
+            targetDrawerInner.replaceWith(sourceDrawerInner);
+            if (activeId && document.getElementById(activeId)) {
+              document.getElementById(activeId).focus();
+            }
+          } else {
+            const selectors = ['cart-drawer-items', '.cart-drawer__footer', '.cart__ctas'];
+            for (const selector of selectors) {
+              const targetElement = document.querySelector(selector);
+              const sourceElement = html.querySelector(selector);
+              if (targetElement && sourceElement) {
+                targetElement.replaceWith(sourceElement);
+              }
             }
           }
         })
@@ -136,7 +152,10 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
           const sourceQty = html.querySelector('cart-items');
-          if (sourceQty) this.innerHTML = sourceQty.innerHTML;
+          if (sourceQty) {
+            this.innerHTML = sourceQty.innerHTML;
+            this.classList.toggle('is-empty', sourceQty.classList.contains('is-empty'));
+          }
         })
         .catch((e) => {
           console.error(e);
