@@ -1,6 +1,9 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -47,6 +50,7 @@
               show_rating: section.settings.show_rating,
               skip_styles: skip_card_product_styles,
               section_id: section.id,
+              quick_add: 'standard',
               ayira_card_style: section.settings.ayira_card_style,
               product_view_context: 'recommendation'
             %}
