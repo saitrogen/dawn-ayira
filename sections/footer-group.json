@@ -13,46 +13,13 @@
   "sections": {
     "ayira_footer_HH4qRz": {
       "type": "ayira-footer",
-      "blocks": {
-        "link_list_nmatVe": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Explore",
-            "menu": "footer"
-          }
-        },
-        "link_list_RWccUG": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Explore",
-            "menu": "footer"
-          }
-        },
-        "text_LgBh3F": {
-          "type": "text",
-          "settings": {
-            "heading": "About Ayira",
-            "subtext": "<p>Thoughtfully selected essentials for everyday living.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "link_list_nmatVe",
-        "link_list_RWccUG",
-        "text_LgBh3F"
-      ],
       "name": "Ayira footer",
       "settings": {
-        "color_scheme": "",
-        "newsletter_enable": true,
-        "newsletter_heading": "Stay close to Ayira",
-        "newsletter_text": "<p>New arrivals, useful ideas, and considered offers. No noise.</p>",
-        "show_social": true,
-        "payment_enable": true,
+        "color_scheme": "scheme-3",
         "show_policy": true,
         "margin_top": 0,
-        "padding_top": 48,
-        "padding_bottom": 28
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     }
   },
