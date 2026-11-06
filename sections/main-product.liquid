@@ -570,7 +570,7 @@
   </div>
 
   {%- if product.available -%}
-    <div id="AyStickyAtc" class="ay-sticky-atc">
+    <div id="AyStickyAtc" class="ay-sticky-atc" inert>
       <div class="price-info">
         <div class="p">{{ product.selected_or_first_available_variant.price | money }}</div>
         <div class="u">
@@ -583,7 +583,7 @@
       <button
         type="button"
         class="ay-btn-primary"
-        onclick="const btn = document.querySelector('.product-form__submit'); if(btn) btn.click();"
+        onclick="const btn = this.closest('product-info').querySelector('.product-form__submit'); if(btn) btn.click();"
       >
         Add to cart
       </button>
@@ -593,17 +593,15 @@
       (function() {
         function initStickyAtc() {
           const stickyAtc = document.getElementById('AyStickyAtc');
-          const buyButtons = document.querySelector('.product-form__submit');
-          if (!stickyAtc || !buyButtons) return;
+          const buyButtons = stickyAtc?.closest('product-info').querySelector('.product-form__submit');
+          if (!stickyAtc || !buyButtons || stickyAtc.dataset.observed) return;
+          stickyAtc.dataset.observed = 'true';
 
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
               const isOut = !entry.isIntersecting && (entry.boundingClientRect.top < 0);
-              if (isOut) {
-                stickyAtc.classList.add('is-visible');
-              } else {
-                stickyAtc.classList.remove('is-visible');
-              }
+              stickyAtc.classList.toggle('is-visible', isOut);
+              stickyAtc.inert = !isOut;
             });
           }, {
             threshold: 0

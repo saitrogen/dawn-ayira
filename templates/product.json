@@ -77,13 +77,6 @@
         "padding_bottom": 12
       }
     },
-    "disclosures": {
-      "type": "disclosures",
-      "settings": {
-        "padding_top": 36,
-        "padding_bottom": 0
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -106,7 +99,6 @@
   },
   "order": [
     "main",
-    "disclosures",
     "related-products"
   ]
 }
