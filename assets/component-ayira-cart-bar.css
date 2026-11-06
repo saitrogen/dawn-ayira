@@ -1,7 +1,11 @@
 /* ── Floating Mini-Cart Bar ───────────────────────────────── */
+:root {
+  --ayira-cart-bar-clearance: calc(96px + env(safe-area-inset-bottom, 0px));
+}
+
 .ayira-cart-bar {
   position: fixed;
-  bottom: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%) translateY(120%);
   z-index: 999;
@@ -110,7 +114,7 @@
 
 @media screen and (max-width: 480px) {
   .ayira-cart-bar {
-    bottom: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     width: calc(100% - 24px);
   }
   .ayira-cart-bar__container {
@@ -134,4 +138,44 @@
   .ayira-cart-bar__btn:hover {
     transform: none;
   }
+}
+
+body.overflow-hidden .ayira-cart-bar,
+.drawer.active ~ * .ayira-cart-bar,
+cart-drawer.active ~ * .ayira-cart-bar {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(120%) !important;
+}
+
+/* ── Bottom Clearance for Floating Mini-Cart Bar ───────────── */
+/* Ensure the page content has sufficient bottom clearance when the cart bar is active
+   so the last product row is always fully visible and clickable above the floating bar */
+body:has(#ayira-cart-bar.is-active) #ProductGridContainer,
+body:has(#ayira-cart-bar.is-active) .template-collection .page-width,
+body:has(#ayira-cart-bar.is-active) .template-search .page-width,
+body:has(#ayira-cart-bar.is-active) .ayira-featured-collection,
+body:has(#ayira-cart-bar.is-active) .section-ayira-featured-collection,
+body:has(.ayira-cart-bar.is-active) #ProductGridContainer,
+body:has(.ayira-cart-bar.is-active) .template-collection .page-width,
+body:has(.ayira-cart-bar.is-active) .template-search .page-width,
+body:has(.ayira-cart-bar.is-active) .ayira-featured-collection,
+body:has(.ayira-cart-bar.is-active) .section-ayira-featured-collection {
+  padding-bottom: var(--ayira-cart-bar-clearance);
+}
+
+/* Ensure banner / header page-width within collection/search do not inherit unnecessary spacing */
+body:has(#ayira-cart-bar.is-active) .collection-hero .page-width,
+body:has(#ayira-cart-bar.is-active) .facets-vertical-sort.page-width,
+body:has(.ayira-cart-bar.is-active) .collection-hero .page-width,
+body:has(.ayira-cart-bar.is-active) .facets-vertical-sort.page-width {
+  padding-bottom: 0;
+}
+
+/* Clearance utility classes */
+.ayira-cart-bar-clearance,
+.has-cart-bar-clearance,
+#ProductGridContainer.has-cart-bar-clearance {
+  padding-bottom: var(--ayira-cart-bar-clearance);
 }

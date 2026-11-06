@@ -6,6 +6,7 @@ Provides real-time feedback of items, total, and direct checkout link.
 {% render 'ayira-cart-bar' %}
 {% enddoc %}
 
+{%- unless template.name == 'product' or template.name == 'cart' -%}
 {{ 'component-ayira-cart-bar.css' | asset_url | stylesheet_tag }}
 
 <div
@@ -48,7 +49,7 @@ Provides real-time feedback of items, total, and direct checkout link.
       </div>
     </div>
 
-    <a href="{{ routes.cart_url }}" class="ayira-cart-bar__btn" aria-label="{{ 'general.cart.view_empty_cart' | t }}">
+    <a href="{{ routes.cart_url }}" class="ayira-cart-bar__btn" data-cart-trigger aria-label="{{ 'general.cart.view_empty_cart' | t }}">
       <span>{{ 'general.cart.view_empty_cart' | t }}</span>
       <svg
         width="16"
@@ -68,3 +69,5 @@ Provides real-time feedback of items, total, and direct checkout link.
     </a>
   </div>
 </div>
+
+{%- endunless -%}

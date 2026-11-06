@@ -101,14 +101,14 @@
         </button>
 
         <!-- Cart Link -->
-        <a href="{{ routes.cart_url }}" class="ayira-header__icon-btn" aria-label="Cart" id="cart-icon-bubble">
+        <a href="{{ routes.cart_url }}" class="ayira-header__icon-btn" aria-label="Cart" id="cart-icon-bubble" data-cart-trigger>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 6H17L18.5 18H1.5L3 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             <path d="M7 9V5C7 3.34315 8.34315 2 10 2C11.6569 2 13 3.34315 13 5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
-          {%- if cart != empty -%}
-            <span class="ayira-header__cart-badge">{{ cart.item_count }}</span>
-          {%- endif -%}
+          <span class="ayira-header__cart-badge{% if cart == empty %} hidden{% endif %}" data-ayira-cart-count aria-hidden="{% if cart == empty %}true{% else %}false{% endif %}">
+            {%- if cart != empty -%}{{ cart.item_count }}{%- endif -%}
+          </span>
         </a>
       </div>
     </div>
@@ -208,14 +208,14 @@
 
       <!-- Mobile Cart Right -->
       <div class="ayira-header__mobile-right">
-        <a href="{{ routes.cart_url }}" class="ayira-header__icon-btn" aria-label="Cart">
+        <a href="{{ routes.cart_url }}" class="ayira-header__icon-btn" aria-label="Cart" data-cart-trigger>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 6H17L18.5 18H1.5L3 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             <path d="M7 9V5C7 3.34315 8.34315 2 10 2C11.6569 2 13 3.34315 13 5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
-          {%- if cart != empty -%}
-            <span class="ayira-header__cart-badge">{{ cart.item_count }}</span>
-          {%- endif -%}
+          <span class="ayira-header__cart-badge{% if cart == empty %} hidden{% endif %}" data-ayira-cart-count aria-hidden="{% if cart == empty %}true{% else %}false{% endif %}">
+            {%- if cart != empty -%}{{ cart.item_count }}{%- endif -%}
+          </span>
         </a>
       </div>
 

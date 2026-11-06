@@ -202,6 +202,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.ayira-header__cart-badge.hidden,
+.ayira-header__cart-badge:empty {
+  display: none !important;
+}
+
 /* Navigation Layout (Row 2) */
 .ayira-header__nav-list {
   list-style: none;
