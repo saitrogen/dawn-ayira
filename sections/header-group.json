@@ -42,9 +42,10 @@
       "type": "ayira-header",
       "settings": {
         "menu": "main-menu",
-        "logo_width": 130,
+        "logo_light": "shopify://shop_images/logo-wordmark-forest.png",
+        "logo_width": 110,
         "logo_height": 50,
-        "logo_height_mobile": 42,
+        "logo_height_mobile": 50,
         "sticky_header_type": "on-scroll-up",
         "color_scheme": "scheme-1",
         "enable_language_selector": true
