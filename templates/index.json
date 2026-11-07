@@ -12,19 +12,45 @@
   "sections": {
     "intro": {
       "type": "ayira-home-intro",
+      "blocks": {
+        "snack_break": {
+          "type": "campaign",
+          "settings": {
+            "collection": "chips-crisps",
+            "heading": "Your next snack break.",
+            "button_label": "Shop chips",
+            "text": "",
+            "color_scheme": "ayira-home-forest"
+          }
+        },
+        "drinks": {
+          "type": "campaign",
+          "settings": {
+            "collection": "carbonated-soft-drinks",
+            "heading": "Your favourite soft drinks.",
+            "button_label": "Shop soft drinks",
+            "text": "",
+            "color_scheme": "ayira-home-cream"
+          }
+        },
+        "bakery": {
+          "type": "campaign",
+          "settings": {
+            "collection": "bakery-pastries",
+            "heading": "Make time for a bakery break.",
+            "button_label": "Shop bakery",
+            "text": "",
+            "color_scheme": "ayira-home-forest"
+          }
+        }
+      },
+      "block_order": [
+        "snack_break",
+        "drinks",
+        "bakery"
+      ],
       "settings": {
-        "heading": "Your everyday groceries, all in one place.",
-        "text": "<p>From your morning drink to your evening snack. Fill your basket with the things you reach for every day.</p>",
-        "button_label": "Shop groceries",
-        "button_link": "shopify://collections/all",
-        "secondary_label": "Browse categories",
-        "secondary_link": "shopify://collections",
-        "products": [
-          "oman-chips-chilli-flavor-15g",
-          "pepsi-1-25l",
-          "ulker-hanimeller-cocoa-chips-cookies-82-g"
-        ],
-        "color_scheme": "ayira-home-forest"
+        "color_scheme": "ayira-home-cream"
       }
     },
     "categories": {
