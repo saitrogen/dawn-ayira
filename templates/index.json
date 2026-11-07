@@ -118,47 +118,14 @@
         "personal_hygiene"
       ],
       "settings": {
-        "title": "Shop by category",
         "eyebrow": "",
+        "title": "Shop by category",
         "show_view_all": true,
         "view_all_label": "All categories",
         "show_collection_title": true,
         "show_product_count": false,
         "color_scheme": "ayira-home-cream",
         "padding_top": 64,
-        "padding_bottom": 32
-      }
-    },
-    "snacks": {
-      "type": "ayira-featured-collection",
-      "settings": {
-        "products": [
-          "oman-chips-chilli-flavor-15g",
-          "snickers-chocolate-bar-40g",
-          "ulker-hanimeller-cocoa-chips-cookies-82-g",
-          "topsy-popcorn-35-g",
-          "relish-cashew-pistachio-oats-cookies-42-g",
-          "pran-chanachur-bombay-mix-50-g",
-          "camel-natural-baked-almonds-36-g",
-          "boundry-wafer-rolls"
-        ],
-        "collection": "",
-        "products_to_show": 8,
-        "eyebrow": "",
-        "title": "Make room for your snack break",
-        "show_view_all": true,
-        "view_all_label": "Shop all",
-        "view_all_link": "shopify://collections/all",
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "enable_desktop_slider": true,
-        "ayira_card_style": "compact",
-        "image_ratio": "square",
-        "show_secondary_image": false,
-        "quick_add": "standard",
-        "color_scheme": "ayira-home-cream",
-        "padding_top": 32,
         "padding_bottom": 32
       }
     },
@@ -233,9 +200,43 @@
         "padding_bottom": 64
       }
     },
+    "snacks": {
+      "type": "ayira-featured-collection",
+      "settings": {
+        "collection": "",
+        "products": [
+          "oman-chips-chilli-flavor-15g",
+          "snickers-chocolate-bar-40g",
+          "ulker-hanimeller-cocoa-chips-cookies-82-g",
+          "topsy-popcorn-35-g",
+          "relish-cashew-pistachio-oats-cookies-42-g",
+          "pran-chanachur-bombay-mix-50-g",
+          "camel-natural-baked-almonds-36-g",
+          "boundry-wafer-rolls"
+        ],
+        "products_to_show": 8,
+        "eyebrow": "",
+        "title": "Make room for your snack break",
+        "show_view_all": true,
+        "view_all_label": "Shop all",
+        "view_all_link": "shopify://collections/all",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "enable_desktop_slider": true,
+        "ayira_card_style": "compact",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "quick_add": "standard",
+        "color_scheme": "ayira-home-cream",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
     "drinks": {
       "type": "ayira-featured-collection",
       "settings": {
+        "collection": "",
         "products": [
           "rayyan-natural-water-330ml-12",
           "pepsi-1-25l",
@@ -246,7 +247,6 @@
           "pran-basil-seed-lychee-250-ml",
           "mountain-dew-2-25l"
         ],
-        "collection": "",
         "products_to_show": 8,
         "eyebrow": "",
         "title": "Find your everyday drinks",
@@ -269,9 +269,9 @@
   },
   "order": [
     "intro",
+    "ayira_vertical_banners_xKak6d",
     "categories",
     "snacks",
-    "ayira_vertical_banners_xKak6d",
     "drinks"
   ]
 }
