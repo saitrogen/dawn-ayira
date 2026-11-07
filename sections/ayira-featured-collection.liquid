@@ -38,10 +38,14 @@
 {%- liquid
   assign featured_collection = section.settings.collection
   assign collection_products = featured_collection.products
+  if section.settings.products.size > 0
+    assign collection_products = section.settings.products
+  endif
+  assign view_all_url = section.settings.view_all_link | default: featured_collection.url | default: routes.all_products_collection_url
   assign products_to_display = section.settings.products_to_show
 
-  if featured_collection.products_count < products_to_display
-    assign products_to_display = featured_collection.products_count
+  if collection_products.size < products_to_display
+    assign products_to_display = collection_products.size
   endif
 
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
@@ -63,6 +67,7 @@
   endif
 -%}
 
+{%- if collection_products.size > 0 or request.design_mode -%}
 <div
   id="AyiraFeaturedCollection-{{ section.id }}"
   class="color-{{ section.settings.color_scheme }} isolate gradient"
@@ -73,7 +78,7 @@
       title: section.settings.title,
       show_view_all: section.settings.show_view_all,
       view_all_label: section.settings.view_all_label,
-      view_all_url: featured_collection.url
+      view_all_url: view_all_url
     %}
   </div>
 
@@ -174,6 +179,7 @@
     {%- endif -%}
   </slider-component>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -188,6 +194,13 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Selected products",
+      "limit": 16,
+      "info": "Optional. Replaces the collection products with your selection, in this order."
     },
     {
       "type": "range",
@@ -230,6 +243,12 @@
       "id": "view_all_label",
       "label": "Link label",
       "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link",
+      "info": "Leave empty to use the collection link, or all products when no collection is selected."
     },
     {
       "type": "header",

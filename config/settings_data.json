@@ -202,6 +202,32 @@
           "secondary_button_label": "#093e37",
           "shadow": "#101828"
         }
+      },
+      "ayira-home-cream": {
+        "settings": {
+          "background_gradient": "",
+          "text_secondary": "#667085",
+          "accent": "#d4a737",
+          "shadow": "#0d4f47",
+          "background": "#f6f6ee",
+          "text": "#101828",
+          "button": "#0d4f47",
+          "button_label": "#f6f6ee",
+          "secondary_button_label": "#0d4f47"
+        }
+      },
+      "ayira-home-forest": {
+        "settings": {
+          "background_gradient": "",
+          "text_secondary": "#f6f6ee",
+          "accent": "#d4a737",
+          "shadow": "#0d4f47",
+          "background": "#0d4f47",
+          "text": "#f6f6ee",
+          "button": "#f6f6ee",
+          "button_label": "#0d4f47",
+          "secondary_button_label": "#f6f6ee"
+        }
       }
     }
   },

@@ -8,126 +8,158 @@
  * ------------------------------------------------------------
  */
 {
+  "wrapper": "div.ayira-homepage",
   "sections": {
-    "hero": {
-      "type": "ayira-hero-banner",
+    "intro": {
+      "type": "ayira-home-intro",
+      "settings": {
+        "heading": "Your everyday groceries, all in one place.",
+        "text": "<p>From your morning drink to your evening snack. Fill your basket with the things you reach for every day.</p>",
+        "button_label": "Shop groceries",
+        "button_link": "shopify://collections/all",
+        "secondary_label": "Browse categories",
+        "secondary_link": "shopify://collections",
+        "products": [
+          "oman-chips-chilli-flavor-15g",
+          "pepsi-1-25l",
+          "ulker-hanimeller-cocoa-chips-cookies-82-g"
+        ],
+        "color_scheme": "ayira-home-forest"
+      }
+    },
+    "categories": {
+      "type": "ayira-collection-icon-list",
       "blocks": {
-        "slide_delivery": {
-          "type": "slide",
+        "water": {
+          "type": "collection",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h1",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "collection": "water"
           }
         },
-        "slide_artwork": {
-          "type": "slide",
+        "carbonated_soft_drinks": {
+          "type": "collection",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "collection": "carbonated-soft-drinks"
           }
         },
-        "slide_mz9mi4": {
-          "type": "slide",
+        "juices_fruit_drinks": {
+          "type": "collection",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "collection": "juices-fruit-drinks"
           }
         },
-        "slide_NUHF7f": {
-          "type": "slide",
+        "chips_crisps": {
+          "type": "collection",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "collection": "chips-crisps"
           }
         },
-        "slide_Cn7cN9": {
-          "type": "slide",
+        "biscuits": {
+          "type": "collection",
           "settings": {
-            "image_behavior": "none",
-            "eyebrow_label": "",
-            "heading": "",
-            "heading_size": "h1",
-            "heading_tag": "h2",
-            "text": "",
-            "content_position_vertical": "middle",
-            "content_position_horizontal": "center",
-            "content_alignment": "center",
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "collection": "biscuits"
+          }
+        },
+        "chocolates": {
+          "type": "collection",
+          "settings": {
+            "collection": "chocolates"
+          }
+        },
+        "bakery_pastries": {
+          "type": "collection",
+          "settings": {
+            "collection": "bakery-pastries"
+          }
+        },
+        "noodles": {
+          "type": "collection",
+          "settings": {
+            "collection": "noodles"
+          }
+        },
+        "ice_cream": {
+          "type": "collection",
+          "settings": {
+            "collection": "ice-cream"
+          }
+        },
+        "nuts_seeds": {
+          "type": "collection",
+          "settings": {
+            "collection": "nuts-seeds"
+          }
+        },
+        "frozen_foods": {
+          "type": "collection",
+          "settings": {
+            "collection": "energy-sports-drinks"
+          }
+        },
+        "personal_hygiene": {
+          "type": "collection",
+          "settings": {
+            "collection": "oils-cooking-ingredients"
           }
         }
       },
       "block_order": [
-        "slide_delivery",
-        "slide_artwork",
-        "slide_mz9mi4",
-        "slide_NUHF7f",
-        "slide_Cn7cN9"
+        "water",
+        "carbonated_soft_drinks",
+        "juices_fruit_drinks",
+        "chips_crisps",
+        "biscuits",
+        "chocolates",
+        "bakery_pastries",
+        "noodles",
+        "ice_cream",
+        "nuts_seeds",
+        "frozen_foods",
+        "personal_hygiene"
       ],
-      "name": "Hero",
       "settings": {
-        "autoplay": true,
-        "autoplay_speed": 3,
-        "image_height": "medium",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "title": "Shop by category",
+        "eyebrow": "",
+        "show_view_all": true,
+        "view_all_label": "All categories",
+        "show_collection_title": true,
+        "show_product_count": false,
+        "color_scheme": "ayira-home-cream",
+        "padding_top": 64,
+        "padding_bottom": 32
+      }
+    },
+    "snacks": {
+      "type": "ayira-featured-collection",
+      "settings": {
+        "products": [
+          "oman-chips-chilli-flavor-15g",
+          "snickers-chocolate-bar-40g",
+          "ulker-hanimeller-cocoa-chips-cookies-82-g",
+          "topsy-popcorn-35-g",
+          "relish-cashew-pistachio-oats-cookies-42-g",
+          "pran-chanachur-bombay-mix-50-g",
+          "camel-natural-baked-almonds-36-g",
+          "boundry-wafer-rolls"
+        ],
+        "collection": "",
+        "products_to_show": 8,
+        "eyebrow": "",
+        "title": "Make room for your snack break",
+        "show_view_all": true,
+        "view_all_label": "Shop all",
+        "view_all_link": "shopify://collections/all",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "enable_desktop_slider": true,
+        "ayira_card_style": "compact",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "quick_add": "standard",
+        "color_scheme": "ayira-home-cream",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "ayira_vertical_banners_xKak6d": {
@@ -137,10 +169,30 @@
           "type": "banner",
           "settings": {
             "image": "shopify://shop_images/80nivf-qbake_20zaatar_20cream_20cheese_20sandwich_20roll_20110g.png",
+            "title": "Bakery",
+            "link": "shopify://collections/bakery-pastries",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_mayxrg": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/80nivf-qbake_20zaatar_20cream_20cheese_20sandwich_20roll_20110g.png",
             "title": "Category name",
             "link": "shopify://collections/bakery-pastries",
-            "background_color": "#0D4F47",
-            "text_color": "#FFFFFF"
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_4bQT7F": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/80nivf-qbake_20zaatar_20cream_20cheese_20sandwich_20roll_20110g.png",
+            "title": "Category name",
+            "link": "shopify://collections/bakery-pastries",
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
           }
         },
         "banner_GWtG4f": {
@@ -148,8 +200,8 @@
           "settings": {
             "title": "Category name",
             "link": "",
-            "background_color": "#0D4F47",
-            "text_color": "#FFFFFF"
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
           }
         },
         "banner_bVAViA": {
@@ -157,13 +209,15 @@
           "settings": {
             "title": "Category name",
             "link": "",
-            "background_color": "#0D4F47",
-            "text_color": "#FFFFFF"
+            "background_color": "#0d4f47",
+            "text_color": "#ffffff"
           }
         }
       },
       "block_order": [
         "banner_mKU8bd",
+        "banner_mayxrg",
+        "banner_4bQT7F",
         "banner_GWtG4f",
         "banner_bVAViA"
       ],
@@ -178,10 +232,46 @@
         "padding_top": 64,
         "padding_bottom": 64
       }
+    },
+    "drinks": {
+      "type": "ayira-featured-collection",
+      "settings": {
+        "products": [
+          "rayyan-natural-water-330ml-12",
+          "pepsi-1-25l",
+          "mango-nectar-250ml",
+          "kdd-cocktail-fruit-drink-250ml",
+          "qatar-oasis-natural-water-1-5l-x-6",
+          "shani-can-330ml",
+          "pran-basil-seed-lychee-250-ml",
+          "mountain-dew-2-25l"
+        ],
+        "collection": "",
+        "products_to_show": 8,
+        "eyebrow": "",
+        "title": "Find your everyday drinks",
+        "show_view_all": true,
+        "view_all_label": "Shop all",
+        "view_all_link": "shopify://collections/all",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "enable_desktop_slider": true,
+        "ayira_card_style": "compact",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "quick_add": "standard",
+        "color_scheme": "ayira-home-cream",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
     }
   },
   "order": [
-    "hero",
-    "ayira_vertical_banners_xKak6d"
+    "intro",
+    "categories",
+    "snacks",
+    "ayira_vertical_banners_xKak6d",
+    "drinks"
   ]
 }

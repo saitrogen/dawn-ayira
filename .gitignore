@@ -21,3 +21,5 @@ node_modules
 # .tmp
 # .plans
 # ayira-prototype
+.agents/skills/shopify
+.playwright-cli/
